@@ -25,7 +25,7 @@ check_dependencies() {
 }
 check_dependencies
 
-BASE="$HOME/twitch-buffer"
+BASE="$HOME/photographer"
 SEG="$BASE/segments"
 CLIPS="$BASE/clips"
 
@@ -147,7 +147,7 @@ while [[ $# -gt 0 ]]; do
             exit 0
             ;;
         --dirrectory)
-            BASE=$(realpath "$2/twitch-buffer")
+            BASE=$(realpath "$2/photographer")
             SEG="$BASE/segments"
             CLIPS="$BASE/clips"
             shift 2
