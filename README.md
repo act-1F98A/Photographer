@@ -58,19 +58,19 @@ chmod +x photographer.sh
 
 Start recording a stream buffer:
 ```bash
-./twitch-buffer.sh streamer_name
+./photographer.sh streamer_name
 ```
 Create a clip from recent moments:
 ```bash
-./twitch-buffer.sh streamer_name --clip
+./photographer.sh streamer_name --clip
 ```
 Create a clip including forward + backward buffer:
 ```bash
-./twitch-buffer.sh streamer_name --full-clip
+./photographer.sh streamer_name --full-clip
 ```
 For more information about available options:
 ```bash
-./twitch-buffer.sh --help
+./photographer.sh --help
 ```
 ## How It Works
 
@@ -87,7 +87,7 @@ Output Structure
 
 By default:
 ```
-~/twitch-buffer/
+~/photographer/
     segments/<streamer>/
     clips/<streamer>/
 ```
