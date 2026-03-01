@@ -38,7 +38,7 @@ sudo apt install ffmpeg streamlink
 ## Installation
 ### Option 1 — Download from Release (recommended)
 
-1) Go to the Releases section of this repository.
+1) Go to the [Releases](https://github.com/act-1F98A/Photographer/releases/) section of this repository.
 2) Download the latest ```photographer.sh```.
 3) Make it executable:
 ```bash
@@ -55,6 +55,8 @@ cd Photographer
 chmod +x photographer.sh
 ```
 ## Usage Examples
+
+![Demo](demo.GIF)
 
 Start recording a stream buffer:
 ```bash
