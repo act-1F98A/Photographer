@@ -39,10 +39,8 @@ FORWARD=5   # 2.5 мин вперёд
 ############################################
 # HELP
 ############################################
-print_help() {
-    case "$LANG" in 
-        en_US.UTF-8)
-            cat << EOF
+eng_help() {
+    cat << EOF
 Using:
 
 $0 <nickname on twitch> [flag]
@@ -71,6 +69,15 @@ Without a flag:
 --help, -h:
     show this help
 EOF
+}
+
+print_help() {
+    case "$LANG" in 
+        en_US.UTF-8)
+            eng_help
+        ;;
+        *)
+            eng_help
         ;;
         ru_RU.UTF-8)
             cat << EOF
@@ -112,9 +119,11 @@ if [[ -z "$1" || "$1" == --* ]]; then
         ru_RU.UTF-8)
             echo "Укажите ник стримера"
         ;;
-        en_US.UTF-8*)
+        en_US.UTF-8)
             echo "Specify streamer's nickname"
         ;;
+        *)
+            echo "Specify streamer's nickname"
     esac
     exit 1
 else
