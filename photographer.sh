@@ -829,8 +829,8 @@ settings_menu() {
     fi
     source "$CONFIG_FILE"
     local glogal_settings_submenu_title="$SETTINGS_EMOJI Global settings"
-    local duration_forward="Duty forward = $DURATION_FORWARD segments ($(($DURATION_FORWARD*$SEGMENT_TIME)) sec)"
-    local duration_back="Duty back = $DURATION_BACK segments ($(($DURATION_BACK*$SEGMENT_TIME)) sec)"
+    local duration_forward="Duration forward = $DURATION_FORWARD segments ($(($DURATION_FORWARD*$SEGMENT_TIME)) sec)"
+    local duration_back="Duration back = $DURATION_BACK segments ($(($DURATION_BACK*$SEGMENT_TIME)) sec)"
     local buffer_size="Buffer size = $BUFFER_SIZE"
     local segment_time="Segment time = $SEGMENT_TIME"
     local work_directory="Work dirrectory = $WORK_DIRECTORY"
@@ -858,7 +858,7 @@ settings_menu() {
                 full_duration=$(("$DURATION_BACK"*"$SEGMENT_TIME"))
             fi
         fi
-        local l_duration_back="local Duty = $DURATION_BACK segments ($full_duration sec)"
+        local l_duration_back="local Duration = $DURATION_BACK segments ($full_duration sec)"
         local full_duration
         if [[ ! -z "$DURATION_FORWARD" ]]; then
             if [[ -z "$SEGMENT_TIME" ]]; then
@@ -867,7 +867,7 @@ settings_menu() {
                 full_duration=$(("$DURATION_FORWARD"*"$SEGMENT_TIME"))
             fi
         fi
-        local l_duration_forward="local Duty = $DURATION_FORWARD segments ($full_duration sec)"
+        local l_duration_forward="local Duration = $DURATION_FORWARD segments ($full_duration sec)"
         
         local l_buffer_size="local Buffer size = $BUFFER_SIZE"
         local l_segment_time="local Segment time = $SEGMENT_TIME"
