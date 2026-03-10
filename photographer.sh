@@ -1485,6 +1485,48 @@ delete_all_clip_data() {
 	done < <(cat "$STREAMERS_FILE")
 }
 
+# TODO доделать эту функцию, оня щас тотальная параша
+merge_clip() {
+    local new_start="$1"
+    local new_end="$2"
+    local new_segments_dir="$3"
+
+    local meta="$CLIP_DIR/meta"
+
+    if [[ -f "$meta" ]]; then
+        source "$meta"
+
+        if (( new_start <= end_segment )); then
+            reuse_dir=1
+        fi
+    fi
+
+    if [[ "$reuse_dir" != 1 ]]; then
+        CLIP_DIR="clips/clip_$(date +%s)"
+        mkdir -p "$CLIP_DIR/segments"
+        start_segment="$new_start"
+    fi
+
+    # удалить старые сегменты, которые будут перекрыты
+    for f in "$CLIP_DIR/segments/"*; do
+        seg="${f##*_}"
+        seg="${seg%.ts}"
+        if (( seg >= new_start )); then
+            rm "$f"
+        fi
+    done
+
+    # добавить новые сегменты
+    cp "$new_segments_dir"/*.ts "$CLIP_DIR/segments/"
+
+    end_segment="$new_end"
+
+    echo "start_segment=$start_segment" > "$meta"
+    echo "end_segment=$end_segment" >> "$meta"
+
+    rebuild_clip "$CLIP_DIR"
+}
+
 clip() {
 	TMP_NAME_FILE=$(mktemp)
 	echo "$CLIP_CREATING_CLIP"
