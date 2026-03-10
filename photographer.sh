@@ -120,7 +120,6 @@ local_english() {
 	CANCEL="Cancel"
 	CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
 	LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
-	#TODO переделать место, где используется эта переменная, чтобы ник стримера вставлялся через принтф
 	GLOBAL_DELETE_DATA_COMMENT="Do you confirm that you will\ndelete the original data of ALL clips?"
 	LOCAL_DELETE_DATA_COMMENT="Do you confirm that you have\ndeleted the original data of all clips from %s?"
 
@@ -1716,7 +1715,6 @@ EOF
 			if [[ "$g_save_clip_data_locked" == "$FALSE" ]]; then
 				change_variable_menu "SAVE_CLIP_DATA" "$CONFIG_FILE" "$(build_comment "$SAVE_CLIP_DATA_COMMENT")"
 			fi
-			# TODO добавить эту переменную в автосборку конфига и в проверку целостности конфига
 			;;
         "$delete_data_clips")
 			if confirmatoin "$CONFIRM_DELETE_DATA" "$CANCEL" "$GLOBAL_DELETE_DATA_COMMENT"; then
