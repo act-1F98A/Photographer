@@ -746,19 +746,19 @@ TITLE=""
 # Local
 ################################
 
-locale_self_name_to_code_converter() {
-	local name="$1"
-	case "$name" in 
-		"$SELF_ENGLISH") echo "$ENGLISH_CODE" ;;
-		"$SELF_RUSSIAN") echo "$RUSSIAN_CODE" ;;
-		"$SELF_UKRAINIAN") echo "$UKRAINIAN_CODE" ;;
-		"$SELF_SPANISH") echo "$SPANISH_CODE" ;;
-		"$SELF_FRENCH") echo "$FRENCH_CODE" ;;
-		"$SELF_GERMAN") echo "$GERMAN_CODE" ;;
-		"$SELF_CHINESE_SIMPLIFIED") echo "$CHINESE_SIMPLIFIED_CODE" ;;
-		*) ;;
-	esac
-}
+# locale_self_name_to_code_converter() {
+# 	local name="$1"
+# 	case "$name" in 
+# 		"$SELF_ENGLISH") echo "$ENGLISH_CODE" ;;
+# 		"$SELF_RUSSIAN") echo "$RUSSIAN_CODE" ;;
+# 		"$SELF_UKRAINIAN") echo "$UKRAINIAN_CODE" ;;
+# 		"$SELF_SPANISH") echo "$SPANISH_CODE" ;;
+# 		"$SELF_FRENCH") echo "$FRENCH_CODE" ;;
+# 		"$SELF_GERMAN") echo "$GERMAN_CODE" ;;
+# 		"$SELF_CHINESE_SIMPLIFIED") echo "$CHINESE_SIMPLIFIED_CODE" ;;
+# 		*) ;;
+# 	esac
+# }
 
 locale_code_to_self_name_converter() {
 	local code="$1"
