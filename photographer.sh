@@ -977,8 +977,12 @@ parse_args() {
 				set_work_directory "$2"
                 shift 2
                 ;;
-            --merge-adjacent-clips)
-                MERGE_ADJACENT_CLIPS=1
+            # --merge-adjacent-clips)
+                # MERGE_ADJACENT_CLIPS="$TRUE"
+				# shift
+				# ;;
+            --save-clip-data)
+				SAVE_CLIP_DATA="$TRUE"
                 shift
                 ;;
             --buffer-size)
