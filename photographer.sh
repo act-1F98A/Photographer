@@ -1847,14 +1847,14 @@ EOF
             {
 				MODE="--clip"
 				sleep 0.1 && clip &
-                # "$SCRIPT" --clip &
+				wait "$!"
             } 2> >( [[ "$SILENCE_LOG" == "$TRUE" ]] && cat >/dev/null || cat >&2 ) > >( [[ "$SILENCE_LOG" == "$TRUE" ]] && cat >/dev/null || cat)
             ;;
         "$full_clip")
             {
 				MODE="--full-clip"
 				sleep 0.1 && clip &
-                # "$SCRIPT" --full-clip &
+				wait "$!"
             } 2> >( [[ "$SILENCE_LOG" == "$TRUE" ]] && cat >/dev/null || cat >&2 ) > >( [[ "$SILENCE_LOG" == "$TRUE" ]] && cat >/dev/null || cat)
             ;;
         "$remove_streamer")
