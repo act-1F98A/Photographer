@@ -943,7 +943,7 @@ parse_args() {
 				shift
 				;;
 			--streamer)
-				NICK="$1"
+				NICK="$2"
 				shift
 				;;
             --silence-log)
