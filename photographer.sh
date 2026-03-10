@@ -1145,7 +1145,7 @@ EOF
 			else
 				printf '%s\n' "$first"
 			fi
-        ehse
+        else
             printf '%s\n' "$second"
         fi
     else
