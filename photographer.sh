@@ -1681,11 +1681,11 @@ $duration_back
 $buffer_size
 $segment_time
 $work_directory
-$merge_adjacent_clips
 $save_clip_data
 $delete_data_clips
 $global_lang
 EOF
+# TODO добавить сюда переменную merge_adjacent_clips
 )
     if ! [[ "$streamer" == "$NONE_STREAMER" ]]; then
         menu=$(cat <<EOF
@@ -1697,10 +1697,10 @@ $l_duration_back
 $l_buffer_size
 $l_segment_time
 $l_work_directory
-$l_merge_adjacent_clips
 $l_save_clip_data
 $l_delete_data_clips
 EOF
+# TODO добавить сюда переменную l_merge_adjacent_clips
 )
     fi
     menu=$(cat <<EOF
