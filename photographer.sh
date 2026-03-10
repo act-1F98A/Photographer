@@ -1104,24 +1104,43 @@ wofi_menu() {
 }
 
 fzf_menu() {
-    input="$(echo -e "$1" | fzf --prompt "$2: " --print-query $GUI_ARGS)"
-    if [[ "$input" == *$'\n'* ]]; then
-        printf '%s' "${input#*$'\n'}"
+	local dis
+	if [[ "$3" == "$TRUE" ]]; then
+		dis="--disabled"
+	fi
+    input="$(echo -e "$1" | fzf $dis --prompt "$2: " --print-query $GUI_ARGS)"
+	mapfile -t lines <<< "$input"
+
+    local first="${lines[0]}"
+    local second="${lines[1]}"
+	grep -q "$first" <<EOF
+$(echo -e "$1")
+EOF
+	if [[ $? -eq 0 ]]; then
+        if [[ "$3" == "$TRUE" ]]; then
+			if [[ -z "$first" ]]; then
+				printf '%s\n' "$second"
+			else
+				printf '%s\n' "$first"
+			fi
+        ehse
+            printf '%s\n' "$second"
+        fi
     else
-        printf '%s' "$input"
+        printf '%s\n' "$first"
     fi
 }
 
 grap_menu() {
     case "$USING_UI" in
         "$WOFI")
-            wofi_menu "$1" "$2"
+            wofi_menu "$@"
             ;;
         "$ROFI")
-            rofi_menu "$1" "$2"
+            rofi_menu "$@"
             ;;
         "$FZF")
-            fzf_menu "$1" "$2"
+            fzf_menu "$@"
             ;;
     esac
 }
@@ -1137,7 +1156,7 @@ the clip was created when the script was activated)")"
 	comment="$first_string
 $other_strings"
 	menu="$(echo -e "$comment")"
-	name="$(grap_menu "$menu" "Enter the name of the clip")"
+	name="$(grap_menu "$menu" "Enter the name of the clip" "$TRUE")"
 	grep -q "$name" <<EOF
 $first_string
 EOF
@@ -1411,7 +1430,7 @@ EOF
     if [[ "$4" == "_" ]]; then
         menu="_\n$menu"
     fi
-    local var="$(grap_menu "$menu" "$CHANGE_VARIABLE_TITLE")"
+    local var="$(grap_menu "$menu" "$CHANGE_VARIABLE_TITLE" "$TRUE")"
     $(grep -q "$var" <<EOF
 $menu
 EOF
