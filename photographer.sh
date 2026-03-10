@@ -1353,7 +1353,6 @@ streamer_list() {
                 if ! [[ -z "$menu" ]]; then 
                     local n="\n"
                 fi
-                #menu="$menu$n$indicator $l_streamer $STREAM_EMOJ$online_indicator"
                 echo "$indicator $l_streamer $online_emoji_indicator"
             ) &
             pids+=($!)
