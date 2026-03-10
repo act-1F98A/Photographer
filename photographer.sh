@@ -70,6 +70,7 @@ RELOAD_EMOJI="🔄"
 EXIT_EMOJI="🚪"
 ACTIVE_STREAMER_EMOJI="📋"
 LANG_EMOJI="🌐"
+LOCKED_EMOJI="🔒"
 
 ################################
 # Lang list 
@@ -92,6 +93,7 @@ SELF_SPANISH="Español"
 SELF_FRENCH="Français"
 SELF_GERMAN="Deutsch"
 SELF_CHINESE_SIMPLIFIED="中文"
+SELF_ESPERANTO="Esperanto"
 
 ENGLISH_CODE="en_US$UTFCODE"
 RUSSIAN_CODE="ru_RU$UTFCODE"
@@ -100,6 +102,7 @@ SPANISH_CODE="es_ES$UTFCODE"
 FRENCH_CODE="fr_FR$UTFCODE"
 GERMAN_CODE="de_DE$UTFCODE"
 CHINESE_SIMPLIFIED_CODE="zh_CN$UTFCODE"
+ESPERANTO_CODE="eo_EO$UTFCODE"
 
 ################################
 # English
@@ -112,10 +115,12 @@ local_english() {
 	SEGMENT_TIME_COMMENT="Segment time in seconds.\n!WHEN YOU CHANGE THIS VARIABLE, THE ALL STREAM BUFFERS WILL BE RESTARTED!\nThe value must be an integer."
 	WORK_DIRECTORY_COMMENT="The directory where the stream fragments and the resulting clips will be placed.\nThe value must be an integer."
 	MERGE_ADJACENT_CLIPS_COMMENT="Zero -- temporary files (which make up the clip segments) will be deleted.\nOne -- temporary files will not be deleted.\nThe value must be an integer."
+	SAVE_CLIP_DATA_COMMENT="If this option is enabled, the segments used to create clips will be preserved.\nIf it is disabled, these temporary data will be removed after the clip is created.\nIf merging adjacent clips is enabled, this option is always considered enabled.\nThe value must be either zero or one."
 
 	CANCEL="Cancel"
 	CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
-	LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for"
+	LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
+	#TODO переделать место, где используется эта переменная, чтобы ник стримера вставлялся через принтф
 	GLOBAL_DELETE_DATA_COMMENT="Do you confirm that you will\ndelete the original data of ALL clips?"
 	LOCAL_DELETE_DATA_COMMENT="Do you confirm that you have\ndeleted the original data of all clips from %s?"
 
@@ -137,6 +142,7 @@ local_english() {
 	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segment time = %s"
 	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Work directory = %s"
 	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Merge adjacent clips = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sPreserve clip segment data = %s%s"
 	GLOBAL_DELETE_DATA_SETTINGS_STRING="Delete ALL clip data"
 	BACK_SETTINGS_STRING="Back"
 	GLOBAL_SETTINGS_COMMENT="Local variables have a higher priority and will be.\nused instead of global ones if they are not empty"
@@ -148,6 +154,7 @@ local_english() {
 	LOCAL_SEGMENT_TIME_SETTINGS_STRING="local Segment time = %s"
 	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="local Work directory = %s"
 	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="local Merge adjacent clips = %s"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sPreserve clip segment data = %s%s"
 	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Delete all clip data for %s"
 
 	CLIP_CREATING_CLIP="Creating a clip..."
@@ -157,6 +164,7 @@ local_english() {
 	CLIP_SEGMENT_SAVED_STRING="The segments are saved along the path: %s"
 	CLIP_REMOVE_CLIP_DATA_STRING="Remove %s"
 	CLIP_FINISHED_CLIP_LOCATION="The finished clip is located at: %s"
+	CLIP_REMOVING_DATA_DIR="Removing %s clip data dir"
 
 	RESTART_ALL_BUFFERS="Restart all buffers "
 
@@ -629,6 +637,87 @@ local_ukrainian() {
 }
 
 ################################
+# Esperanto
+################################
+
+local_esperanto() {
+	DURATION_FORWARD_COMMENT="Kiam oni uzas full-clip, la skripto atendas la indikitan nombron da novaj segmentoj.\nKiam oni uzas clip, ĉi tiu valoro aldoniĝas al la valoro de duration_back kaj konservas la indikitan nombron da jam kreitaj segmentoj.\nLa valoro devas esti entjera nombro."
+	DURATION_BACK_COMMENT="Indikas kiom da segmentoj reen en la tempo estos uzataj por krei la klipon.\nLa valoro devas esti entjera nombro."
+	BUFFER_SIZE_COMMENT="La grandeco de la bufro en segmentoj.\nLa valoro devas esti entjera nombro."
+	SEGMENT_TIME_COMMENT="Segmenta tempo en sekundoj.\n!KIAM VI ŜANĜAS ĈI TIUN VARIABLON, ĈIUJ BUFROJ DE LA FLUOJ ESTOS RESTARTIGITAJ!\nLa valoro devas esti entjera nombro."
+	WORK_DIRECTORY_COMMENT="La dosierujo kie la fragmentoj de la fluo kaj la rezultaj klipoj estos konservataj.\nLa valoro devas esti entjera nombro."
+	MERGE_ADJACENT_CLIPS_COMMENT="Nulo — provizoraj dosieroj (el kiuj konsistas la klipaj segmentoj) estos forigitaj.\nUnu — provizoraj dosieroj ne estos forigitaj.\nLa valoro devas esti entjera nombro."
+	SAVE_CLIP_DATA_COMMENT="Se ĉi tiu opcio estas ŝaltita, la segmentoj uzataj por krei klipojn estos konservataj.\nSe ĝi estas malŝaltita, tiuj provizoraj datumoj estos forigitaj post la kreado de la klipo.\nSe la kunigo de apudaj klipoj estas ŝaltita, ĉi tiu opcio ĉiam estas konsiderata ŝaltita.\nLa valoro povas esti nur nulo aŭ unu."
+
+	CANCEL="Nuligi"
+	CONFIRM_DELETE_DATA="JES, FORIGI ĈIUJN DATUMOJN"
+	LOCAL_CONFIRM_DELETE_DATA="Jes, forigi datumojn por %s"
+	GLOBAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas, ke vi\nforigos la originajn datumojn de ĈIUJ klipoj?"
+	LOCAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas, ke vi\nforigis la originajn datumojn de ĉiuj klipoj de %s?"
+
+	STOP_BUFFER_BUTTON="Haltigi bufron"
+	START_BUFFER_BUTTON="Startigi bufron"
+	CLIP_BUTTON="Klipo"
+	FULL_CLIP_BUTTON="Plena klipo"
+	REMOVE_STREAMER_BUTTON="Forigi streamiston"
+	SETTINGS_BUTTON="Agordoj"
+	RELOAD_BUTTON="Reŝargi"
+	EXIT_BUTTON="Eliri"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Elekti aktivan streamiston"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiva streamisto => [%s]"
+
+	GLOBAL_SETTINGS_SUBMENU_SUBMENU_TITLE="Tutmondaj agordoj"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Daŭro antaŭen = %s segmentoj (%s sek)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Daŭro reen = %s segmentoj (%s sek)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Bufra grandeco = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segmenta tempo = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Labora dosierujo = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Kunigi apudajn klipojn = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sKonservi datumojn de klipaj segmentoj = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Forigi ĈIUJN klipajn datumojn"
+	BACK_SETTINGS_STRING="Reen"
+	GLOBAL_SETTINGS_COMMENT="Lokaj variabloj havas pli altan prioritaton\nkaj estos uzataj anstataŭ la tutmondaj se ili ne estas malplenaj"
+
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="Agordoj de streamisto (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="loka Daŭro antaŭen = %s segmentoj (%s sek)"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="loka Daŭro reen = %s segmentoj (%s sek)"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="loka Bufra grandeco = %s"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="loka Segmenta tempo = %s"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="loka Labora dosierujo = %s"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="loka Kunigi apudajn klipojn = %s"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sKonservi datumojn de klipaj segmentoj = %s%s"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Forigi ĉiujn klipajn datumojn por %s"
+
+	CLIP_CREATING_CLIP="Kreado de klipo..."
+	CLIP_LAST_SEGMENT_FILE="La lasta segmento: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="La segmentoj ankoraŭ ne estis kreitaj"
+	CLIP_WAIT_FOR_DATA_CLIP="Ni atendas %s sekundojn por ricevi datumojn por la klipo"
+	CLIP_SEGMENT_SAVED_STRING="La segmentoj estas konservitaj laŭ la vojo: %s"
+	CLIP_REMOVE_CLIP_DATA_STRING="Forigi %s"
+	CLIP_FINISHED_CLIP_LOCATION="La preta klipo troviĝas ĉe: %s"
+	CLIP_REMOVING_DATA_DIR="Forigante %s klipan datuman dosierujon"
+
+	RESTART_ALL_BUFFERS="Restartigi ĉiujn bufrojn"
+
+	DELETE_DATA_FOR_STREAMER="Forigante datuman dosierujon por %s"
+
+	CHANGE_VARIABLE_TITLE="Ŝanĝi variablon:"
+	CHANGE_VARIABLE_BACK="Reen"
+	CHANGE_VARIABLE_INVITATION="%s Enigu novan valoron por la variablo %s %s"
+
+	STREAMER_LIST_ADD_STREAMER="%s Aldoni streamiston %s"
+	STREAMER_LIST_TITLE="Agordi aktivan streamiston"
+
+	ADD_STREAMER_MENU_INVITATION="%s Aldoni streamiston ĉi tie %s"
+	ADD_STREAMER_MENU_TITLE="Aldoni streamiston:"
+
+	CHECK_GLOBAL_CONFIG_ERROR="La tutmonda agorda dosiero ne estas valida. Ĉi tiu dosiero estos restarigita al la defaŭltaj agordoj."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variablo MERGE_ADJACENT_CLIPS povas esti nur 1 aŭ 0."
+
+	LANG_SETTINGS_STRING="Lingvo"
+}
+
+################################
 ################################
 ################################
 
@@ -645,6 +734,7 @@ ENABLE_ONLINE_CHECK="$FALSE"
 INVERT_COMMENTS="$FALSE"
 START_BUFFER="$FALSE"
 DEFAULT_LANG="$SELF_ENGLISH"
+DEFAULT_SAVE_CLIP_DATA="$FALSE"
 
 DURATION_FORWARD=5
 DURATION_BACK=5
@@ -680,6 +770,7 @@ locale_code_to_self_name_converter() {
 		"$FRENCH_CODE") echo "$SELF_FRENCH" ;;
 		"$GERMAN_CODE") echo "$SELF_GERMAN" ;;
 		"$CHINESE_SIMPLIFIED_CODE") echo "$SELF_CHINESE_SIMPLIFIED" ;;
+		"$ESPERANTO_CODE") echo "$SELF_ESPERANTO" ;;
 		*) ;;
 	esac
 }
@@ -691,7 +782,8 @@ $SELF_UKRAINIAN
 $SELF_SPANISH
 $SELF_FRENCH
 $SELF_GERMAN
-$SELF_CHINESE_SIMPLIFIED"
+$SELF_CHINESE_SIMPLIFIED
+$SELF_ESPERANTO"
 }
 
 localize() {
@@ -704,6 +796,7 @@ localize() {
 		"$SELF_GERMAN") local_german ;;
 		"$SELF_CHINESE_SIMPLIFIED") local_chinese ;;
 		"$SELF_UKRAINIAN") local_ukrainian ;;
+		"$SELF_ESPERANTO") local_esperanto ;;
 		*) ;;
 	esac
 }
@@ -1046,8 +1139,6 @@ the clip was created when the script was activated)")"
 $other_strings"
 	menu="$(echo -e "$comment")"
 	name="$(grap_menu "$menu" "Enter the name of the clip")"
-	echo "$menu" > tets.test
-	echo "$name" > tets2.test
 	grep -q "$name" <<EOF
 $first_string
 EOF
@@ -1097,6 +1188,7 @@ SEGMENT_TIME=$DEFAULT_SEGMENT_TIME
 CURRENT_STREAMER=$NONE_STREAMER
 WORK_DIRECTORY=$DEFAULT_WORK_DIRECTORY
 MERGE_ADJACENT_CLIPS=$DEFAULT_MERGE_ADJACENT_CLIPS
+SAVE_CLIP_DATA=$DEFAULT_SAVE_CLIP_DATA
 EOF
 )" > "$CONFIG_FILE"
 }
@@ -1110,6 +1202,7 @@ BUFFER_SIZE=
 SEGMENT_TIME=
 WORK_DIRECTORY=
 MERGE_ADJACENT_CLIPS=
+SAVE_CLIP_DATA=
 EOF
 )" > "$CONFIG_FILES/$1.conf"
 }
@@ -1120,7 +1213,7 @@ fi
 
 check_global_config() {
     source "$1"
-    if [[ ! -f "$1" || -z "$BUFFER_SIZE" || -z "$DURATION_BACK" || -z "$DURATION_FORWARD" || -z "$SEGMENT_TIME" || -z "$CURRENT_STREAMER" || -z "$WORK_DIRECTORY" || -z "$MERGE_ADJACENT_CLIPS" ]]; then
+    if [[ ! -f "$1" || -z "$BUFFER_SIZE" || -z "$DURATION_BACK" || -z "$DURATION_FORWARD" || -z "$SEGMENT_TIME" || -z "$CURRENT_STREAMER" || -z "$WORK_DIRECTORY" || -z "$MERGE_ADJACENT_CLIPS" || -z "$SAVE_CLIP_DATA" ]]; then
         init_global_config
         echo "$CHECK_GLOBAL_CONFIG_ERROR" >&2
     fi
@@ -1277,14 +1370,17 @@ $menu
 EOF
 )"
     local sel="$(grap_menu "$full_menu" "$STREAMER_LIST_TITLE")"
-    sel=$(echo "$sel" | sed 's/^[^ ]* //')
+    sel="$(echo "$sel" | sed 's/^[^ ]* //')"
     sel="${sel% *}"
     streamer_list_selector "$sel"
 }
 
 streamer_list_selector() {
+	local add_stremer_string="$(echo "$STREAMER_LIST_ADD_STREAMER" | sed 's/^[^ ]* //')"
+	add_stremer_string="${add_stremer_string% *}"
+	echo "$add_stremer_string" >&2
     case "$1" in 
-        "Add streamer")
+        "$add_stremer_string")
             add_streamer_menu
             streamer_list
             ;;
@@ -1329,7 +1425,7 @@ EOF
 	sync_variable_with_config
 }
 
-change_loacal_variable_menu() {
+change_local_variable_menu() {
     change_variable_menu "$1" "$2" "$3" "_"
     return "$?"
 }
@@ -1373,8 +1469,8 @@ clip() {
 		NAME_ENTRY_MENU_PID=$!
 	fi
 
-	LATEST_FILE=$(ls -t "$SEG/$NICK"/seg_*.ts 2>/dev/null | tac | tail -n1)
-	printf "$CLIP_LAST_SEGMENT_FILE" "$LATEST_FILE"
+	LATEST_FILE="$(ls -t "$SEG/$NICK"/seg_*.ts 2>/dev/null | tac | tail -n1)"
+	printf "$CLIP_LAST_SEGMENT_FILE\n" "$LATEST_FILE"
 
 	if [[ -z "$LATEST_FILE" && ! "$MODE" == "--full-clip" ]]; then
 		echo "$CLIP_SEGMENTS_NOT_BEEN_CREATED"
@@ -1399,7 +1495,7 @@ clip() {
 		fi
 
 		for ((i=DURATION_BACK; i>-1; i--)); do
-			IDX=$(( (LATEST_NUM - i + BUFFER_SIZE) % BUFFER_SIZE))
+			IDX="$(( (LATEST_NUM - i + BUFFER_SIZE) % BUFFER_SIZE))"
 			printf -v PAD "%03d" "$IDX"
 			FILE="$SEG/$NICK/seg_$PAD.ts"
 
@@ -1411,7 +1507,7 @@ clip() {
 
 		echo "$clipdir">&2
 
-		printf "$CLIP_WAIT_FOR_DATA_CLIP" "$((FORWARD * SEG_TIME))"
+		printf "$CLIP_WAIT_FOR_DATA_CLIP\n" "$((FORWARD * SEG_TIME))"
 		sleep $((FORWARD * SEG_TIME))
 
 
@@ -1427,7 +1523,7 @@ clip() {
 			[[ -f "$FILE" ]] && cp "$FILE" "$clip_data_dir/"
 		done
 
-		printf "$CLIP_SEGMENT_SAVED_STRING" "$clip_data_dir"
+		printf "$CLIP_SEGMENT_SAVED_STRING\n" "$clip_data_dir"
 	fi
 
 
@@ -1436,7 +1532,7 @@ clip() {
 		TITLE="$(cat "$TMP_NAME_FILE")"
 		rm -f "$TMP_NAME_FILE"
 		if [[ "${TITLE#* }" == "1" ]]; then
-			printf "$CLIP_REMOVE_CLIP_DATA_STRING" "$clip_data_dir"
+			printf "$CLIP_REMOVE_CLIP_DATA_STRING\n" "$clip_data_dir"
 			rm -rf "$clip_data_dir"
 			exit 0
 		fi
@@ -1467,11 +1563,12 @@ clip() {
 		-movflags +faststart \
 		"$OUTFILE"
 	
-	if [[ -z "$MERGE_ADJACENT_CLIPS" ]]; then
+	if ! [[ "$MERGE_ADJACENT_CLIPS" == "$TRUE" || "$SAVE_CLIP_DATA" == "$TRUE" ]]; then
+		printf "$CLIP_REMOVING_DATA_DIR\n" "$clip_data_dir"
 		rm -rf "$clip_data_dir"
 	fi
 
-	printf "$CLIP_FINISHED_CLIP_LOCATION" "$OUTFILE"
+	printf "$CLIP_FINISHED_CLIP_LOCATION\n" "$OUTFILE"
 	exit 0
 }
 
@@ -1491,7 +1588,14 @@ settings_menu() {
 	local buffer_size="$(printf "$GLOBAL_BUFFER_SIZE_SETTINGS_STRING" "$BUFFER_SIZE")"
 	local segment_time="$(printf "$GLOBAL_SEGMENT_TIME_SETTINGS_STRING" "$SEGMENT_TIME")"
 	local work_directory="$(printf "$GLOBAL_WORK_DIRECTORY_SETTINGS_STRING" "$WORK_DIRECTORY")"
-	local merge_adjacent_clips="$(printf "$GLOBAL_MERGE_CLIPS_SETTINGS_STRING $MERGE_ADJACENT_CLIPS")"
+	local merge_adjacent_clips="$(printf "$GLOBAL_MERGE_CLIPS_SETTINGS_STRING" "$MERGE_ADJACENT_CLIPS")"
+	local g_save_clip_data_locked="$FALSE"
+	if [[ "$MERGE_ADJACENT_CLIPS" == "$TRUE" ]]; then
+		lock_emoji="$LOCKED_EMOJI" 
+		g_save_clip_data_locked="$TRUE"
+		SAVE_CLIP_DATA="$TRUE"
+	fi
+	local save_clip_data="$(printf "$GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING" "$lock_emoji" "$SAVE_CLIP_DATA" "$lock_emoji")"
     local delete_data_clips="$GLOBAL_DELETE_DATA_SETTINGS_STRING"
     
     local back="$POINTER_BACK_EMOJI $BACK_SETTINGS_STRING"
@@ -1531,6 +1635,14 @@ settings_menu() {
 		local l_segment_time="$(printf "$LOCAL_SEGMENT_TIME_SETTINGS_STRING" "$SEGMENT_TIME")"
 		local l_work_directory="$(printf "$LOCAL_WORK_DIRECTORY_SETTINGS_STRING" "$WORK_DIRECTORY")"
 		local l_merge_adjacent_clips="$(printf "$LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING" "$MERGE_ADJACENT_CLIPS")"
+		local lock_emoji
+		local l_save_clip_data_locked="$FALSE"
+		if [[ "$MERGE_ADJACENT_CLIPS" == "$TRUE" ]]; then
+			lock_emoji="$LOCKED_EMOJI"
+			l_save_clip_data_locked="$TRUE"
+			SAVE_CLIP_DATA="$TRUE"
+		fi
+		local l_save_clip_data="$(printf "$LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING" "$lock_emoji" "$SAVE_CLIP_DATA" "$lock_emoji")"
 		local l_delete_data_clips="$(printf "$LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING" "$streamer")"
     fi
 
@@ -1544,6 +1656,7 @@ $buffer_size
 $segment_time
 $work_directory
 $merge_adjacent_clips
+$save_clip_data
 $delete_data_clips
 $global_lang
 EOF
@@ -1559,6 +1672,7 @@ $l_buffer_size
 $l_segment_time
 $l_work_directory
 $l_merge_adjacent_clips
+$l_save_clip_data
 $l_delete_data_clips
 EOF
 )
@@ -1598,6 +1712,12 @@ EOF
         "$merge_adjacent_clips")
             change_variable_menu "MERGE_ADJACENT_CLIPS" "$CONFIG_FILE" "$(build_comment "$MERGE_ADJACENT_CLIPS_COMMENT")"
             ;;
+		"$save_clip_data")
+			if [[ "$g_save_clip_data_locked" == "$FALSE" ]]; then
+				change_variable_menu "SAVE_CLIP_DATA" "$CONFIG_FILE" "$(build_comment "$SAVE_CLIP_DATA_COMMENT")"
+			fi
+			# TODO добавить эту переменную в автосборку конфига и в проверку целостности конфига
+			;;
         "$delete_data_clips")
 			if confirmatoin "$CONFIRM_DELETE_DATA" "$CANCEL" "$GLOBAL_DELETE_DATA_COMMENT"; then
 				delete_all_clip_data
@@ -1614,26 +1734,31 @@ EOF
 		local config_file="$CONFIG_FILES/$streamer$STREAMER_CONFIG_EXTENSION"
         case "$sel" in
             "$l_duration_forward")
-                change_loacal_variable_menu "DURATION_FORWARD" "$config_file" "$(build_comment "$DURATION_FORWARD_COMMENT")"
+                change_local_variable_menu "DURATION_FORWARD" "$config_file" "$(build_comment "$DURATION_FORWARD_COMMENT")"
                 ;;
             "$l_duration_back")
-				change_loacal_variable_menu "DURATION_BACK" "$config_file" "$(build_comment "$DURATION_BACK_COMMENT")"
+				change_local_variable_menu "DURATION_BACK" "$config_file" "$(build_comment "$DURATION_BACK_COMMENT")"
                 ;;
             "$l_buffer_size")
-				change_loacal_variable_menu "BUFFER_SIZE" "$config_file" "$(build_comment "$BUFFER_SIZE_COMMENT")"
+				change_local_variable_menu "BUFFER_SIZE" "$config_file" "$(build_comment "$BUFFER_SIZE_COMMENT")"
                 [[ ! "$?" == "1" ]] && restart_buffer "$streamer"
                 ;;
             "$l_segment_time")
-				change_loacal_variable_menu "SEGMENT_TIME" "$config_file" "$(build_comment "$SEGMENT_TIME_COMMENT")"
+				change_local_variable_menu "SEGMENT_TIME" "$config_file" "$(build_comment "$SEGMENT_TIME_COMMENT")"
                 [[ ! "$?" == "1" ]] && restart_buffer "$streamer"
                 ;;
             "$l_work_directory")
-				change_loacal_variable_menu "WORK_DIRECTORY" "$config_file" "$(build_comment "$WORK_DIRECTORY_COMMENT")"
+				change_local_variable_menu "WORK_DIRECTORY" "$config_file" "$(build_comment "$WORK_DIRECTORY_COMMENT")"
                 [[ ! "$?" == "1" ]] && restart_buffer "$streamer"
                 ;;
             "$l_merge_adjacent_clips")
-				change_loacal_variable_menu "MERGE_ADJACENT_CLIPS" "$config_file" "$(build_comment "$MERGE_ADJACENT_CLIPS_COMMENT")"
+				change_local_variable_menu "MERGE_ADJACENT_CLIPS" "$config_file" "$(build_comment "$MERGE_ADJACENT_CLIPS_COMMENT")"
                 ;;
+			"$l_save_clip_data")
+				if [[ "$l_save_clip_data_locked" == "$FALSE" ]]; then
+					change_local_variable_menu "SAVE_CLIP_DATA" "$config_file" "$(build_comment "$SAVE_CLIP_DATA_COMMENT")"
+				fi
+				;;
             "$l_delete_data_clips")
 				local comment
 				printf -v comment "$LOCAL_DELETE_DATA_COMMENT" "$streamer"
@@ -1658,6 +1783,7 @@ EOF
 
 streamer_menu() {
     local current_streamer_nick=$(get_current)
+	load_all_config_for_streamer "$current_streamer_nick"
 
     [[ "$current_streamer_nick" == "" || "$current_streamer_nick" == "$NONE_STREAMER" ]] && current_streamer_nick="$NONE_STREAMER"
 	local toggle
