@@ -814,6 +814,24 @@ set_locale() {
 mkdir -p "$CONFIG_DIR" "$CONFIG_FILES"
 touch "$STREAMERS_FILE"
 
+check_global_config() {
+    source "$1"
+    if [[ ! -f "$1" || -z "$BUFFER_SIZE" || -z "$DURATION_BACK" || -z "$DURATION_FORWARD" || -z "$SEGMENT_TIME" || -z "$CURRENT_STREAMER" || -z "$WORK_DIRECTORY" || -z "$MERGE_ADJACENT_CLIPS" || -z "$SAVE_CLIP_DATA" ]]; then
+        init_global_config
+        echo "$CHECK_GLOBAL_CONFIG_ERROR" >&2
+    fi
+    if ! [[ "$SAVE_CLIP_DATA" == "1" || "$SAVE_CLIP_DATA" == "0" ]]; then
+        init_global_config;
+        echo "$CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA" >&2;
+		# TODO сделать перевод этой переменной
+    fi
+    if ! [[ "$MERGE_ADJACENT_CLIPS" == "1" || "$MERGE_ADJACENT_CLIPS" == "0" ]]; then
+        init_global_config;
+        echo "$CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS" >&2;
+    fi
+}
+
+check_global_config "$CONFIG_FILE"
 load_local_config() {
     while IFS='=' read -r key value; do
         if [[ -n "$value" && ! -z "$value" && ! "$value" == "''" ]]; then
@@ -1233,19 +1251,6 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
     init_global_config
 fi
 
-check_global_config() {
-    source "$1"
-    if [[ ! -f "$1" || -z "$BUFFER_SIZE" || -z "$DURATION_BACK" || -z "$DURATION_FORWARD" || -z "$SEGMENT_TIME" || -z "$CURRENT_STREAMER" || -z "$WORK_DIRECTORY" || -z "$MERGE_ADJACENT_CLIPS" || -z "$SAVE_CLIP_DATA" ]]; then
-        init_global_config
-        echo "$CHECK_GLOBAL_CONFIG_ERROR" >&2
-    fi
-    if ! [[ "$MERGE_ADJACENT_CLIPS" == "1" || "$MERGE_ADJACENT_CLIPS" == "0" ]]; then
-        init_global_config;
-        echo "$CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS" >&2;
-    fi
-}
-
-check_global_config "$CONFIG_FILE"
 
 get_current() {
     source "$CONFIG_FILE" 2>/dev/null
