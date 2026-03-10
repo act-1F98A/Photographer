@@ -1760,7 +1760,7 @@ EOF
             "$l_delete_data_clips")
 				local comment
 				printf -v comment "$LOCAL_DELETE_DATA_COMMENT" "$streamer"
-				if confirmatoin "$LOCAL_CONFIRM_DELETE_DATA $streamer" "$CANCEL" "$comment"; then
+				if confirmatoin "$(printf "$LOCAL_CONFIRM_DELETE_DATA" "$streamer")" "$CANCEL" "$comment"; then
 					delete_data_for_streamer "$streamer"
 				fi
                 ;;
