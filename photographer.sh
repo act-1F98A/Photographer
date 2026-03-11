@@ -996,7 +996,7 @@ parse_args() {
 				;;
 			--streamer)
 				NICK="$2"
-				shift
+				shift 2
 				;;
             --silence-log)
                 SILENCE_LOG="$TRUE"
