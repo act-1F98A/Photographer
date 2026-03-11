@@ -810,6 +810,67 @@ set_locale() {
 ################################
 ################################
 
+print_help() {
+cat << 'EOF'
+Usage:
+  script [OPTIONS]
+
+Interface options:
+  --ui-config PATH          Path to UI configuration file.
+  --use-wofi                Use wofi as the user interface.
+  --use-rofi                Use rofi as the user interface.
+  --use-fzf                 Use fzf as the user interface.
+                            Automatically enables silent log mode and adjusts UI layout.
+
+Buffer control:
+  --start-buffer            Start the stream buffering process
+                            (downloads the stream into the buffer).
+
+Streamer options:
+  --streamer NAME           Set the streamer nickname to operate on.
+
+Clip creation:
+  --clip                    Create a clip from the buffered segments.
+  --full-clip               Wait for additional future segments before creating the clip.
+
+Clip timing options:
+  --duration-back N         Number of segments before the trigger point.
+  --duration-forward N      Number of segments after the trigger point.
+  --segment-time N          Duration of each segment in seconds.
+
+Buffer options:
+  --buffer-size N           Buffer size in segments.
+
+Clip data options:
+  --save-clip-data          Preserve the segment files used to create clips.
+
+Working directory:
+  --directory PATH          Directory for stream fragments and resulting clips.
+
+Title options:
+  --title TEXT              Title for the resulting clip.
+
+Language:
+  --lang CODE               Interface language (example: en, ru, es).
+
+Behavior options:
+  --silence-log             Disable log output.
+  --flip-pointers           Flip the decorative pointers that indicate
+                            the input field direction in the UI.
+  --invert-comments         Reverse the order of comment lines in the UI.
+  --eneble-online-check     Enable checking whether the streamer is online.
+
+Argument parsing:
+  --                        Pass remaining arguments to the GUI parser.
+                            If used again later, arguments will be parsed
+                            by the main script again.
+
+Help:
+  -h, --help                Show this help message and exit.
+
+EOF
+}
+
 
 mkdir -p "$CONFIG_DIR" "$CONFIG_FILES"
 touch "$STREAMERS_FILE"
