@@ -887,15 +887,6 @@ set_variable() {
 load_all_config_for_streamer "$CURRENT_STREAMER"
 sync_variable_with_config
 
-localize "$DEFAULT_LANG"
-if [[ -z "$L_LANG" && -z "$LOCALE_LANG" ]]; then 
-	lang="$(locale_code_to_self_name_converter "$LANG")"
-elif ! [[ -z "$L_LANG" ]]; then
-	lang="$(locale_code_to_self_name_converter "$L_LANG")"
-elif ! [[ -z "$LOCALE_LANG" ]]; then
-	lang="$LOCALE_LANG"
-fi
-localize "$lang"
 
 
 flip_pointers() {
@@ -1050,6 +1041,15 @@ parse_gui_args() {
 
 parse_args "$@"
 
+localize "$DEFAULT_LANG"
+if [[ -z "$L_LANG" && -z "$LOCALE_LANG" ]]; then 
+	lang="$(locale_code_to_self_name_converter "$LANG")"
+elif ! [[ -z "$L_LANG" ]]; then
+	lang="$(locale_code_to_self_name_converter "$L_LANG")"
+elif ! [[ -z "$LOCALE_LANG" ]]; then
+	lang="$LOCALE_LANG"
+fi
+localize "$lang"
 
 ############################################
 # РЕЖИМ ЗАПИСИ БУФЕРА
