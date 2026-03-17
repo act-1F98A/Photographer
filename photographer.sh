@@ -36,12 +36,12 @@ set_work_directory() {
 }
 
 SCRIPT="$0"
-CONFIG_DIR="$HOME/.config/photographer"
+CONFIG_PATH="$HOME/.config/photographer"
 CLIPS_DATA_DIR="data"
 MADE_CLIPS_DIR="made_clips"
-STREAMERS_FILE="$CONFIG_DIR/streamers"
-CONFIG_FILE="$CONFIG_DIR/config"
-CONFIG_FILES="$CONFIG_DIR/streamers_configs"
+STREAMERS_FILE="$CONFIG_PATH/streamers"
+CONFIG_FILE="$CONFIG_PATH/config"
+CONFIG_FILES="$CONFIG_PATH/streamers_configs"
 TWITCH_LINK="https://twitch.tv/"
 STREAMER_CONFIG_EXTENSION=".conf"
 
@@ -1339,7 +1339,7 @@ EOF
 }
 
 
-mkdir -p "$CONFIG_DIR" "$CONFIG_FILES"
+mkdir -p "$CONFIG_PATH" "$CONFIG_FILES"
 touch "$STREAMERS_FILE"
 
 check_global_config() {
