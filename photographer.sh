@@ -1957,7 +1957,7 @@ set_locale_menu() {
 }
 
 change_variable_menu() {
-	load_all_config_for_streamer "$CURRENT_STREAMER"
+	# load_all_config_for_streamer "$CURRENT_STREAMER"
     variable="$1"
     menu="$(cat <<EOF
 $(printf "$CHANGE_VARIABLE_INVITATION" "$POINTER_EMOJI" "$variable" "$POINTER_EMOJI") 
