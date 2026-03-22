@@ -109,7 +109,156 @@ ESPERANTO_CODE="eo_EO$UTFCODE"
 ################################
 
 local_english() {
-	return 0
+	DURATION_FORWARD_COMMENT="When using full-clip, the script waits for the specified number of new segments.\nWhen using clip, this value is added to duration_back and saves the specified number of already created segments.\nThe value must be an integer."
+DURATION_BACK_COMMENT="Specifies how many segments back in time will be used to create the clip.\nThe value must be an integer."
+
+local BUFFER_SIZE_COMMENT="Buffer size in segments.\n%s\nThe value must be an integer."
+local SEGMENT_TIME_COMMENT="Segment duration in seconds.\n%s\nThe value must be an integer."
+local WORK_DIRECTORY_COMMENT="Directory where program data will be stored\n(stream fragments, clip data, and final clips).\n%s\nThe value must be an integer."
+
+local GLOBAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, ALL STREAM BUFFERS WILL BE RESTARTED!"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, THE BUFFER FOR %s WILL BE RESTARTED!"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, clips created around the same time will be merged.\nIf enabled, clip data preservation is automatically enabled."
+SAVE_CLIP_DATA_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, segments used to create clips will be preserved.\nOtherwise, temporary data will be removed after the clip is created.\nIf merging adjacent clips is enabled, this option is always considered enabled."
+
+CANCEL="Cancel"
+CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
+LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
+GLOBAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of ALL clips?"
+LOCAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of all clips for %s?"
+
+STOP_BUFFER_BUTTON="Stop buffer"
+START_BUFFER_BUTTON="Start buffer"
+CLIP_BUTTON="Clip"
+FULL_CLIP_BUTTON="Full clip"
+REMOVE_STREAMER_BUTTON="Remove streamer"
+SETTINGS_BUTTON="Settings"
+RELOAD_BUTTON="Reload"
+EXIT_BUTTON="Exit"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Select active streamer"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Active streamer => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Global settings"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Forward duration = %s segments (%s sec)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Backward duration = %s segments (%s sec)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Buffer size = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segment duration = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Working directory = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Merge adjacent clips = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sPreserve clip segment data = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="Delete ALL clip data"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Streamer (%s) settings"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Delete all clip data for %s"
+LOCAL_SETTINGS_COMMENT="Local variables have higher priority\nand will override global ones if they are not empty"
+
+BACK_SETTINGS_STRING="%s Back"
+
+CLIP_CREATING_CLIP="Creating clip..."
+CLIP_LAST_SEGMENT_FILE="Last segment: %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Segments have not been created yet"
+CLIP_WAIT_FOR_DATA_CLIP="Waiting %s seconds to collect data for the clip"
+CLIP_SEGMENT_SAVED_STRING="Segments saved at: %s"
+CLIP_CENCELED="Clip creation canceled"
+CLIP_REMOVE_CLIP_DATA_STRING="Removing clip data: %s"
+CLIP_FINISHED_CLIP_LOCATION="Final clip is located at: %s"
+
+RESTART_ALL_BUFFERS="All buffers have been restarted (%s)"
+
+DELETE_DATA_FOR_STREAMER="Removing clip data for %s"
+
+CHANGE_VARIABLE_TITLE="Change variable:"
+CHANGE_VARIABLE_BACK="%s Back"
+CHANGE_VARIABLE_INVITATION="%s Enter a new value for the variable here %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Add streamer %s"
+STREAMER_LIST_TITLE="%s Select active streamer %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Enter streamer name here (case-insensitive) %s"
+ADD_STREAMER_MENU_TITLE="Streamer name:"
+
+CHECK_GLOBAL_CONFIG_ERROR="The global configuration file is invalid. It will be reset to default settings."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR The MERGE_ADJACENT_CLIPS variable can only be 1 or 0."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR The SAVE_CLIP_DATA variable can only be 1 or 0."
+
+LANG_SETTINGS_STRING="Language"
+
+HELP="
+Usage:
+  script [OPTIONS]
+
+Interface options:
+  --ui-config PATH          Path to UI configuration file
+                            (wofi, rofi, fzf).
+  --use-wofi                Use wofi as the user interface.
+  --use-rofi                Use rofi as the user interface.
+  --use-fzf                 Use fzf as the user interface.
+
+Buffer control:
+  --start-buffer            Start stream buffering process
+                            (download stream into buffer).
+
+Streamer options:
+  --streamer NAME           Specify streamer nickname.
+
+Clip creation:
+  --clip                    Create a clip from buffered segments.
+  --full-clip               Wait specified time and create clip.
+
+Clip timing options:
+  --duration-back N         Number of segments before trigger point.
+  --duration-forward N      Number of segments after trigger point.
+  --segment-time N          Duration of each segment in seconds.
+
+Buffer options:
+  --buffer-size N           Buffer size in segments.
+
+Clip data options:
+  --save-clip-data          Preserve segment files used
+                            to create clips.
+
+Working directory:
+  --directory PATH          Directory for stream fragments and clips.
+
+Title options:
+  --title TEXT              Title for the final clip
+                            (a suffix will be added).
+
+Language:
+  --lang CODE               Interface language
+                            (available: en, ru, es, uk, fr, de, zh, eo).
+                            (valid formats: en, en_US, en_US\$UTFCODE)
+
+Behavior options:
+  --silence-log             Disable log output.
+  --flip-pointers           Flip decorative input field pointers.
+  --invert-comments         Reverse comment order in UI.
+  --eneble-online-check     Enable streamer online check.
+
+Argument parsing:
+  --                        Pass remaining arguments to GUI.
+                            If used again later, arguments will be
+                            processed again by the main script.
+
+Help:
+  -h, --help                Show this help message and exit.
+"
 }
 
 ################################
