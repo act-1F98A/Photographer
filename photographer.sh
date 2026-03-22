@@ -1581,7 +1581,9 @@ parse_args() {
     done
 }
 
-mkdir -p "$SEG/$NICK" "$CLIPS/$NICK" "$CLIPS/$NICK/$CLIPS_DATA_DIR" "$CLIPS/$NICK/$MADE_CLIPS_DIR"
+if [[ "$NICK" != "$NONE_STREAMER" ]]; then
+	mkdir -p "$SEG/$NICK" "$CLIPS/$NICK" "$CLIPS/$NICK/$CLIPS_DATA_DIR" "$CLIPS/$NICK/$MADE_CLIPS_DIR"
+fi
 
 
 parse_gui_args() {
@@ -1616,6 +1618,9 @@ localize "$lang"
 # РЕЖИМ ЗАПИСИ БУФЕРА
 ############################################
 start_buffer() {
+	if [[ "$NICK" == "$NONE_STREAMER" || "$NICK" == " " || "$NICK" == "" ]]; then
+		exit 0 
+	fi
 	echo "$SEG" >&2
     rm -f "$SEG/$NICK"/*.ts
     echo "Starting buffer..."
@@ -2057,6 +2062,9 @@ merge_clip() {
 }
 
 clip() {
+	if [[ "$NICK" == "$NONE_STREAMER" || "$NICK" == " " || "$NICK" == "" ]]; then
+		exit 0 
+	fi
 	TMP_NAME_FILE=$(mktemp)
 	echo "$CLIP_CREATING_CLIP"
 	if [[ -z "$TITLE" ]]; then
@@ -2276,11 +2284,17 @@ EOF
     fi
     menu=$(cat <<EOF
 $menu
-$LINE_STRING
 $back
-$global_settings_comment
 EOF
 )
+    if ! [[ "$streamer" == "$NONE_STREAMER" ]]; then
+		menu=$(cat <<EOF
+$menu
+$LINE_STRING
+$local_settings_comment
+EOF
+)
+	fi
     
     local sel="$(grap_menu "$menu" "Settings")"
 	local ret_global="0"
