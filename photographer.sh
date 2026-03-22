@@ -1540,8 +1540,8 @@ parse_args() {
                 shift 2
                 ;;
             --help|-h)
-                print_help
-                exit 0
+				HELP_VAR="$TRUE"
+				shift
                 ;;
             --directory)
 				set_work_directory "$2"
@@ -1613,6 +1613,11 @@ elif ! [[ -z "$LOCALE_LANG" ]]; then
 	lang="$LOCALE_LANG"
 fi
 localize "$lang"
+
+if [[ "$HELP_VAR" == "$TRUE" ]]; then
+	print_help
+	exit 0
+fi
 
 ############################################
 # РЕЖИМ ЗАПИСИ БУФЕРА
