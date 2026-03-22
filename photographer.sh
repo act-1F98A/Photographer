@@ -585,7 +585,156 @@ Aide :
 ################################
 
 local_spanish() {
-	return 0
+	DURATION_FORWARD_COMMENT="Al usar full-clip, el script espera la cantidad especificada de nuevos segmentos.\nAl usar clip, este valor se suma a duration_back y guarda la cantidad especificada de segmentos ya creados.\nEl valor debe ser un número entero."
+DURATION_BACK_COMMENT="Indica cuántos segmentos hacia atrás en el tiempo se usarán para crear el clip.\nEl valor debe ser un número entero."
+
+local BUFFER_SIZE_COMMENT="Tamaño del búfer en segmentos.\n%s\nEl valor debe ser un número entero."
+local SEGMENT_TIME_COMMENT="Duración del segmento en segundos.\n%s\nEl valor debe ser un número entero."
+local WORK_DIRECTORY_COMMENT="Directorio donde se almacenarán los datos del programa\n(fragmentos del stream, datos de clips y clips finales).\n%s\nEl valor debe ser un número entero."
+
+local GLOBAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, TODOS LOS BÚFERES DE STREAM SE REINICIARÁN!"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, EL BÚFER DEL STREAM DE %s SE REINICIARÁ!"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los clips creados en momentos cercanos se fusionarán.\nSi está activado, la conservación de datos del clip se habilita automáticamente."
+SAVE_CLIP_DATA_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los segmentos usados para crear clips se conservarán.\nDe lo contrario, los datos temporales se eliminarán después de crear el clip.\nSi la fusión de clips adyacentes está activada, esta opción siempre se considera activada."
+
+CANCEL="Cancelar"
+CONFIRM_DELETE_DATA="SÍ, ELIMINAR TODOS LOS DATOS"
+LOCAL_CONFIRM_DELETE_DATA="Sí, eliminar datos para %s"
+GLOBAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de TODOS los clips?"
+LOCAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de todos los clips para %s?"
+
+STOP_BUFFER_BUTTON="Detener búfer"
+START_BUFFER_BUTTON="Iniciar búfer"
+CLIP_BUTTON="Clip"
+FULL_CLIP_BUTTON="Clip completo"
+REMOVE_STREAMER_BUTTON="Eliminar streamer"
+SETTINGS_BUTTON="Configuración"
+RELOAD_BUTTON="Recargar"
+EXIT_BUTTON="Salir"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Seleccionar streamer activo"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer activo => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Configuración global"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Duración hacia adelante = %s segmentos (%s s)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Duración hacia atrás = %s segmentos (%s s)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Tamaño del búfer = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Duración del segmento = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Directorio de trabajo = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionar clips adyacentes = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConservar datos de segmentos del clip = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="Eliminar TODOS los datos de clips"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Configuración del streamer (%s)"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Eliminar todos los datos de clips para %s"
+LOCAL_SETTINGS_COMMENT="Las variables locales tienen mayor prioridad\ny reemplazarán a las globales si no están vacías"
+
+BACK_SETTINGS_STRING="%s Volver"
+
+CLIP_CREATING_CLIP="Creando clip..."
+CLIP_LAST_SEGMENT_FILE="Último segmento: %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Los segmentos aún no han sido creados"
+CLIP_WAIT_FOR_DATA_CLIP="Esperando %s segundos para recopilar datos del clip"
+CLIP_SEGMENT_SAVED_STRING="Segmentos guardados en: %s"
+CLIP_CENCELED="Creación de clip cancelada"
+CLIP_REMOVE_CLIP_DATA_STRING="Eliminando datos del clip: %s"
+CLIP_FINISHED_CLIP_LOCATION="El clip final se encuentra en: %s"
+
+RESTART_ALL_BUFFERS="Todos los búferes han sido reiniciados (%s)"
+
+DELETE_DATA_FOR_STREAMER="Eliminando datos de clips para %s"
+
+CHANGE_VARIABLE_TITLE="Cambiar variable:"
+CHANGE_VARIABLE_BACK="%s Volver"
+CHANGE_VARIABLE_INVITATION="%s Introduce un nuevo valor para la variable aquí %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Añadir streamer %s"
+STREAMER_LIST_TITLE="%s Seleccionar streamer activo %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Introduce el nombre del streamer aquí (sin distinguir mayúsculas) %s"
+ADD_STREAMER_MENU_TITLE="Nombre del streamer:"
+
+CHECK_GLOBAL_CONFIG_ERROR="El archivo de configuración global no es válido. Se restablecerá a los valores por defecto."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS solo puede ser 1 o 0."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA solo puede ser 1 o 0."
+
+LANG_SETTINGS_STRING="Idioma"
+
+HELP="
+Uso:
+  script [OPTIONS]
+
+Opciones de interfaz:
+  --ui-config PATH          Ruta al archivo de configuración de la interfaz
+                            (wofi, rofi, fzf).
+  --use-wofi                Usar wofi como interfaz.
+  --use-rofi                Usar rofi como interfaz.
+  --use-fzf                 Usar fzf como interfaz.
+
+Control del búfer:
+  --start-buffer            Iniciar el proceso de almacenamiento en búfer
+                            (descargar el stream al búfer).
+
+Opciones del streamer:
+  --streamer NAME           Especificar el nombre del streamer.
+
+Creación de clip:
+  --clip                    Crear un clip desde los segmentos en búfer.
+  --full-clip               Esperar el tiempo especificado y crear el clip.
+
+Opciones de tiempo del clip:
+  --duration-back N         Segmentos antes del punto de activación.
+  --duration-forward N      Segmentos después del punto de activación.
+  --segment-time N          Duración de cada segmento en segundos.
+
+Opciones del búfer:
+  --buffer-size N           Tamaño del búfer en segmentos.
+
+Opciones de datos del clip:
+  --save-clip-data          Conservar los segmentos usados
+                            para crear clips.
+
+Directorio de trabajo:
+  --directory PATH          Directorio para fragmentos y clips.
+
+Opciones de título:
+  --title TEXT              Nombre del clip final
+                            (se añadirá un sufijo).
+
+Idioma:
+  --lang CODE               Idioma de la interfaz
+                            (disponibles: en, ru, es, uk, fr, de, zh, eo).
+                            (formatos válidos: en, en_US, en_US\$UTFCODE)
+
+Opciones de comportamiento:
+  --silence-log             Desactivar logs.
+  --flip-pointers           Invertir los indicadores decorativos del campo de entrada.
+  --invert-comments         Invertir el orden de comentarios en la UI.
+  --eneble-online-check     Activar comprobación de estado online del streamer.
+
+Procesamiento de argumentos:
+  --                        Pasar los argumentos restantes al GUI.
+                            Si se usa de nuevo más tarde, los argumentos serán
+                            procesados nuevamente por el script principal.
+
+Ayuda:
+  -h, --help                Mostrar esta ayuda y salir.
+"
 }
 
 ################################
