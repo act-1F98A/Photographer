@@ -742,7 +742,155 @@ Ayuda:
 ################################
 
 local_german() {
-	return 0
+	DURATION_FORWARD_COMMENT="Bei Verwendung von full-clip wartet das Skript auf die angegebene Anzahl neuer Segmente.\nBei Verwendung von clip wird dieser Wert zu duration_back addiert und speichert die angegebene Anzahl bereits erstellter Segmente.\nDer Wert muss eine ganze Zahl sein."
+DURATION_BACK_COMMENT="Gibt an, wie viele Segmente rückwärts in der Zeit zur Erstellung des Clips verwendet werden.\nDer Wert muss eine ganze Zahl sein."
+
+local BUFFER_SIZE_COMMENT="Puffergröße in Segmenten.\n%s\nDer Wert muss eine ganze Zahl sein."
+local SEGMENT_TIME_COMMENT="Segmentdauer in Sekunden.\n%s\nDer Wert muss eine ganze Zahl sein."
+local WORK_DIRECTORY_COMMENT="Verzeichnis, in dem Programmdaten gespeichert werden\n(Streamfragmente, Clip-Daten und fertige Clips).\n%s\nDer Wert muss eine ganze Zahl sein."
+
+local GLOBAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WERDEN ALLE STREAM-PUFFER NEU GESTARTET!"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WIRD DER PUFFER DES STREAMS VON %s NEU GESTARTET!"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden zeitlich nahe Clips zusammengeführt.\nWenn aktiviert, wird die Speicherung der Clip-Daten automatisch aktiviert."
+SAVE_CLIP_DATA_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden die zur Clip-Erstellung verwendeten Segmente gespeichert.\nAndernfalls werden temporäre Daten nach der Erstellung des Clips gelöscht.\nWenn das Zusammenführen benachbarter Clips aktiviert ist, gilt diese Option immer als aktiviert."
+
+CANCEL="Abbrechen"
+CONFIRM_DELETE_DATA="JA, ALLE DATEN LÖSCHEN"
+LOCAL_CONFIRM_DELETE_DATA="Ja, Daten für %s löschen"
+GLOBAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten ALLER Clips?"
+LOCAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten aller Clips für %s?"
+
+STOP_BUFFER_BUTTON="Puffer stoppen"
+START_BUFFER_BUTTON="Puffer starten"
+CLIP_BUTTON="Clip"
+FULL_CLIP_BUTTON="Vollständiger Clip"
+REMOVE_STREAMER_BUTTON="Streamer entfernen"
+SETTINGS_BUTTON="Einstellungen"
+RELOAD_BUTTON="Neu laden"
+EXIT_BUTTON="Beenden"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Aktiven Streamer auswählen"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiver Streamer => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Globale Einstellungen"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Dauer vorwärts = %s Segmente (%s s)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Dauer rückwärts = %s Segmente (%s s)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Puffergröße = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segmentdauer = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Arbeitsverzeichnis = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Benachbarte Clips zusammenführen = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sClip-Segmentdaten speichern = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="ALLE Clip-Daten löschen"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Einstellungen für Streamer (%s)"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Alle Clip-Daten für %s löschen"
+LOCAL_SETTINGS_COMMENT="Lokale Variablen haben eine höhere Priorität\nund überschreiben globale, wenn sie nicht leer sind"
+
+BACK_SETTINGS_STRING="%s Zurück"
+
+CLIP_CREATING_CLIP="Clip wird erstellt..."
+CLIP_LAST_SEGMENT_FILE="Letztes Segment: %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmente wurden noch nicht erstellt"
+CLIP_WAIT_FOR_DATA_CLIP="Warte %s Sekunden, um Daten für den Clip zu sammeln"
+CLIP_SEGMENT_SAVED_STRING="Segmente gespeichert unter: %s"
+CLIP_CENCELED="Clip-Erstellung abgebrochen"
+CLIP_REMOVE_CLIP_DATA_STRING="Clip-Daten werden gelöscht: %s"
+CLIP_FINISHED_CLIP_LOCATION="Der fertige Clip befindet sich unter: %s"
+
+RESTART_ALL_BUFFERS="Alle Puffer wurden neu gestartet (%s)"
+
+DELETE_DATA_FOR_STREAMER="Clip-Daten für %s werden gelöscht"
+
+CHANGE_VARIABLE_TITLE="Variable ändern:"
+CHANGE_VARIABLE_BACK="%s Zurück"
+CHANGE_VARIABLE_INVITATION="%s Neuen Wert für die Variable eingeben %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Streamer hinzufügen %s"
+STREAMER_LIST_TITLE="%s Aktiven Streamer auswählen %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Streamer-Namen hier eingeben (Groß-/Kleinschreibung egal) %s"
+ADD_STREAMER_MENU_TITLE="Streamer-Name:"
+
+CHECK_GLOBAL_CONFIG_ERROR="Die globale Konfigurationsdatei ist ungültig. Sie wird auf die Standardeinstellungen zurückgesetzt."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Die Variable MERGE_ADJACENT_CLIPS kann nur 1 oder 0 sein."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Die Variable SAVE_CLIP_DATA kann nur 1 oder 0 sein."
+
+LANG_SETTINGS_STRING="Sprache"
+
+HELP="
+Verwendung:
+  script [OPTIONS]
+
+Interface-Optionen:
+  --ui-config PATH          Pfad zur UI-Konfigurationsdatei
+                            (wofi, rofi, fzf).
+  --use-wofi                wofi als Benutzeroberfläche verwenden.
+  --use-rofi                rofi als Benutzeroberfläche verwenden.
+  --use-fzf                 fzf als Benutzeroberfläche verwenden.
+
+Puffersteuerung:
+  --start-buffer            Startet den Stream-Pufferprozess
+                            (lädt den Stream in den Puffer).
+
+Streamer-Optionen:
+  --streamer NAME           Streamer-Namen angeben.
+
+Clip-Erstellung:
+  --clip                    Clip aus gepufferten Segmenten erstellen.
+  --full-clip               Angegebene Zeit warten und Clip erstellen.
+
+Clip-Zeitoptionen:
+  --duration-back N         Segmente vor dem Auslösepunkt.
+  --duration-forward N      Segmente nach dem Auslösepunkt.
+  --segment-time N          Dauer jedes Segments in Sekunden.
+
+Puffer-Optionen:
+  --buffer-size N           Puffergröße in Segmenten.
+
+Clip-Datenoptionen:
+  --save-clip-data          Segmente zur Clip-Erstellung speichern.
+
+Arbeitsverzeichnis:
+  --directory PATH          Verzeichnis für Fragmente und Clips.
+
+Titeloptionen:
+  --title TEXT              Name des finalen Clips
+                            (ein Suffix wird hinzugefügt).
+
+Sprache:
+  --lang CODE               Sprache der Oberfläche
+                            (verfügbar: en, ru, es, uk, fr, de, zh, eo).
+                            (gültige Formate: en, en_US, en_US\$UTFCODE)
+
+Verhaltensoptionen:
+  --silence-log             Log-Ausgabe deaktivieren.
+  --flip-pointers           Dekorative Eingabezeiger umkehren.
+  --invert-comments         Kommentarreihenfolge in der UI umkehren.
+  --eneble-online-check     Online-Statusprüfung aktivieren.
+
+Argumentverarbeitung:
+  --                        Übergibt verbleibende Argumente an die GUI.
+                            Bei erneuter Verwendung werden die Argumente
+                            erneut vom Hauptskript verarbeitet.
+
+Hilfe:
+  -h, --help                Diese Hilfe anzeigen und beenden.
+"
 }
 
 ################################
