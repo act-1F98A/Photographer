@@ -898,7 +898,154 @@ Hilfe:
 ################################
 
 local_chinese() {
-	return 0
+	DURATION_FORWARD_COMMENT="使用 full-clip 时，脚本会等待指定数量的新分段。\n使用 clip 时，此值会与 duration_back 相加，并保存指定数量的已创建分段。\n该值必须为整数。"
+DURATION_BACK_COMMENT="指定向后（时间上）取多少个分段用于生成剪辑。\n该值必须为整数。"
+
+local BUFFER_SIZE_COMMENT="缓冲区大小（以分段为单位）。\n%s\n该值必须为整数。"
+local SEGMENT_TIME_COMMENT="分段时长（秒）。\n%s\n该值必须为整数。"
+local WORK_DIRECTORY_COMMENT="用于存放程序数据的目录\n（流分段、剪辑数据和最终视频）。\n%s\n该值必须为整数。"
+
+local GLOBAL_BUFFER_RESTART_WARNING="！当你修改此变量时，所有流缓冲区将会被重启！"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="！当你修改此变量时，%s 的流缓冲区将会被重启！"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，时间上接近的剪辑会被合并。\n开启后，会自动启用剪辑数据保存。"
+SAVE_CLIP_DATA_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，用于生成剪辑的分段会被保留。\n否则，在剪辑生成后会删除临时数据。\n如果已启用相邻剪辑合并，则此选项始终视为开启。"
+
+CANCEL="取消"
+CONFIRM_DELETE_DATA="是的，删除所有数据"
+LOCAL_CONFIRM_DELETE_DATA="是的，删除 %s 的数据"
+GLOBAL_DELETE_DATA_COMMENT="是否确认删除所有剪辑的原始数据？"
+LOCAL_DELETE_DATA_COMMENT="是否确认删除 %s 的所有剪辑原始数据？"
+
+STOP_BUFFER_BUTTON="停止缓冲"
+START_BUFFER_BUTTON="启动缓冲"
+CLIP_BUTTON="剪辑"
+FULL_CLIP_BUTTON="完整剪辑"
+REMOVE_STREAMER_BUTTON="移除主播"
+SETTINGS_BUTTON="设置"
+RELOAD_BUTTON="刷新"
+EXIT_BUTTON="退出"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="选择活动主播"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="当前主播 => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s 全局设置"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="前向时长 = %s 段（%s 秒）"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="后向时长 = %s 段（%s 秒）"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="缓冲区大小 = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="分段时长 = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="工作目录 = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="合并相邻剪辑 = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%s保留剪辑分段数据 = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="删除所有剪辑数据"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s 主播（%s）设置"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="删除 %s 的所有剪辑数据"
+LOCAL_SETTINGS_COMMENT="本地变量优先级更高，\n若不为空，将覆盖全局变量"
+
+BACK_SETTINGS_STRING="%s 返回"
+
+CLIP_CREATING_CLIP="正在创建剪辑..."
+CLIP_LAST_SEGMENT_FILE="最后一个分段：%s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="分段尚未生成"
+CLIP_WAIT_FOR_DATA_CLIP="等待 %s 秒以收集剪辑数据"
+CLIP_SEGMENT_SAVED_STRING="分段已保存到：%s"
+CLIP_CENCELED="剪辑创建已取消"
+CLIP_REMOVE_CLIP_DATA_STRING="正在删除剪辑数据：%s"
+CLIP_FINISHED_CLIP_LOCATION="最终剪辑路径：%s"
+
+RESTART_ALL_BUFFERS="所有缓冲区已重启（%s）"
+
+DELETE_DATA_FOR_STREAMER="正在删除 %s 的剪辑数据"
+
+CHANGE_VARIABLE_TITLE="修改变量："
+CHANGE_VARIABLE_BACK="%s 返回"
+CHANGE_VARIABLE_INVITATION="%s 在此输入变量的新值 %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s 添加主播 %s"
+STREAMER_LIST_TITLE="%s 选择当前主播 %s"
+
+ADD_STREAMER_MENU_INVITATION="%s 在此输入主播名称（不区分大小写） %s"
+ADD_STREAMER_MENU_TITLE="主播名称："
+
+CHECK_GLOBAL_CONFIG_ERROR="全局配置文件无效，将重置为默认设置。"
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR 变量 MERGE_ADJACENT_CLIPS 只能是 1 或 0。"
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR 变量 SAVE_CLIP_DATA 只能是 1 或 0。"
+
+LANG_SETTINGS_STRING="语言"
+
+HELP="
+用法：
+  script [选项]
+
+界面选项：
+  --ui-config PATH          界面配置文件路径
+                            （wofi、rofi、fzf）。
+  --use-wofi                使用 wofi 作为界面。
+  --use-rofi                使用 rofi 作为界面。
+  --use-fzf                 使用 fzf 作为界面。
+
+缓冲控制：
+  --start-buffer            启动流缓冲进程
+                            （将流下载到缓冲区）。
+
+主播选项：
+  --streamer NAME           指定主播名称。
+
+剪辑创建：
+  --clip                    从缓冲分段创建剪辑。
+  --full-clip               等待指定时间后创建剪辑。
+
+剪辑时间选项：
+  --duration-back N         触发点之前的分段数量。
+  --duration-forward N      触发点之后的分段数量。
+  --segment-time N          每个分段的时长（秒）。
+
+缓冲选项：
+  --buffer-size N           缓冲区大小（分段数）。
+
+剪辑数据选项：
+  --save-clip-data          保留用于生成剪辑的分段。
+
+工作目录：
+  --directory PATH          存放分段和剪辑的目录。
+
+标题选项：
+  --title TEXT              最终剪辑名称
+                            （将自动添加后缀）。
+
+语言：
+  --lang CODE               界面语言
+                            （支持：en, ru, es, uk, fr, de, zh, eo）。
+                            （格式：en, en_US, en_US\$UTFCODE）
+
+行为选项：
+  --silence-log             禁用日志输出。
+  --flip-pointers           翻转输入指示箭头。
+  --invert-comments         反转 UI 中的注释顺序。
+  --eneble-online-check     启用主播在线检测。
+
+参数处理：
+  --                        将剩余参数传递给 GUI。
+                            若再次使用，将重新由主脚本处理。
+
+帮助：
+  -h, --help                显示此帮助并退出。
+"
 }
 
 ################################
