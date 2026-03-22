@@ -1210,7 +1210,154 @@ HELP="
 ################################
 
 local_esperanto() {
-	return 0
+DURATION_FORWARD_COMMENT="Kiam oni uzas full-clip, la skripto atendas la specifitan nombron da novaj segmentoj.\nKiam oni uzas clip, ĉi tiu valoro estas aldonata al duration_back kaj konservas la specifitan nombron da jam kreitaj segmentoj.\nLa valoro devas esti entjero."
+DURATION_BACK_COMMENT="Specifas kiom da segmentoj reen en la tempo estos uzataj por krei la klipon.\nLa valoro devas esti entjero."
+
+local BUFFER_SIZE_COMMENT="Grandeco de la bufro en segmentoj.\n%s\nLa valoro devas esti entjero."
+local SEGMENT_TIME_COMMENT="Daŭro de segmento en sekundoj.\n%s\nLa valoro devas esti entjero."
+local WORK_DIRECTORY_COMMENT="Dosierujo, kie estos konservataj la programaj datumoj\n(segmentoj de la fluo, datumoj de klipoj kaj la finaj klipoj).\n%s\nLa valoro devas esti entjero."
+
+local GLOBAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, ĈIUJ FLUAJ BUFROJ ESTOS RESTARTIGITAJ!"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, LA BUFRO DE %s ESTOS RESTARTIGITA!"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Nulo (cifre) — malŝaltite\nUnu (cifre) — ŝaltite\nSe ŝaltite, klipoj kun proksima tempo de kreado estos kunigitaj.\nSe ŝaltite, la funkcio por konservi klipajn datumojn estos aŭtomate aktivigita."
+SAVE_CLIP_DATA_COMMENT="Nulo — malŝaltite\nUnu — ŝaltite\nSe ŝaltite, la segmentoj uzitaj por krei klipojn estos konservataj.\nAlie, la provizoraj datumoj estos forigitaj post la kreado de klipo.\nSe kunigo de apudaj klipoj estas ŝaltita, ĉi tiu opcio ĉiam estas konsiderata kiel ŝaltita."
+
+CANCEL="Nuligi"
+CONFIRM_DELETE_DATA="JES, FORIGI ĈIUJN DATUMOJN"
+LOCAL_CONFIRM_DELETE_DATA="Jes, forigi datumojn por %s"
+GLOBAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĈIUJ klipoj?"
+LOCAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĉiuj klipoj por %s?"
+
+STOP_BUFFER_BUTTON="Ĉesigi bufrojn"
+START_BUFFER_BUTTON="Startigi bufrojn"
+CLIP_BUTTON="Klipo"
+FULL_CLIP_BUTTON="Plena klipo"
+REMOVE_STREAMER_BUTTON="Forigi fluanton"
+SETTINGS_BUTTON="Agordoj"
+RELOAD_BUTTON="Reŝargi"
+EXIT_BUTTON="Eliri"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Elekti aktivan fluanton"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiva fluanto => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Tutmondaj agordoj"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Daŭro antaŭen = %s segmentoj (%s sek)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Daŭro reen = %s segmentoj (%s sek)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Grandeco de bufro = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Daŭro de segmento = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Labora dosierujo = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Kunigi apudajn klipojn = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sKonservi datumojn de klipsegmentoj = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="Forigi ĈIUJN klipajn datumojn"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Agordoj de fluanto (%s)"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Forigi ĉiujn klipajn datumojn por %s"
+LOCAL_SETTINGS_COMMENT="Lokaj variabloj havas pli altan prioritaton\nkaj estos uzataj anstataŭ la tutmondaj se ili ne estas malplenaj"
+
+BACK_SETTINGS_STRING="%s Reen"
+
+CLIP_CREATING_CLIP="Kreado de klipo..."
+CLIP_LAST_SEGMENT_FILE="Lasta segmento: %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmentoj ankoraŭ ne estas kreitaj"
+CLIP_WAIT_FOR_DATA_CLIP="Atendado %s sekundojn por kolekti datumojn por la klipo"
+CLIP_SEGMENT_SAVED_STRING="Segmentoj konservitaj en: %s"
+CLIP_CENCELED="Kreado de klipo nuligita"
+CLIP_REMOVE_CLIP_DATA_STRING="Forigado de klipaj datumoj: %s"
+CLIP_FINISHED_CLIP_LOCATION="La fina klipo troviĝas ĉe: %s"
+
+RESTART_ALL_BUFFERS="Ĉiuj bufroj estas restartigitaj (%s)"
+
+DELETE_DATA_FOR_STREAMER="Forigado de klipaj datumoj por %s"
+
+CHANGE_VARIABLE_TITLE="Ŝanĝi variablon:"
+CHANGE_VARIABLE_BACK="%s Reen"
+CHANGE_VARIABLE_INVITATION="%s Enigu novan valoron por la variablo ĉi tie %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Aldoni fluanton %s"
+STREAMER_LIST_TITLE="%s Elekti aktivan fluanton %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Enigu la nomon de la fluanto ĉi tie (majuskloj ne gravas) %s"
+ADD_STREAMER_MENU_TITLE="Nomo de fluanto:"
+
+CHECK_GLOBAL_CONFIG_ERROR="La tutmonda agorda dosiero estas nevalida. Ĝi estos restarigita al defaŭltaj valoroj."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variablo MERGE_ADJACENT_CLIPS povas esti nur 1 aŭ 0."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variablo SAVE_CLIP_DATA povas esti nur 1 aŭ 0."
+
+LANG_SETTINGS_STRING="Lingvo"
+
+HELP="
+Uzado:
+  script [OPCIOJ]
+
+Interfacaj opcioj:
+  --ui-config PATH          Vojo al la agorda dosiero de la interfaco
+                            (wofi, rofi, fzf).
+  --use-wofi                Uzi wofi kiel interfacon.
+  --use-rofi                Uzi rofi kiel interfacon.
+  --use-fzf                 Uzi fzf kiel interfacon.
+
+Bufra regado:
+  --start-buffer            Startigi la flu-bufradon
+                            (elŝuti la fluon en bufro).
+
+Fluanto:
+  --streamer NAME           Specifi la nomon de la fluanto.
+
+Kreado de klipo:
+  --clip                    Krei klipon el bufritaj segmentoj.
+  --full-clip               Atendi kaj poste krei klipon.
+
+Tempoj:
+  --duration-back N         Nombro da segmentoj antaŭ la punkto.
+  --duration-forward N      Nombro da segmentoj post la punkto.
+  --segment-time N          Daŭro de segmento en sekundoj.
+
+Bufro:
+  --buffer-size N           Grandeco de bufro en segmentoj.
+
+Datumoj:
+  --save-clip-data          Konservi segmentojn uzitajn por klipoj.
+
+Dosierujo:
+  --directory PATH          Dosierujo por segmentoj kaj klipoj.
+
+Titolo:
+  --title TEXT              Nomo de la fina klipo
+                            (sufikso estos aldonita).
+
+Lingvo:
+  --lang CODE               Lingvo de interfaco
+                            (haveblaj: en, ru, es, uk, fr, de, zh, eo).
+                            (formoj: en, en_US, en_US\$UTFCODE)
+
+Konduto:
+  --silence-log             Malŝalti protokoladon.
+  --flip-pointers           Inversigi dekoraciajn indikilojn.
+  --invert-comments         Inversigi koment-ordon en UI.
+  --eneble-online-check     Ŝalti kontrolon de reta stato.
+
+Argumentoj:
+  --                        Transdoni ceterajn argumentojn al GUI.
+                            Se uzata denove, ili estos reprocesitaj.
+
+Helpo:
+  -h, --help                Montri ĉi tiun helpon kaj eliri.
+"
 }
 
 ################################
