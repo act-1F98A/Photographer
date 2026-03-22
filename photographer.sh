@@ -428,7 +428,156 @@ local_russian() {
 ################################
 
 local_french() {
-	return 0
+	DURATION_FORWARD_COMMENT="Lors de l'utilisation de full-clip, le script attend le nombre spécifié de nouveaux segments.\nLors de l'utilisation de clip, cette valeur est ajoutée à duration_back et enregistre le nombre spécifié de segments déjà créés.\nLa valeur doit être un entier."
+DURATION_BACK_COMMENT="Indique combien de segments en arrière dans le temps seront utilisés pour créer le clip.\nLa valeur doit être un entier."
+
+local BUFFER_SIZE_COMMENT="Taille du tampon en segments.\n%s\nLa valeur doit être un entier."
+local SEGMENT_TIME_COMMENT="Durée d’un segment en secondes.\n%s\nLa valeur doit être un entier."
+local WORK_DIRECTORY_COMMENT="Répertoire où seront stockées les données du programme\n(fragments du stream, données des clips et clips finaux).\n%s\nLa valeur doit être un entier."
+
+local GLOBAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, TOUS LES TAMPONS DE STREAM SERONT REDÉMARRÉS !"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, LE TAMPON DU STREAM DE %s SERA REDÉMARRÉ !"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les clips créés à des moments proches seront fusionnés.\nSi activé, la conservation des données des clips est automatiquement activée."
+SAVE_CLIP_DATA_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les segments utilisés pour créer les clips seront conservés.\nSinon, les données temporaires seront supprimées après la création du clip.\nSi la fusion des clips adjacents est activée, cette option est toujours considérée comme activée."
+
+CANCEL="Annuler"
+CONFIRM_DELETE_DATA="OUI, SUPPRIMER TOUTES LES DONNÉES"
+LOCAL_CONFIRM_DELETE_DATA="Oui, supprimer les données pour %s"
+GLOBAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de TOUS les clips ?"
+LOCAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de tous les clips pour %s ?"
+
+STOP_BUFFER_BUTTON="Arrêter le tampon"
+START_BUFFER_BUTTON="Démarrer le tampon"
+CLIP_BUTTON="Clip"
+FULL_CLIP_BUTTON="Clip complet"
+REMOVE_STREAMER_BUTTON="Supprimer le streamer"
+SETTINGS_BUTTON="Paramètres"
+RELOAD_BUTTON="Recharger"
+EXIT_BUTTON="Quitter"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Sélectionner le streamer actif"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer actif => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Paramètres globaux"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Durée avant = %s segments (%s s)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Durée arrière = %s segments (%s s)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Taille du tampon = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Durée du segment = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Répertoire de travail = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionner les clips adjacents = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConserver les données des segments du clip = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="Supprimer TOUTES les données des clips"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Paramètres du streamer (%s)"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Supprimer toutes les données des clips pour %s"
+LOCAL_SETTINGS_COMMENT="Les variables locales ont une priorité plus élevée\net remplaceront les variables globales si elles ne sont pas vides"
+
+BACK_SETTINGS_STRING="%s Retour"
+
+CLIP_CREATING_CLIP="Création du clip..."
+CLIP_LAST_SEGMENT_FILE="Dernier segment : %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Les segments n'ont pas encore été créés"
+CLIP_WAIT_FOR_DATA_CLIP="Attente de %s secondes pour collecter les données du clip"
+CLIP_SEGMENT_SAVED_STRING="Segments enregistrés à l'emplacement : %s"
+CLIP_CENCELED="Création du clip annulée"
+CLIP_REMOVE_CLIP_DATA_STRING="Suppression des données du clip : %s"
+CLIP_FINISHED_CLIP_LOCATION="Le clip final se trouve à : %s"
+
+RESTART_ALL_BUFFERS="Tous les tampons ont été redémarrés (%s)"
+
+DELETE_DATA_FOR_STREAMER="Suppression des données des clips pour %s"
+
+CHANGE_VARIABLE_TITLE="Modifier la variable :"
+CHANGE_VARIABLE_BACK="%s Retour"
+CHANGE_VARIABLE_INVITATION="%s Entrez une nouvelle valeur pour la variable ici %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Ajouter un streamer %s"
+STREAMER_LIST_TITLE="%s Sélectionner le streamer actif %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Entrez le nom du streamer ici (insensible à la casse) %s"
+ADD_STREAMER_MENU_TITLE="Nom du streamer :"
+
+CHECK_GLOBAL_CONFIG_ERROR="Le fichier de configuration global est invalide. Il sera réinitialisé aux valeurs par défaut."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS ne peut être que 1 ou 0."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA ne peut être que 1 ou 0."
+
+LANG_SETTINGS_STRING="Langue"
+
+HELP="
+Utilisation :
+  script [OPTIONS]
+
+Options d’interface :
+  --ui-config PATH          Chemin vers le fichier de configuration de l’interface
+                            (wofi, rofi, fzf).
+  --use-wofi                Utiliser wofi comme interface utilisateur.
+  --use-rofi                Utiliser rofi comme interface utilisateur.
+  --use-fzf                 Utiliser fzf comme interface utilisateur.
+
+Gestion du tampon :
+  --start-buffer            Démarrer le processus de mise en tampon du stream
+                            (téléchargement du stream dans le tampon).
+
+Options du streamer :
+  --streamer NAME           Spécifier le nom du streamer.
+
+Création de clip :
+  --clip                    Créer un clip à partir des segments en mémoire.
+  --full-clip               Attendre le temps spécifié puis créer le clip.
+
+Options de durée du clip :
+  --duration-back N         Nombre de segments avant le point de déclenchement.
+  --duration-forward N      Nombre de segments après le point de déclenchement.
+  --segment-time N          Durée de chaque segment en secondes.
+
+Options du tampon :
+  --buffer-size N           Taille du tampon en segments.
+
+Options des données de clip :
+  --save-clip-data          Conserver les segments utilisés
+                            pour créer les clips.
+
+Répertoire de travail :
+  --directory PATH          Répertoire pour les fragments et les clips.
+
+Options du titre :
+  --title TEXT              Nom du clip final
+                            (un suffixe sera ajouté).
+
+Langue :
+  --lang CODE               Langue de l’interface
+                            (disponibles : en, ru, es, uk, fr, de, zh, eo).
+                            (formats valides : en, en_US, en_US\$UTFCODE)
+
+Options de comportement :
+  --silence-log             Désactiver les logs.
+  --flip-pointers           Inverser les indicateurs décoratifs du champ de saisie.
+  --invert-comments         Inverser l’ordre des commentaires dans l’UI.
+  --eneble-online-check     Activer la vérification en ligne du streamer.
+
+Analyse des arguments :
+  --                        Passer les arguments restants au GUI.
+                            Si utilisé à nouveau plus tard, les arguments seront
+                            à nouveau traités par le script principal.
+
+Aide :
+  -h, --help                Afficher cette aide et quitter.
+"
 }
 
 ################################
