@@ -86,6 +86,7 @@ FRENCH="French"
 GERMAN="German"
 CHINESE_SIMPLIFIED="Chinese (simplified)"
 
+
 SELF_ENGLISH="English"
 SELF_RUSSIAN="Русский"
 SELF_UKRAINIAN="Українська"
@@ -110,109 +111,109 @@ ESPERANTO_CODE="eo_EO$UTFCODE"
 
 local_english() {
 	DURATION_FORWARD_COMMENT="When using full-clip, the script waits for the specified number of new segments.\nWhen using clip, this value is added to duration_back and saves the specified number of already created segments.\nThe value must be an integer."
-DURATION_BACK_COMMENT="Specifies how many segments back in time will be used to create the clip.\nThe value must be an integer."
+	DURATION_BACK_COMMENT="Specifies how many segments back in time will be used to create the clip.\nThe value must be an integer."
 
-local BUFFER_SIZE_COMMENT="Buffer size in segments.\n%s\nThe value must be an integer."
-local SEGMENT_TIME_COMMENT="Segment duration in seconds.\n%s\nThe value must be an integer."
-local WORK_DIRECTORY_COMMENT="Directory where program data will be stored\n(stream fragments, clip data, and final clips).\n%s\nThe value must be an integer."
+	local BUFFER_SIZE_COMMENT="Buffer size in segments.\n%s\nThe value must be an integer."
+	local SEGMENT_TIME_COMMENT="Segment duration in seconds.\n%s\nThe value must be an integer."
+	local WORK_DIRECTORY_COMMENT="Directory where program data will be stored\n(stream fragments, clip data, and final clips).\n%s\nThe value must be an integer."
 
-local GLOBAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, ALL STREAM BUFFERS WILL BE RESTARTED!"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, ALL STREAM BUFFERS WILL BE RESTARTED!"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, THE BUFFER FOR %s WILL BE RESTARTED!"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="!WHEN YOU CHANGE THIS VARIABLE, THE BUFFER FOR %s WILL BE RESTARTED!"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, clips created around the same time will be merged.\nIf enabled, clip data preservation is automatically enabled."
-SAVE_CLIP_DATA_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, segments used to create clips will be preserved.\nOtherwise, temporary data will be removed after the clip is created.\nIf merging adjacent clips is enabled, this option is always considered enabled."
+	MERGE_ADJACENT_CLIPS_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, clips created around the same time will be merged.\nIf enabled, clip data preservation is automatically enabled."
+	SAVE_CLIP_DATA_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, segments used to create clips will be preserved.\nOtherwise, temporary data will be removed after the clip is created.\nIf merging adjacent clips is enabled, this option is always considered enabled."
 
-CANCEL="Cancel"
-CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
-LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
-GLOBAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of ALL clips?"
-LOCAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of all clips for %s?"
+	CANCEL="Cancel"
+	CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
+	LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
+	GLOBAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of ALL clips?"
+	LOCAL_DELETE_DATA_COMMENT="Do you confirm deletion of the original data of all clips for %s?"
 
-STOP_BUFFER_BUTTON="Stop buffer"
-START_BUFFER_BUTTON="Start buffer"
-CLIP_BUTTON="Clip"
-FULL_CLIP_BUTTON="Full clip"
-REMOVE_STREAMER_BUTTON="Remove streamer"
-SETTINGS_BUTTON="Settings"
-RELOAD_BUTTON="Reload"
-EXIT_BUTTON="Exit"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Select active streamer"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Active streamer => [%s]"
+	STOP_BUFFER_BUTTON="Stop buffer"
+	START_BUFFER_BUTTON="Start buffer"
+	CLIP_BUTTON="Clip"
+	FULL_CLIP_BUTTON="Full clip"
+	REMOVE_STREAMER_BUTTON="Remove streamer"
+	SETTINGS_BUTTON="Settings"
+	RELOAD_BUTTON="Reload"
+	EXIT_BUTTON="Exit"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Select active streamer"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Active streamer => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Global settings"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Forward duration = %s segments (%s sec)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Backward duration = %s segments (%s sec)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Buffer size = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segment duration = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Working directory = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Merge adjacent clips = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sPreserve clip segment data = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="Delete ALL clip data"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Global settings"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Forward duration = %s segments (%s sec)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Backward duration = %s segments (%s sec)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Buffer size = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segment duration = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Working directory = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Merge adjacent clips = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sPreserve clip segment data = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Delete ALL clip data"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Streamer (%s) settings"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Delete all clip data for %s"
-LOCAL_SETTINGS_COMMENT="Local variables have higher priority\nand will override global ones if they are not empty"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Streamer (%s) settings"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Delete all clip data for %s"
+	LOCAL_SETTINGS_COMMENT="Local variables have higher priority\nand will override global ones if they are not empty"
 
-BACK_SETTINGS_STRING="%s Back"
+	BACK_SETTINGS_STRING="%s Back"
 
-CLIP_CREATING_CLIP="Creating clip..."
-CLIP_LAST_SEGMENT_FILE="Last segment: %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Segments have not been created yet"
-CLIP_WAIT_FOR_DATA_CLIP="Waiting %s seconds to collect data for the clip"
-CLIP_SEGMENT_SAVED_STRING="Segments saved at: %s"
-CLIP_CENCELED="Clip creation canceled"
-CLIP_REMOVE_CLIP_DATA_STRING="Removing clip data: %s"
-CLIP_FINISHED_CLIP_LOCATION="Final clip is located at: %s"
+	CLIP_CREATING_CLIP="Creating clip..."
+	CLIP_LAST_SEGMENT_FILE="Last segment: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Segments have not been created yet"
+	CLIP_WAIT_FOR_DATA_CLIP="Waiting %s seconds to collect data for the clip"
+	CLIP_SEGMENT_SAVED_STRING="Segments saved at: %s"
+	CLIP_CENCELED="Clip creation canceled"
+	CLIP_REMOVE_CLIP_DATA_STRING="Removing clip data: %s"
+	CLIP_FINISHED_CLIP_LOCATION="Final clip is located at: %s"
 
-RESTART_ALL_BUFFERS="All buffers have been restarted (%s)"
+	RESTART_ALL_BUFFERS="All buffers have been restarted (%s)"
 
-DELETE_DATA_FOR_STREAMER="Removing clip data for %s"
+	DELETE_DATA_FOR_STREAMER="Removing clip data for %s"
 
-CHANGE_VARIABLE_TITLE="Change variable:"
-CHANGE_VARIABLE_BACK="%s Back"
-CHANGE_VARIABLE_INVITATION="%s Enter a new value for the variable here %s %s"
+	CHANGE_VARIABLE_TITLE="Change variable:"
+	CHANGE_VARIABLE_BACK="%s Back"
+	CHANGE_VARIABLE_INVITATION="%s Enter a new value for the variable here %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Add streamer %s"
-STREAMER_LIST_TITLE="%s Select active streamer %s"
+	STREAMER_LIST_ADD_STREAMER="%s Add streamer %s"
+	STREAMER_LIST_TITLE="%s Select active streamer %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Enter streamer name here (case-insensitive) %s"
-ADD_STREAMER_MENU_TITLE="Streamer name:"
+	ADD_STREAMER_MENU_INVITATION="%s Enter streamer name here (case-insensitive) %s"
+	ADD_STREAMER_MENU_TITLE="Streamer name:"
 
-CHECK_GLOBAL_CONFIG_ERROR="The global configuration file is invalid. It will be reset to default settings."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR The MERGE_ADJACENT_CLIPS variable can only be 1 or 0."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR The SAVE_CLIP_DATA variable can only be 1 or 0."
+	CHECK_GLOBAL_CONFIG_ERROR="The global configuration file is invalid. It will be reset to default settings."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR The MERGE_ADJACENT_CLIPS variable can only be 1 or 0."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR The SAVE_CLIP_DATA variable can only be 1 or 0."
 
-LANG_SETTINGS_STRING="Language"
+	LANG_SETTINGS_STRING="Language"
 
-HELP="
+	HELP="
 Usage:
   script [OPTIONS]
 
 Interface options:
   --ui-config PATH          Path to UI configuration file
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                Use wofi as the user interface.
   --use-rofi                Use rofi as the user interface.
   --use-fzf                 Use fzf as the user interface.
 
 Buffer control:
   --start-buffer            Start stream buffering process
-                            (download stream into buffer).
+							(download stream into buffer).
 
 Streamer options:
   --streamer NAME           Specify streamer nickname.
@@ -231,19 +232,19 @@ Buffer options:
 
 Clip data options:
   --save-clip-data          Preserve segment files used
-                            to create clips.
+							to create clips.
 
 Working directory:
   --directory PATH          Directory for stream fragments and clips.
 
 Title options:
   --title TEXT              Title for the final clip
-                            (a suffix will be added).
+							(a suffix will be added).
 
 Language:
   --lang CODE               Interface language
-                            (available: en, ru, es, uk, fr, de, zh, eo).
-                            (valid formats: en, en_US, en_US\$UTFCODE)
+							(available: en, ru, es, uk, fr, de, zh, eo).
+							(valid formats: en, en_US, en_US\$UTFCODE)
 
 Behavior options:
   --silence-log             Disable log output.
@@ -253,12 +254,12 @@ Behavior options:
 
 Argument parsing:
   --                        Pass remaining arguments to GUI.
-                            If used again later, arguments will be
-                            processed again by the main script.
+							If used again later, arguments will be
+							processed again by the main script.
 
 Help:
   -h, --help                Show this help message and exit.
-"
+	"
 }
 
 ################################
@@ -429,109 +430,109 @@ local_russian() {
 
 local_french() {
 	DURATION_FORWARD_COMMENT="Lors de l'utilisation de full-clip, le script attend le nombre spécifié de nouveaux segments.\nLors de l'utilisation de clip, cette valeur est ajoutée à duration_back et enregistre le nombre spécifié de segments déjà créés.\nLa valeur doit être un entier."
-DURATION_BACK_COMMENT="Indique combien de segments en arrière dans le temps seront utilisés pour créer le clip.\nLa valeur doit être un entier."
+	DURATION_BACK_COMMENT="Indique combien de segments en arrière dans le temps seront utilisés pour créer le clip.\nLa valeur doit être un entier."
 
-local BUFFER_SIZE_COMMENT="Taille du tampon en segments.\n%s\nLa valeur doit être un entier."
-local SEGMENT_TIME_COMMENT="Durée d’un segment en secondes.\n%s\nLa valeur doit être un entier."
-local WORK_DIRECTORY_COMMENT="Répertoire où seront stockées les données du programme\n(fragments du stream, données des clips et clips finaux).\n%s\nLa valeur doit être un entier."
+	local BUFFER_SIZE_COMMENT="Taille du tampon en segments.\n%s\nLa valeur doit être un entier."
+	local SEGMENT_TIME_COMMENT="Durée d’un segment en secondes.\n%s\nLa valeur doit être un entier."
+	local WORK_DIRECTORY_COMMENT="Répertoire où seront stockées les données du programme\n(fragments du stream, données des clips et clips finaux).\n%s\nLa valeur doit être un entier."
 
-local GLOBAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, TOUS LES TAMPONS DE STREAM SERONT REDÉMARRÉS !"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, TOUS LES TAMPONS DE STREAM SERONT REDÉMARRÉS !"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, LE TAMPON DU STREAM DE %s SERA REDÉMARRÉ !"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="!LORSQUE VOUS MODIFIEZ CETTE VARIABLE, LE TAMPON DU STREAM DE %s SERA REDÉMARRÉ !"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les clips créés à des moments proches seront fusionnés.\nSi activé, la conservation des données des clips est automatiquement activée."
-SAVE_CLIP_DATA_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les segments utilisés pour créer les clips seront conservés.\nSinon, les données temporaires seront supprimées après la création du clip.\nSi la fusion des clips adjacents est activée, cette option est toujours considérée comme activée."
+	MERGE_ADJACENT_CLIPS_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les clips créés à des moments proches seront fusionnés.\nSi activé, la conservation des données des clips est automatiquement activée."
+	SAVE_CLIP_DATA_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les segments utilisés pour créer les clips seront conservés.\nSinon, les données temporaires seront supprimées après la création du clip.\nSi la fusion des clips adjacents est activée, cette option est toujours considérée comme activée."
 
-CANCEL="Annuler"
-CONFIRM_DELETE_DATA="OUI, SUPPRIMER TOUTES LES DONNÉES"
-LOCAL_CONFIRM_DELETE_DATA="Oui, supprimer les données pour %s"
-GLOBAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de TOUS les clips ?"
-LOCAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de tous les clips pour %s ?"
+	CANCEL="Annuler"
+	CONFIRM_DELETE_DATA="OUI, SUPPRIMER TOUTES LES DONNÉES"
+	LOCAL_CONFIRM_DELETE_DATA="Oui, supprimer les données pour %s"
+	GLOBAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de TOUS les clips ?"
+	LOCAL_DELETE_DATA_COMMENT="Confirmez-vous la suppression des données d'origine de tous les clips pour %s ?"
 
-STOP_BUFFER_BUTTON="Arrêter le tampon"
-START_BUFFER_BUTTON="Démarrer le tampon"
-CLIP_BUTTON="Clip"
-FULL_CLIP_BUTTON="Clip complet"
-REMOVE_STREAMER_BUTTON="Supprimer le streamer"
-SETTINGS_BUTTON="Paramètres"
-RELOAD_BUTTON="Recharger"
-EXIT_BUTTON="Quitter"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Sélectionner le streamer actif"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer actif => [%s]"
+	STOP_BUFFER_BUTTON="Arrêter le tampon"
+	START_BUFFER_BUTTON="Démarrer le tampon"
+	CLIP_BUTTON="Clip"
+	FULL_CLIP_BUTTON="Clip complet"
+	REMOVE_STREAMER_BUTTON="Supprimer le streamer"
+	SETTINGS_BUTTON="Paramètres"
+	RELOAD_BUTTON="Recharger"
+	EXIT_BUTTON="Quitter"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Sélectionner le streamer actif"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer actif => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Paramètres globaux"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Durée avant = %s segments (%s s)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Durée arrière = %s segments (%s s)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Taille du tampon = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Durée du segment = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Répertoire de travail = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionner les clips adjacents = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConserver les données des segments du clip = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="Supprimer TOUTES les données des clips"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Paramètres globaux"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Durée avant = %s segments (%s s)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Durée arrière = %s segments (%s s)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Taille du tampon = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Durée du segment = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Répertoire de travail = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionner les clips adjacents = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConserver les données des segments du clip = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Supprimer TOUTES les données des clips"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Paramètres du streamer (%s)"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Supprimer toutes les données des clips pour %s"
-LOCAL_SETTINGS_COMMENT="Les variables locales ont une priorité plus élevée\net remplaceront les variables globales si elles ne sont pas vides"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Paramètres du streamer (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Supprimer toutes les données des clips pour %s"
+	LOCAL_SETTINGS_COMMENT="Les variables locales ont une priorité plus élevée\net remplaceront les variables globales si elles ne sont pas vides"
 
-BACK_SETTINGS_STRING="%s Retour"
+	BACK_SETTINGS_STRING="%s Retour"
 
-CLIP_CREATING_CLIP="Création du clip..."
-CLIP_LAST_SEGMENT_FILE="Dernier segment : %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Les segments n'ont pas encore été créés"
-CLIP_WAIT_FOR_DATA_CLIP="Attente de %s secondes pour collecter les données du clip"
-CLIP_SEGMENT_SAVED_STRING="Segments enregistrés à l'emplacement : %s"
-CLIP_CENCELED="Création du clip annulée"
-CLIP_REMOVE_CLIP_DATA_STRING="Suppression des données du clip : %s"
-CLIP_FINISHED_CLIP_LOCATION="Le clip final se trouve à : %s"
+	CLIP_CREATING_CLIP="Création du clip..."
+	CLIP_LAST_SEGMENT_FILE="Dernier segment : %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Les segments n'ont pas encore été créés"
+	CLIP_WAIT_FOR_DATA_CLIP="Attente de %s secondes pour collecter les données du clip"
+	CLIP_SEGMENT_SAVED_STRING="Segments enregistrés à l'emplacement : %s"
+	CLIP_CENCELED="Création du clip annulée"
+	CLIP_REMOVE_CLIP_DATA_STRING="Suppression des données du clip : %s"
+	CLIP_FINISHED_CLIP_LOCATION="Le clip final se trouve à : %s"
 
-RESTART_ALL_BUFFERS="Tous les tampons ont été redémarrés (%s)"
+	RESTART_ALL_BUFFERS="Tous les tampons ont été redémarrés (%s)"
 
-DELETE_DATA_FOR_STREAMER="Suppression des données des clips pour %s"
+	DELETE_DATA_FOR_STREAMER="Suppression des données des clips pour %s"
 
-CHANGE_VARIABLE_TITLE="Modifier la variable :"
-CHANGE_VARIABLE_BACK="%s Retour"
-CHANGE_VARIABLE_INVITATION="%s Entrez une nouvelle valeur pour la variable ici %s %s"
+	CHANGE_VARIABLE_TITLE="Modifier la variable :"
+	CHANGE_VARIABLE_BACK="%s Retour"
+	CHANGE_VARIABLE_INVITATION="%s Entrez une nouvelle valeur pour la variable ici %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Ajouter un streamer %s"
-STREAMER_LIST_TITLE="%s Sélectionner le streamer actif %s"
+	STREAMER_LIST_ADD_STREAMER="%s Ajouter un streamer %s"
+	STREAMER_LIST_TITLE="%s Sélectionner le streamer actif %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Entrez le nom du streamer ici (insensible à la casse) %s"
-ADD_STREAMER_MENU_TITLE="Nom du streamer :"
+	ADD_STREAMER_MENU_INVITATION="%s Entrez le nom du streamer ici (insensible à la casse) %s"
+	ADD_STREAMER_MENU_TITLE="Nom du streamer :"
 
-CHECK_GLOBAL_CONFIG_ERROR="Le fichier de configuration global est invalide. Il sera réinitialisé aux valeurs par défaut."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS ne peut être que 1 ou 0."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA ne peut être que 1 ou 0."
+	CHECK_GLOBAL_CONFIG_ERROR="Le fichier de configuration global est invalide. Il sera réinitialisé aux valeurs par défaut."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS ne peut être que 1 ou 0."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA ne peut être que 1 ou 0."
 
-LANG_SETTINGS_STRING="Langue"
+	LANG_SETTINGS_STRING="Langue"
 
-HELP="
+	HELP="
 Utilisation :
   script [OPTIONS]
 
 Options d’interface :
   --ui-config PATH          Chemin vers le fichier de configuration de l’interface
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                Utiliser wofi comme interface utilisateur.
   --use-rofi                Utiliser rofi comme interface utilisateur.
   --use-fzf                 Utiliser fzf comme interface utilisateur.
 
 Gestion du tampon :
   --start-buffer            Démarrer le processus de mise en tampon du stream
-                            (téléchargement du stream dans le tampon).
+							(téléchargement du stream dans le tampon).
 
 Options du streamer :
   --streamer NAME           Spécifier le nom du streamer.
@@ -550,19 +551,19 @@ Options du tampon :
 
 Options des données de clip :
   --save-clip-data          Conserver les segments utilisés
-                            pour créer les clips.
+							pour créer les clips.
 
 Répertoire de travail :
   --directory PATH          Répertoire pour les fragments et les clips.
 
 Options du titre :
   --title TEXT              Nom du clip final
-                            (un suffixe sera ajouté).
+							(un suffixe sera ajouté).
 
 Langue :
   --lang CODE               Langue de l’interface
-                            (disponibles : en, ru, es, uk, fr, de, zh, eo).
-                            (formats valides : en, en_US, en_US\$UTFCODE)
+							(disponibles : en, ru, es, uk, fr, de, zh, eo).
+							(formats valides : en, en_US, en_US\$UTFCODE)
 
 Options de comportement :
   --silence-log             Désactiver les logs.
@@ -572,12 +573,12 @@ Options de comportement :
 
 Analyse des arguments :
   --                        Passer les arguments restants au GUI.
-                            Si utilisé à nouveau plus tard, les arguments seront
-                            à nouveau traités par le script principal.
+							Si utilisé à nouveau plus tard, les arguments seront
+							à nouveau traités par le script principal.
 
 Aide :
   -h, --help                Afficher cette aide et quitter.
-"
+	"
 }
 
 ################################
@@ -585,110 +586,110 @@ Aide :
 ################################
 
 local_spanish() {
-	DURATION_FORWARD_COMMENT="Al usar full-clip, el script espera la cantidad especificada de nuevos segmentos.\nAl usar clip, este valor se suma a duration_back y guarda la cantidad especificada de segmentos ya creados.\nEl valor debe ser un número entero."
-DURATION_BACK_COMMENT="Indica cuántos segmentos hacia atrás en el tiempo se usarán para crear el clip.\nEl valor debe ser un número entero."
+		DURATION_FORWARD_COMMENT="Al usar full-clip, el script espera la cantidad especificada de nuevos segmentos.\nAl usar clip, este valor se suma a duration_back y guarda la cantidad especificada de segmentos ya creados.\nEl valor debe ser un número entero."
+	DURATION_BACK_COMMENT="Indica cuántos segmentos hacia atrás en el tiempo se usarán para crear el clip.\nEl valor debe ser un número entero."
 
-local BUFFER_SIZE_COMMENT="Tamaño del búfer en segmentos.\n%s\nEl valor debe ser un número entero."
-local SEGMENT_TIME_COMMENT="Duración del segmento en segundos.\n%s\nEl valor debe ser un número entero."
-local WORK_DIRECTORY_COMMENT="Directorio donde se almacenarán los datos del programa\n(fragmentos del stream, datos de clips y clips finales).\n%s\nEl valor debe ser un número entero."
+	local BUFFER_SIZE_COMMENT="Tamaño del búfer en segmentos.\n%s\nEl valor debe ser un número entero."
+	local SEGMENT_TIME_COMMENT="Duración del segmento en segundos.\n%s\nEl valor debe ser un número entero."
+	local WORK_DIRECTORY_COMMENT="Directorio donde se almacenarán los datos del programa\n(fragmentos del stream, datos de clips y clips finales).\n%s\nEl valor debe ser un número entero."
 
-local GLOBAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, TODOS LOS BÚFERES DE STREAM SE REINICIARÁN!"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, TODOS LOS BÚFERES DE STREAM SE REINICIARÁN!"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, EL BÚFER DEL STREAM DE %s SE REINICIARÁ!"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="¡CUANDO CAMBIES ESTA VARIABLE, EL BÚFER DEL STREAM DE %s SE REINICIARÁ!"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los clips creados en momentos cercanos se fusionarán.\nSi está activado, la conservación de datos del clip se habilita automáticamente."
-SAVE_CLIP_DATA_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los segmentos usados para crear clips se conservarán.\nDe lo contrario, los datos temporales se eliminarán después de crear el clip.\nSi la fusión de clips adyacentes está activada, esta opción siempre se considera activada."
+	MERGE_ADJACENT_CLIPS_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los clips creados en momentos cercanos se fusionarán.\nSi está activado, la conservación de datos del clip se habilita automáticamente."
+	SAVE_CLIP_DATA_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los segmentos usados para crear clips se conservarán.\nDe lo contrario, los datos temporales se eliminarán después de crear el clip.\nSi la fusión de clips adyacentes está activada, esta opción siempre se considera activada."
 
-CANCEL="Cancelar"
-CONFIRM_DELETE_DATA="SÍ, ELIMINAR TODOS LOS DATOS"
-LOCAL_CONFIRM_DELETE_DATA="Sí, eliminar datos para %s"
-GLOBAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de TODOS los clips?"
-LOCAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de todos los clips para %s?"
+	CANCEL="Cancelar"
+	CONFIRM_DELETE_DATA="SÍ, ELIMINAR TODOS LOS DATOS"
+	LOCAL_CONFIRM_DELETE_DATA="Sí, eliminar datos para %s"
+	GLOBAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de TODOS los clips?"
+	LOCAL_DELETE_DATA_COMMENT="¿Confirma que desea eliminar los datos originales de todos los clips para %s?"
 
-STOP_BUFFER_BUTTON="Detener búfer"
-START_BUFFER_BUTTON="Iniciar búfer"
-CLIP_BUTTON="Clip"
-FULL_CLIP_BUTTON="Clip completo"
-REMOVE_STREAMER_BUTTON="Eliminar streamer"
-SETTINGS_BUTTON="Configuración"
-RELOAD_BUTTON="Recargar"
-EXIT_BUTTON="Salir"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Seleccionar streamer activo"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer activo => [%s]"
+	STOP_BUFFER_BUTTON="Detener búfer"
+	START_BUFFER_BUTTON="Iniciar búfer"
+	CLIP_BUTTON="Clip"
+	FULL_CLIP_BUTTON="Clip completo"
+	REMOVE_STREAMER_BUTTON="Eliminar streamer"
+	SETTINGS_BUTTON="Configuración"
+	RELOAD_BUTTON="Recargar"
+	EXIT_BUTTON="Salir"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Seleccionar streamer activo"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Streamer activo => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Configuración global"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Duración hacia adelante = %s segmentos (%s s)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Duración hacia atrás = %s segmentos (%s s)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Tamaño del búfer = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Duración del segmento = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Directorio de trabajo = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionar clips adyacentes = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConservar datos de segmentos del clip = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="Eliminar TODOS los datos de clips"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Configuración global"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Duración hacia adelante = %s segmentos (%s s)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Duración hacia atrás = %s segmentos (%s s)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Tamaño del búfer = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Duración del segmento = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Directorio de trabajo = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Fusionar clips adyacentes = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sConservar datos de segmentos del clip = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Eliminar TODOS los datos de clips"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Configuración del streamer (%s)"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Eliminar todos los datos de clips para %s"
-LOCAL_SETTINGS_COMMENT="Las variables locales tienen mayor prioridad\ny reemplazarán a las globales si no están vacías"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Configuración del streamer (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Eliminar todos los datos de clips para %s"
+	LOCAL_SETTINGS_COMMENT="Las variables locales tienen mayor prioridad\ny reemplazarán a las globales si no están vacías"
 
-BACK_SETTINGS_STRING="%s Volver"
+	BACK_SETTINGS_STRING="%s Volver"
 
-CLIP_CREATING_CLIP="Creando clip..."
-CLIP_LAST_SEGMENT_FILE="Último segmento: %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Los segmentos aún no han sido creados"
-CLIP_WAIT_FOR_DATA_CLIP="Esperando %s segundos para recopilar datos del clip"
-CLIP_SEGMENT_SAVED_STRING="Segmentos guardados en: %s"
-CLIP_CENCELED="Creación de clip cancelada"
-CLIP_REMOVE_CLIP_DATA_STRING="Eliminando datos del clip: %s"
-CLIP_FINISHED_CLIP_LOCATION="El clip final se encuentra en: %s"
+	CLIP_CREATING_CLIP="Creando clip..."
+	CLIP_LAST_SEGMENT_FILE="Último segmento: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Los segmentos aún no han sido creados"
+	CLIP_WAIT_FOR_DATA_CLIP="Esperando %s segundos para recopilar datos del clip"
+	CLIP_SEGMENT_SAVED_STRING="Segmentos guardados en: %s"
+	CLIP_CENCELED="Creación de clip cancelada"
+	CLIP_REMOVE_CLIP_DATA_STRING="Eliminando datos del clip: %s"
+	CLIP_FINISHED_CLIP_LOCATION="El clip final se encuentra en: %s"
 
-RESTART_ALL_BUFFERS="Todos los búferes han sido reiniciados (%s)"
+	RESTART_ALL_BUFFERS="Todos los búferes han sido reiniciados (%s)"
 
-DELETE_DATA_FOR_STREAMER="Eliminando datos de clips para %s"
+	DELETE_DATA_FOR_STREAMER="Eliminando datos de clips para %s"
 
-CHANGE_VARIABLE_TITLE="Cambiar variable:"
-CHANGE_VARIABLE_BACK="%s Volver"
-CHANGE_VARIABLE_INVITATION="%s Introduce un nuevo valor para la variable aquí %s %s"
+	CHANGE_VARIABLE_TITLE="Cambiar variable:"
+	CHANGE_VARIABLE_BACK="%s Volver"
+	CHANGE_VARIABLE_INVITATION="%s Introduce un nuevo valor para la variable aquí %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Añadir streamer %s"
-STREAMER_LIST_TITLE="%s Seleccionar streamer activo %s"
+	STREAMER_LIST_ADD_STREAMER="%s Añadir streamer %s"
+	STREAMER_LIST_TITLE="%s Seleccionar streamer activo %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Introduce el nombre del streamer aquí (sin distinguir mayúsculas) %s"
-ADD_STREAMER_MENU_TITLE="Nombre del streamer:"
+	ADD_STREAMER_MENU_INVITATION="%s Introduce el nombre del streamer aquí (sin distinguir mayúsculas) %s"
+	ADD_STREAMER_MENU_TITLE="Nombre del streamer:"
 
-CHECK_GLOBAL_CONFIG_ERROR="El archivo de configuración global no es válido. Se restablecerá a los valores por defecto."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS solo puede ser 1 o 0."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA solo puede ser 1 o 0."
+	CHECK_GLOBAL_CONFIG_ERROR="El archivo de configuración global no es válido. Se restablecerá a los valores por defecto."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variable MERGE_ADJACENT_CLIPS solo puede ser 1 o 0."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variable SAVE_CLIP_DATA solo puede ser 1 o 0."
 
-LANG_SETTINGS_STRING="Idioma"
+	LANG_SETTINGS_STRING="Idioma"
 
-HELP="
+	HELP="
 Uso:
   script [OPTIONS]
 
 Opciones de interfaz:
   --ui-config PATH          Ruta al archivo de configuración de la interfaz
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                Usar wofi como interfaz.
   --use-rofi                Usar rofi como interfaz.
   --use-fzf                 Usar fzf como interfaz.
 
 Control del búfer:
   --start-buffer            Iniciar el proceso de almacenamiento en búfer
-                            (descargar el stream al búfer).
+							(descargar el stream al búfer).
 
 Opciones del streamer:
   --streamer NAME           Especificar el nombre del streamer.
@@ -707,19 +708,19 @@ Opciones del búfer:
 
 Opciones de datos del clip:
   --save-clip-data          Conservar los segmentos usados
-                            para crear clips.
+							para crear clips.
 
 Directorio de trabajo:
   --directory PATH          Directorio para fragmentos y clips.
 
 Opciones de título:
   --title TEXT              Nombre del clip final
-                            (se añadirá un sufijo).
+							(se añadirá un sufijo).
 
 Idioma:
   --lang CODE               Idioma de la interfaz
-                            (disponibles: en, ru, es, uk, fr, de, zh, eo).
-                            (formatos válidos: en, en_US, en_US\$UTFCODE)
+							(disponibles: en, ru, es, uk, fr, de, zh, eo).
+							(formatos válidos: en, en_US, en_US\$UTFCODE)
 
 Opciones de comportamiento:
   --silence-log             Desactivar logs.
@@ -729,12 +730,12 @@ Opciones de comportamiento:
 
 Procesamiento de argumentos:
   --                        Pasar los argumentos restantes al GUI.
-                            Si se usa de nuevo más tarde, los argumentos serán
-                            procesados nuevamente por el script principal.
+							Si se usa de nuevo más tarde, los argumentos serán
+							procesados nuevamente por el script principal.
 
 Ayuda:
   -h, --help                Mostrar esta ayuda y salir.
-"
+	"
 }
 
 ################################
@@ -743,109 +744,109 @@ Ayuda:
 
 local_german() {
 	DURATION_FORWARD_COMMENT="Bei Verwendung von full-clip wartet das Skript auf die angegebene Anzahl neuer Segmente.\nBei Verwendung von clip wird dieser Wert zu duration_back addiert und speichert die angegebene Anzahl bereits erstellter Segmente.\nDer Wert muss eine ganze Zahl sein."
-DURATION_BACK_COMMENT="Gibt an, wie viele Segmente rückwärts in der Zeit zur Erstellung des Clips verwendet werden.\nDer Wert muss eine ganze Zahl sein."
+	DURATION_BACK_COMMENT="Gibt an, wie viele Segmente rückwärts in der Zeit zur Erstellung des Clips verwendet werden.\nDer Wert muss eine ganze Zahl sein."
 
-local BUFFER_SIZE_COMMENT="Puffergröße in Segmenten.\n%s\nDer Wert muss eine ganze Zahl sein."
-local SEGMENT_TIME_COMMENT="Segmentdauer in Sekunden.\n%s\nDer Wert muss eine ganze Zahl sein."
-local WORK_DIRECTORY_COMMENT="Verzeichnis, in dem Programmdaten gespeichert werden\n(Streamfragmente, Clip-Daten und fertige Clips).\n%s\nDer Wert muss eine ganze Zahl sein."
+	local BUFFER_SIZE_COMMENT="Puffergröße in Segmenten.\n%s\nDer Wert muss eine ganze Zahl sein."
+	local SEGMENT_TIME_COMMENT="Segmentdauer in Sekunden.\n%s\nDer Wert muss eine ganze Zahl sein."
+	local WORK_DIRECTORY_COMMENT="Verzeichnis, in dem Programmdaten gespeichert werden\n(Streamfragmente, Clip-Daten und fertige Clips).\n%s\nDer Wert muss eine ganze Zahl sein."
 
-local GLOBAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WERDEN ALLE STREAM-PUFFER NEU GESTARTET!"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WERDEN ALLE STREAM-PUFFER NEU GESTARTET!"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WIRD DER PUFFER DES STREAMS VON %s NEU GESTARTET!"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="!WENN SIE DIESE VARIABLE ÄNDERN, WIRD DER PUFFER DES STREAMS VON %s NEU GESTARTET!"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden zeitlich nahe Clips zusammengeführt.\nWenn aktiviert, wird die Speicherung der Clip-Daten automatisch aktiviert."
-SAVE_CLIP_DATA_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden die zur Clip-Erstellung verwendeten Segmente gespeichert.\nAndernfalls werden temporäre Daten nach der Erstellung des Clips gelöscht.\nWenn das Zusammenführen benachbarter Clips aktiviert ist, gilt diese Option immer als aktiviert."
+	MERGE_ADJACENT_CLIPS_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden zeitlich nahe Clips zusammengeführt.\nWenn aktiviert, wird die Speicherung der Clip-Daten automatisch aktiviert."
+	SAVE_CLIP_DATA_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden die zur Clip-Erstellung verwendeten Segmente gespeichert.\nAndernfalls werden temporäre Daten nach der Erstellung des Clips gelöscht.\nWenn das Zusammenführen benachbarter Clips aktiviert ist, gilt diese Option immer als aktiviert."
 
-CANCEL="Abbrechen"
-CONFIRM_DELETE_DATA="JA, ALLE DATEN LÖSCHEN"
-LOCAL_CONFIRM_DELETE_DATA="Ja, Daten für %s löschen"
-GLOBAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten ALLER Clips?"
-LOCAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten aller Clips für %s?"
+	CANCEL="Abbrechen"
+	CONFIRM_DELETE_DATA="JA, ALLE DATEN LÖSCHEN"
+	LOCAL_CONFIRM_DELETE_DATA="Ja, Daten für %s löschen"
+	GLOBAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten ALLER Clips?"
+	LOCAL_DELETE_DATA_COMMENT="Bestätigen Sie das Löschen der Originaldaten aller Clips für %s?"
 
-STOP_BUFFER_BUTTON="Puffer stoppen"
-START_BUFFER_BUTTON="Puffer starten"
-CLIP_BUTTON="Clip"
-FULL_CLIP_BUTTON="Vollständiger Clip"
-REMOVE_STREAMER_BUTTON="Streamer entfernen"
-SETTINGS_BUTTON="Einstellungen"
-RELOAD_BUTTON="Neu laden"
-EXIT_BUTTON="Beenden"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Aktiven Streamer auswählen"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiver Streamer => [%s]"
+	STOP_BUFFER_BUTTON="Puffer stoppen"
+	START_BUFFER_BUTTON="Puffer starten"
+	CLIP_BUTTON="Clip"
+	FULL_CLIP_BUTTON="Vollständiger Clip"
+	REMOVE_STREAMER_BUTTON="Streamer entfernen"
+	SETTINGS_BUTTON="Einstellungen"
+	RELOAD_BUTTON="Neu laden"
+	EXIT_BUTTON="Beenden"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Aktiven Streamer auswählen"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiver Streamer => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Globale Einstellungen"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Dauer vorwärts = %s Segmente (%s s)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Dauer rückwärts = %s Segmente (%s s)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Puffergröße = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segmentdauer = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Arbeitsverzeichnis = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Benachbarte Clips zusammenführen = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sClip-Segmentdaten speichern = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="ALLE Clip-Daten löschen"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Globale Einstellungen"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Dauer vorwärts = %s Segmente (%s s)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Dauer rückwärts = %s Segmente (%s s)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Puffergröße = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Segmentdauer = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Arbeitsverzeichnis = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Benachbarte Clips zusammenführen = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sClip-Segmentdaten speichern = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="ALLE Clip-Daten löschen"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Einstellungen für Streamer (%s)"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Alle Clip-Daten für %s löschen"
-LOCAL_SETTINGS_COMMENT="Lokale Variablen haben eine höhere Priorität\nund überschreiben globale, wenn sie nicht leer sind"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Einstellungen für Streamer (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Alle Clip-Daten für %s löschen"
+	LOCAL_SETTINGS_COMMENT="Lokale Variablen haben eine höhere Priorität\nund überschreiben globale, wenn sie nicht leer sind"
 
-BACK_SETTINGS_STRING="%s Zurück"
+	BACK_SETTINGS_STRING="%s Zurück"
 
-CLIP_CREATING_CLIP="Clip wird erstellt..."
-CLIP_LAST_SEGMENT_FILE="Letztes Segment: %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmente wurden noch nicht erstellt"
-CLIP_WAIT_FOR_DATA_CLIP="Warte %s Sekunden, um Daten für den Clip zu sammeln"
-CLIP_SEGMENT_SAVED_STRING="Segmente gespeichert unter: %s"
-CLIP_CENCELED="Clip-Erstellung abgebrochen"
-CLIP_REMOVE_CLIP_DATA_STRING="Clip-Daten werden gelöscht: %s"
-CLIP_FINISHED_CLIP_LOCATION="Der fertige Clip befindet sich unter: %s"
+	CLIP_CREATING_CLIP="Clip wird erstellt..."
+	CLIP_LAST_SEGMENT_FILE="Letztes Segment: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmente wurden noch nicht erstellt"
+	CLIP_WAIT_FOR_DATA_CLIP="Warte %s Sekunden, um Daten für den Clip zu sammeln"
+	CLIP_SEGMENT_SAVED_STRING="Segmente gespeichert unter: %s"
+	CLIP_CENCELED="Clip-Erstellung abgebrochen"
+	CLIP_REMOVE_CLIP_DATA_STRING="Clip-Daten werden gelöscht: %s"
+	CLIP_FINISHED_CLIP_LOCATION="Der fertige Clip befindet sich unter: %s"
 
-RESTART_ALL_BUFFERS="Alle Puffer wurden neu gestartet (%s)"
+	RESTART_ALL_BUFFERS="Alle Puffer wurden neu gestartet (%s)"
 
-DELETE_DATA_FOR_STREAMER="Clip-Daten für %s werden gelöscht"
+	DELETE_DATA_FOR_STREAMER="Clip-Daten für %s werden gelöscht"
 
-CHANGE_VARIABLE_TITLE="Variable ändern:"
-CHANGE_VARIABLE_BACK="%s Zurück"
-CHANGE_VARIABLE_INVITATION="%s Neuen Wert für die Variable eingeben %s %s"
+	CHANGE_VARIABLE_TITLE="Variable ändern:"
+	CHANGE_VARIABLE_BACK="%s Zurück"
+	CHANGE_VARIABLE_INVITATION="%s Neuen Wert für die Variable eingeben %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Streamer hinzufügen %s"
-STREAMER_LIST_TITLE="%s Aktiven Streamer auswählen %s"
+	STREAMER_LIST_ADD_STREAMER="%s Streamer hinzufügen %s"
+	STREAMER_LIST_TITLE="%s Aktiven Streamer auswählen %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Streamer-Namen hier eingeben (Groß-/Kleinschreibung egal) %s"
-ADD_STREAMER_MENU_TITLE="Streamer-Name:"
+	ADD_STREAMER_MENU_INVITATION="%s Streamer-Namen hier eingeben (Groß-/Kleinschreibung egal) %s"
+	ADD_STREAMER_MENU_TITLE="Streamer-Name:"
 
-CHECK_GLOBAL_CONFIG_ERROR="Die globale Konfigurationsdatei ist ungültig. Sie wird auf die Standardeinstellungen zurückgesetzt."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Die Variable MERGE_ADJACENT_CLIPS kann nur 1 oder 0 sein."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Die Variable SAVE_CLIP_DATA kann nur 1 oder 0 sein."
+	CHECK_GLOBAL_CONFIG_ERROR="Die globale Konfigurationsdatei ist ungültig. Sie wird auf die Standardeinstellungen zurückgesetzt."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Die Variable MERGE_ADJACENT_CLIPS kann nur 1 oder 0 sein."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Die Variable SAVE_CLIP_DATA kann nur 1 oder 0 sein."
 
-LANG_SETTINGS_STRING="Sprache"
+	LANG_SETTINGS_STRING="Sprache"
 
-HELP="
+	HELP="
 Verwendung:
   script [OPTIONS]
 
 Interface-Optionen:
   --ui-config PATH          Pfad zur UI-Konfigurationsdatei
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                wofi als Benutzeroberfläche verwenden.
   --use-rofi                rofi als Benutzeroberfläche verwenden.
   --use-fzf                 fzf als Benutzeroberfläche verwenden.
 
 Puffersteuerung:
   --start-buffer            Startet den Stream-Pufferprozess
-                            (lädt den Stream in den Puffer).
+							(lädt den Stream in den Puffer).
 
 Streamer-Optionen:
   --streamer NAME           Streamer-Namen angeben.
@@ -870,12 +871,12 @@ Arbeitsverzeichnis:
 
 Titeloptionen:
   --title TEXT              Name des finalen Clips
-                            (ein Suffix wird hinzugefügt).
+							(ein Suffix wird hinzugefügt).
 
 Sprache:
   --lang CODE               Sprache der Oberfläche
-                            (verfügbar: en, ru, es, uk, fr, de, zh, eo).
-                            (gültige Formate: en, en_US, en_US\$UTFCODE)
+							(verfügbar: en, ru, es, uk, fr, de, zh, eo).
+							(gültige Formate: en, en_US, en_US\$UTFCODE)
 
 Verhaltensoptionen:
   --silence-log             Log-Ausgabe deaktivieren.
@@ -885,12 +886,12 @@ Verhaltensoptionen:
 
 Argumentverarbeitung:
   --                        Übergibt verbleibende Argumente an die GUI.
-                            Bei erneuter Verwendung werden die Argumente
-                            erneut vom Hauptskript verarbeitet.
+							Bei erneuter Verwendung werden die Argumente
+							erneut vom Hauptskript verarbeitet.
 
 Hilfe:
   -h, --help                Diese Hilfe anzeigen und beenden.
-"
+	"
 }
 
 ################################
@@ -898,110 +899,110 @@ Hilfe:
 ################################
 
 local_chinese() {
-	DURATION_FORWARD_COMMENT="使用 full-clip 时，脚本会等待指定数量的新分段。\n使用 clip 时，此值会与 duration_back 相加，并保存指定数量的已创建分段。\n该值必须为整数。"
-DURATION_BACK_COMMENT="指定向后（时间上）取多少个分段用于生成剪辑。\n该值必须为整数。"
+		DURATION_FORWARD_COMMENT="使用 full-clip 时，脚本会等待指定数量的新分段。\n使用 clip 时，此值会与 duration_back 相加，并保存指定数量的已创建分段。\n该值必须为整数。"
+	DURATION_BACK_COMMENT="指定向后（时间上）取多少个分段用于生成剪辑。\n该值必须为整数。"
 
-local BUFFER_SIZE_COMMENT="缓冲区大小（以分段为单位）。\n%s\n该值必须为整数。"
-local SEGMENT_TIME_COMMENT="分段时长（秒）。\n%s\n该值必须为整数。"
-local WORK_DIRECTORY_COMMENT="用于存放程序数据的目录\n（流分段、剪辑数据和最终视频）。\n%s\n该值必须为整数。"
+	local BUFFER_SIZE_COMMENT="缓冲区大小（以分段为单位）。\n%s\n该值必须为整数。"
+	local SEGMENT_TIME_COMMENT="分段时长（秒）。\n%s\n该值必须为整数。"
+	local WORK_DIRECTORY_COMMENT="用于存放程序数据的目录\n（流分段、剪辑数据和最终视频）。\n%s\n该值必须为整数。"
 
-local GLOBAL_BUFFER_RESTART_WARNING="！当你修改此变量时，所有流缓冲区将会被重启！"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="！当你修改此变量时，所有流缓冲区将会被重启！"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="！当你修改此变量时，%s 的流缓冲区将会被重启！"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="！当你修改此变量时，%s 的流缓冲区将会被重启！"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，时间上接近的剪辑会被合并。\n开启后，会自动启用剪辑数据保存。"
-SAVE_CLIP_DATA_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，用于生成剪辑的分段会被保留。\n否则，在剪辑生成后会删除临时数据。\n如果已启用相邻剪辑合并，则此选项始终视为开启。"
+	MERGE_ADJACENT_CLIPS_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，时间上接近的剪辑会被合并。\n开启后，会自动启用剪辑数据保存。"
+	SAVE_CLIP_DATA_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，用于生成剪辑的分段会被保留。\n否则，在剪辑生成后会删除临时数据。\n如果已启用相邻剪辑合并，则此选项始终视为开启。"
 
-CANCEL="取消"
-CONFIRM_DELETE_DATA="是的，删除所有数据"
-LOCAL_CONFIRM_DELETE_DATA="是的，删除 %s 的数据"
-GLOBAL_DELETE_DATA_COMMENT="是否确认删除所有剪辑的原始数据？"
-LOCAL_DELETE_DATA_COMMENT="是否确认删除 %s 的所有剪辑原始数据？"
+	CANCEL="取消"
+	CONFIRM_DELETE_DATA="是的，删除所有数据"
+	LOCAL_CONFIRM_DELETE_DATA="是的，删除 %s 的数据"
+	GLOBAL_DELETE_DATA_COMMENT="是否确认删除所有剪辑的原始数据？"
+	LOCAL_DELETE_DATA_COMMENT="是否确认删除 %s 的所有剪辑原始数据？"
 
-STOP_BUFFER_BUTTON="停止缓冲"
-START_BUFFER_BUTTON="启动缓冲"
-CLIP_BUTTON="剪辑"
-FULL_CLIP_BUTTON="完整剪辑"
-REMOVE_STREAMER_BUTTON="移除主播"
-SETTINGS_BUTTON="设置"
-RELOAD_BUTTON="刷新"
-EXIT_BUTTON="退出"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="选择活动主播"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="当前主播 => [%s]"
+	STOP_BUFFER_BUTTON="停止缓冲"
+	START_BUFFER_BUTTON="启动缓冲"
+	CLIP_BUTTON="剪辑"
+	FULL_CLIP_BUTTON="完整剪辑"
+	REMOVE_STREAMER_BUTTON="移除主播"
+	SETTINGS_BUTTON="设置"
+	RELOAD_BUTTON="刷新"
+	EXIT_BUTTON="退出"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="选择活动主播"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="当前主播 => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s 全局设置"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="前向时长 = %s 段（%s 秒）"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="后向时长 = %s 段（%s 秒）"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="缓冲区大小 = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="分段时长 = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="工作目录 = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="合并相邻剪辑 = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%s保留剪辑分段数据 = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="删除所有剪辑数据"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s 全局设置"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="前向时长 = %s 段（%s 秒）"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="后向时长 = %s 段（%s 秒）"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="缓冲区大小 = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="分段时长 = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="工作目录 = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="合并相邻剪辑 = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%s保留剪辑分段数据 = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="删除所有剪辑数据"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s 主播（%s）设置"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="删除 %s 的所有剪辑数据"
-LOCAL_SETTINGS_COMMENT="本地变量优先级更高，\n若不为空，将覆盖全局变量"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s 主播（%s）设置"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="删除 %s 的所有剪辑数据"
+	LOCAL_SETTINGS_COMMENT="本地变量优先级更高，\n若不为空，将覆盖全局变量"
 
-BACK_SETTINGS_STRING="%s 返回"
+	BACK_SETTINGS_STRING="%s 返回"
 
-CLIP_CREATING_CLIP="正在创建剪辑..."
-CLIP_LAST_SEGMENT_FILE="最后一个分段：%s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="分段尚未生成"
-CLIP_WAIT_FOR_DATA_CLIP="等待 %s 秒以收集剪辑数据"
-CLIP_SEGMENT_SAVED_STRING="分段已保存到：%s"
-CLIP_CENCELED="剪辑创建已取消"
-CLIP_REMOVE_CLIP_DATA_STRING="正在删除剪辑数据：%s"
-CLIP_FINISHED_CLIP_LOCATION="最终剪辑路径：%s"
+	CLIP_CREATING_CLIP="正在创建剪辑..."
+	CLIP_LAST_SEGMENT_FILE="最后一个分段：%s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="分段尚未生成"
+	CLIP_WAIT_FOR_DATA_CLIP="等待 %s 秒以收集剪辑数据"
+	CLIP_SEGMENT_SAVED_STRING="分段已保存到：%s"
+	CLIP_CENCELED="剪辑创建已取消"
+	CLIP_REMOVE_CLIP_DATA_STRING="正在删除剪辑数据：%s"
+	CLIP_FINISHED_CLIP_LOCATION="最终剪辑路径：%s"
 
-RESTART_ALL_BUFFERS="所有缓冲区已重启（%s）"
+	RESTART_ALL_BUFFERS="所有缓冲区已重启（%s）"
 
-DELETE_DATA_FOR_STREAMER="正在删除 %s 的剪辑数据"
+	DELETE_DATA_FOR_STREAMER="正在删除 %s 的剪辑数据"
 
-CHANGE_VARIABLE_TITLE="修改变量："
-CHANGE_VARIABLE_BACK="%s 返回"
-CHANGE_VARIABLE_INVITATION="%s 在此输入变量的新值 %s %s"
+	CHANGE_VARIABLE_TITLE="修改变量："
+	CHANGE_VARIABLE_BACK="%s 返回"
+	CHANGE_VARIABLE_INVITATION="%s 在此输入变量的新值 %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s 添加主播 %s"
-STREAMER_LIST_TITLE="%s 选择当前主播 %s"
+	STREAMER_LIST_ADD_STREAMER="%s 添加主播 %s"
+	STREAMER_LIST_TITLE="%s 选择当前主播 %s"
 
-ADD_STREAMER_MENU_INVITATION="%s 在此输入主播名称（不区分大小写） %s"
-ADD_STREAMER_MENU_TITLE="主播名称："
+	ADD_STREAMER_MENU_INVITATION="%s 在此输入主播名称（不区分大小写） %s"
+	ADD_STREAMER_MENU_TITLE="主播名称："
 
-CHECK_GLOBAL_CONFIG_ERROR="全局配置文件无效，将重置为默认设置。"
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR 变量 MERGE_ADJACENT_CLIPS 只能是 1 或 0。"
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR 变量 SAVE_CLIP_DATA 只能是 1 或 0。"
+	CHECK_GLOBAL_CONFIG_ERROR="全局配置文件无效，将重置为默认设置。"
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR 变量 MERGE_ADJACENT_CLIPS 只能是 1 或 0。"
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR 变量 SAVE_CLIP_DATA 只能是 1 或 0。"
 
-LANG_SETTINGS_STRING="语言"
+	LANG_SETTINGS_STRING="语言"
 
-HELP="
+	HELP="
 用法：
   script [选项]
 
 界面选项：
   --ui-config PATH          界面配置文件路径
-                            （wofi、rofi、fzf）。
+							（wofi、rofi、fzf）。
   --use-wofi                使用 wofi 作为界面。
   --use-rofi                使用 rofi 作为界面。
   --use-fzf                 使用 fzf 作为界面。
 
 缓冲控制：
   --start-buffer            启动流缓冲进程
-                            （将流下载到缓冲区）。
+							（将流下载到缓冲区）。
 
 主播选项：
   --streamer NAME           指定主播名称。
@@ -1026,12 +1027,12 @@ HELP="
 
 标题选项：
   --title TEXT              最终剪辑名称
-                            （将自动添加后缀）。
+							（将自动添加后缀）。
 
 语言：
   --lang CODE               界面语言
-                            （支持：en, ru, es, uk, fr, de, zh, eo）。
-                            （格式：en, en_US, en_US\$UTFCODE）
+							（支持：en, ru, es, uk, fr, de, zh, eo）。
+							（格式：en, en_US, en_US\$UTFCODE）
 
 行为选项：
   --silence-log             禁用日志输出。
@@ -1041,11 +1042,11 @@ HELP="
 
 参数处理：
   --                        将剩余参数传递给 GUI。
-                            若再次使用，将重新由主脚本处理。
+							若再次使用，将重新由主脚本处理。
 
 帮助：
   -h, --help                显示此帮助并退出。
-"
+	"
 }
 
 ################################
@@ -1054,109 +1055,109 @@ HELP="
 
 local_ukrainian() {
 	DURATION_FORWARD_COMMENT="Під час використання full-clip скрипт очікує вказану кількість нових сегментів.\nПід час використання clip це значення додається до duration_back і зберігає вказану кількість вже створених сегментів.\nЗначення має бути цілим числом."
-DURATION_BACK_COMMENT="Вказує, скільки сегментів назад у часі буде використано для створення кліпу.\nЗначення має бути цілим числом."
+	DURATION_BACK_COMMENT="Вказує, скільки сегментів назад у часі буде використано для створення кліпу.\nЗначення має бути цілим числом."
 
-local BUFFER_SIZE_COMMENT="Розмір буфера в сегментах.\n%s\nЗначення має бути цілим числом."
-local SEGMENT_TIME_COMMENT="Тривалість сегмента в секундах.\n%s\nЗначення має бути цілим числом."
-local WORK_DIRECTORY_COMMENT="Каталог, у якому зберігатимуться дані програми\n(фрагменти стриму, дані кліпів і готові кліпи).\n%s\nЗначення має бути цілим числом."
+	local BUFFER_SIZE_COMMENT="Розмір буфера в сегментах.\n%s\nЗначення має бути цілим числом."
+	local SEGMENT_TIME_COMMENT="Тривалість сегмента в секундах.\n%s\nЗначення має бути цілим числом."
+	local WORK_DIRECTORY_COMMENT="Каталог, у якому зберігатимуться дані програми\n(фрагменти стриму, дані кліпів і готові кліпи).\n%s\nЗначення має бути цілим числом."
 
-local GLOBAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, УСІ БУФЕРИ СТРИМІВ БУДУТЬ ПЕРЕЗАПУЩЕНІ!"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, УСІ БУФЕРИ СТРИМІВ БУДУТЬ ПЕРЕЗАПУЩЕНІ!"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, БУФЕР СТРИМУ ВІД %s БУДЕ ПЕРЕЗАПУЩЕНО!"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, БУФЕР СТРИМУ ВІД %s БУДЕ ПЕРЕЗАПУЩЕНО!"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, кліпи, створені приблизно в один час, будуть об’єднані.\nЯкщо увімкнено, функція збереження даних кліпу активується автоматично."
-SAVE_CLIP_DATA_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, сегменти, використані для створення кліпів, будуть збережені.\nІнакше тимчасові дані будуть видалені після створення кліпу.\nЯкщо об’єднання сусідніх кліпів увімкнено, ця опція завжди вважається увімкненою."
+	MERGE_ADJACENT_CLIPS_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, кліпи, створені приблизно в один час, будуть об’єднані.\nЯкщо увімкнено, функція збереження даних кліпу активується автоматично."
+	SAVE_CLIP_DATA_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, сегменти, використані для створення кліпів, будуть збережені.\nІнакше тимчасові дані будуть видалені після створення кліпу.\nЯкщо об’єднання сусідніх кліпів увімкнено, ця опція завжди вважається увімкненою."
 
-CANCEL="Скасувати"
-CONFIRM_DELETE_DATA="ТАК, ВИДАЛИТИ ВСІ ДАНІ"
-LOCAL_CONFIRM_DELETE_DATA="Так, видалити дані для %s"
-GLOBAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних УСІХ кліпів?"
-LOCAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних усіх кліпів для %s?"
+	CANCEL="Скасувати"
+	CONFIRM_DELETE_DATA="ТАК, ВИДАЛИТИ ВСІ ДАНІ"
+	LOCAL_CONFIRM_DELETE_DATA="Так, видалити дані для %s"
+	GLOBAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних УСІХ кліпів?"
+	LOCAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних усіх кліпів для %s?"
 
-STOP_BUFFER_BUTTON="Зупинити буфер"
-START_BUFFER_BUTTON="Запустити буфер"
-CLIP_BUTTON="Кліп"
-FULL_CLIP_BUTTON="Повний кліп"
-REMOVE_STREAMER_BUTTON="Видалити стримера"
-SETTINGS_BUTTON="Налаштування"
-RELOAD_BUTTON="Оновити"
-EXIT_BUTTON="Вихід"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Вибрати активного стримера"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Активний стример => [%s]"
+	STOP_BUFFER_BUTTON="Зупинити буфер"
+	START_BUFFER_BUTTON="Запустити буфер"
+	CLIP_BUTTON="Кліп"
+	FULL_CLIP_BUTTON="Повний кліп"
+	REMOVE_STREAMER_BUTTON="Видалити стримера"
+	SETTINGS_BUTTON="Налаштування"
+	RELOAD_BUTTON="Оновити"
+	EXIT_BUTTON="Вихід"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Вибрати активного стримера"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Активний стример => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Глобальні налаштування"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Тривалість уперед = %s сегментів (%s сек)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Тривалість назад = %s сегментів (%s сек)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Розмір буфера = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Тривалість сегмента = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Робочий каталог = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Об’єднувати сусідні кліпи = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sЗберігати дані сегментів кліпу = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="Видалити ВСІ дані кліпів"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Глобальні налаштування"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Тривалість уперед = %s сегментів (%s сек)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Тривалість назад = %s сегментів (%s сек)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Розмір буфера = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Тривалість сегмента = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Робочий каталог = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Об’єднувати сусідні кліпи = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sЗберігати дані сегментів кліпу = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Видалити ВСІ дані кліпів"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Налаштування стримера (%s)"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Видалити всі дані кліпів для %s"
-LOCAL_SETTINGS_COMMENT="Локальні змінні мають вищий пріоритет\nі замінюють глобальні, якщо вони не порожні"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Налаштування стримера (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Видалити всі дані кліпів для %s"
+	LOCAL_SETTINGS_COMMENT="Локальні змінні мають вищий пріоритет\nі замінюють глобальні, якщо вони не порожні"
 
-BACK_SETTINGS_STRING="%s Назад"
+	BACK_SETTINGS_STRING="%s Назад"
 
-CLIP_CREATING_CLIP="Створення кліпу..."
-CLIP_LAST_SEGMENT_FILE="Останній сегмент: %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Сегменти ще не створені"
-CLIP_WAIT_FOR_DATA_CLIP="Очікування %s секунд для збору даних кліпу"
-CLIP_SEGMENT_SAVED_STRING="Сегменти збережено за шляхом: %s"
-CLIP_CENCELED="Створення кліпу скасовано"
-CLIP_REMOVE_CLIP_DATA_STRING="Видалення даних кліпу: %s"
-CLIP_FINISHED_CLIP_LOCATION="Готовий кліп знаходиться за шляхом: %s"
+	CLIP_CREATING_CLIP="Створення кліпу..."
+	CLIP_LAST_SEGMENT_FILE="Останній сегмент: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Сегменти ще не створені"
+	CLIP_WAIT_FOR_DATA_CLIP="Очікування %s секунд для збору даних кліпу"
+	CLIP_SEGMENT_SAVED_STRING="Сегменти збережено за шляхом: %s"
+	CLIP_CENCELED="Створення кліпу скасовано"
+	CLIP_REMOVE_CLIP_DATA_STRING="Видалення даних кліпу: %s"
+	CLIP_FINISHED_CLIP_LOCATION="Готовий кліп знаходиться за шляхом: %s"
 
-RESTART_ALL_BUFFERS="Усі буфери перезапущено (%s)"
+	RESTART_ALL_BUFFERS="Усі буфери перезапущено (%s)"
 
-DELETE_DATA_FOR_STREAMER="Видалення даних кліпів для %s"
+	DELETE_DATA_FOR_STREAMER="Видалення даних кліпів для %s"
 
-CHANGE_VARIABLE_TITLE="Змінити змінну:"
-CHANGE_VARIABLE_BACK="%s Назад"
-CHANGE_VARIABLE_INVITATION="%s Введіть нове значення змінної тут %s %s"
+	CHANGE_VARIABLE_TITLE="Змінити змінну:"
+	CHANGE_VARIABLE_BACK="%s Назад"
+	CHANGE_VARIABLE_INVITATION="%s Введіть нове значення змінної тут %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Додати стримера %s"
-STREAMER_LIST_TITLE="%s Вибрати активного стримера %s"
+	STREAMER_LIST_ADD_STREAMER="%s Додати стримера %s"
+	STREAMER_LIST_TITLE="%s Вибрати активного стримера %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Введіть нік стримера тут (регістр не має значення) %s"
-ADD_STREAMER_MENU_TITLE="Нік стримера:"
+	ADD_STREAMER_MENU_INVITATION="%s Введіть нік стримера тут (регістр не має значення) %s"
+	ADD_STREAMER_MENU_TITLE="Нік стримера:"
 
-CHECK_GLOBAL_CONFIG_ERROR="Файл глобальної конфігурації недійсний. Його буде скинуто до стандартних налаштувань."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Змінна MERGE_ADJACENT_CLIPS може бути лише 1 або 0."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Змінна SAVE_CLIP_DATA може бути лише 1 або 0."
+	CHECK_GLOBAL_CONFIG_ERROR="Файл глобальної конфігурації недійсний. Його буде скинуто до стандартних налаштувань."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Змінна MERGE_ADJACENT_CLIPS може бути лише 1 або 0."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Змінна SAVE_CLIP_DATA може бути лише 1 або 0."
 
-LANG_SETTINGS_STRING="Мова"
+	LANG_SETTINGS_STRING="Мова"
 
-HELP="
+	HELP="
 Використання:
   script [OPTIONS]
 
 Параметри інтерфейсу:
   --ui-config PATH          Шлях до файлу конфігурації інтерфейсу
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                Використовувати wofi як інтерфейс.
   --use-rofi                Використовувати rofi як інтерфейс.
   --use-fzf                 Використовувати fzf як інтерфейс.
 
 Керування буфером:
   --start-buffer            Запустити процес буферизації стриму
-                            (завантаження стриму в буфер).
+							(завантаження стриму в буфер).
 
 Параметри стримера:
   --streamer NAME           Вказати нік стримера.
@@ -1175,19 +1176,19 @@ HELP="
 
 Параметри даних кліпу:
   --save-clip-data          Зберігати сегменти, використані
-                            для створення кліпів.
+							для створення кліпів.
 
 Робочий каталог:
   --directory PATH          Каталог для фрагментів і кліпів.
 
 Параметри назви:
   --title TEXT              Назва фінального кліпу
-                            (буде додано суфікс).
+							(буде додано суфікс).
 
 Мова:
   --lang CODE               Мова інтерфейсу
-                            (доступні: en, ru, es, uk, fr, de, zh, eo).
-                            (формати: en, en_US, en_US\$UTFCODE)
+							(доступні: en, ru, es, uk, fr, de, zh, eo).
+							(формати: en, en_US, en_US\$UTFCODE)
 
 Параметри поведінки:
   --silence-log             Вимкнути логування.
@@ -1197,12 +1198,12 @@ HELP="
 
 Обробка аргументів:
   --                        Передати решту аргументів у GUI.
-                            Якщо використати знову, аргументи
-                            будуть повторно оброблені скриптом.
+							Якщо використати знову, аргументи
+							будуть повторно оброблені скриптом.
 
 Довідка:
   -h, --help                Показати цю довідку та вийти.
-"
+	"
 }
 
 ################################
@@ -1210,110 +1211,110 @@ HELP="
 ################################
 
 local_esperanto() {
-DURATION_FORWARD_COMMENT="Kiam oni uzas full-clip, la skripto atendas la specifitan nombron da novaj segmentoj.\nKiam oni uzas clip, ĉi tiu valoro estas aldonata al duration_back kaj konservas la specifitan nombron da jam kreitaj segmentoj.\nLa valoro devas esti entjero."
-DURATION_BACK_COMMENT="Specifas kiom da segmentoj reen en la tempo estos uzataj por krei la klipon.\nLa valoro devas esti entjero."
+	DURATION_FORWARD_COMMENT="Kiam oni uzas full-clip, la skripto atendas la specifitan nombron da novaj segmentoj.\nKiam oni uzas clip, ĉi tiu valoro estas aldonata al duration_back kaj konservas la specifitan nombron da jam kreitaj segmentoj.\nLa valoro devas esti entjero."
+	DURATION_BACK_COMMENT="Specifas kiom da segmentoj reen en la tempo estos uzataj por krei la klipon.\nLa valoro devas esti entjero."
 
-local BUFFER_SIZE_COMMENT="Grandeco de la bufro en segmentoj.\n%s\nLa valoro devas esti entjero."
-local SEGMENT_TIME_COMMENT="Daŭro de segmento en sekundoj.\n%s\nLa valoro devas esti entjero."
-local WORK_DIRECTORY_COMMENT="Dosierujo, kie estos konservataj la programaj datumoj\n(segmentoj de la fluo, datumoj de klipoj kaj la finaj klipoj).\n%s\nLa valoro devas esti entjero."
+	local BUFFER_SIZE_COMMENT="Grandeco de la bufro en segmentoj.\n%s\nLa valoro devas esti entjero."
+	local SEGMENT_TIME_COMMENT="Daŭro de segmento en sekundoj.\n%s\nLa valoro devas esti entjero."
+	local WORK_DIRECTORY_COMMENT="Dosierujo, kie estos konservataj la programaj datumoj\n(segmentoj de la fluo, datumoj de klipoj kaj la finaj klipoj).\n%s\nLa valoro devas esti entjero."
 
-local GLOBAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, ĈIUJ FLUAJ BUFROJ ESTOS RESTARTIGITAJ!"
-BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	local GLOBAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, ĈIUJ FLUAJ BUFROJ ESTOS RESTARTIGITAJ!"
+	BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
 
-local LOCAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, LA BUFRO DE %s ESTOS RESTARTIGITA!"
-BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
-WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	local LOCAL_BUFFER_RESTART_WARNING="!KIAM VI ŜANĜAS ĈI TIUN VARIABLon, LA BUFRO DE %s ESTOS RESTARTIGITA!"
+	BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+	WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
 
-MERGE_ADJACENT_CLIPS_COMMENT="Nulo (cifre) — malŝaltite\nUnu (cifre) — ŝaltite\nSe ŝaltite, klipoj kun proksima tempo de kreado estos kunigitaj.\nSe ŝaltite, la funkcio por konservi klipajn datumojn estos aŭtomate aktivigita."
-SAVE_CLIP_DATA_COMMENT="Nulo — malŝaltite\nUnu — ŝaltite\nSe ŝaltite, la segmentoj uzitaj por krei klipojn estos konservataj.\nAlie, la provizoraj datumoj estos forigitaj post la kreado de klipo.\nSe kunigo de apudaj klipoj estas ŝaltita, ĉi tiu opcio ĉiam estas konsiderata kiel ŝaltita."
+	MERGE_ADJACENT_CLIPS_COMMENT="Nulo (cifre) — malŝaltite\nUnu (cifre) — ŝaltite\nSe ŝaltite, klipoj kun proksima tempo de kreado estos kunigitaj.\nSe ŝaltite, la funkcio por konservi klipajn datumojn estos aŭtomate aktivigita."
+	SAVE_CLIP_DATA_COMMENT="Nulo — malŝaltite\nUnu — ŝaltite\nSe ŝaltite, la segmentoj uzitaj por krei klipojn estos konservataj.\nAlie, la provizoraj datumoj estos forigitaj post la kreado de klipo.\nSe kunigo de apudaj klipoj estas ŝaltita, ĉi tiu opcio ĉiam estas konsiderata kiel ŝaltita."
 
-CANCEL="Nuligi"
-CONFIRM_DELETE_DATA="JES, FORIGI ĈIUJN DATUMOJN"
-LOCAL_CONFIRM_DELETE_DATA="Jes, forigi datumojn por %s"
-GLOBAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĈIUJ klipoj?"
-LOCAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĉiuj klipoj por %s?"
+	CANCEL="Nuligi"
+	CONFIRM_DELETE_DATA="JES, FORIGI ĈIUJN DATUMOJN"
+	LOCAL_CONFIRM_DELETE_DATA="Jes, forigi datumojn por %s"
+	GLOBAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĈIUJ klipoj?"
+	LOCAL_DELETE_DATA_COMMENT="Ĉu vi konfirmas la forigon de la originaj datumoj de ĉiuj klipoj por %s?"
 
-STOP_BUFFER_BUTTON="Ĉesigi bufrojn"
-START_BUFFER_BUTTON="Startigi bufrojn"
-CLIP_BUTTON="Klipo"
-FULL_CLIP_BUTTON="Plena klipo"
-REMOVE_STREAMER_BUTTON="Forigi fluanton"
-SETTINGS_BUTTON="Agordoj"
-RELOAD_BUTTON="Reŝargi"
-EXIT_BUTTON="Eliri"
-ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Elekti aktivan fluanton"
-ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiva fluanto => [%s]"
+	STOP_BUFFER_BUTTON="Ĉesigi bufrojn"
+	START_BUFFER_BUTTON="Startigi bufrojn"
+	CLIP_BUTTON="Klipo"
+	FULL_CLIP_BUTTON="Plena klipo"
+	REMOVE_STREAMER_BUTTON="Forigi fluanton"
+	SETTINGS_BUTTON="Agordoj"
+	RELOAD_BUTTON="Reŝargi"
+	EXIT_BUTTON="Eliri"
+	ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Elekti aktivan fluanton"
+	ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Aktiva fluanto => [%s]"
 
-GLOBAL_SETTINGS_SUBMENU_TITLE="%s Tutmondaj agordoj"
-GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Daŭro antaŭen = %s segmentoj (%s sek)"
-GLOBAL_DURATION_BACK_SETTINGS_STRING="Daŭro reen = %s segmentoj (%s sek)"
-GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Grandeco de bufro = %s"
-GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Daŭro de segmento = %s"
-GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Labora dosierujo = %s"
-GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Kunigi apudajn klipojn = %s"
-GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sKonservi datumojn de klipsegmentoj = %s%s"
-GLOBAL_DELETE_DATA_SETTINGS_STRING="Forigi ĈIUJN klipajn datumojn"
-GLOBAL_SETTINGS_COMMENT=""
+	GLOBAL_SETTINGS_SUBMENU_TITLE="%s Tutmondaj agordoj"
+	GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Daŭro antaŭen = %s segmentoj (%s sek)"
+	GLOBAL_DURATION_BACK_SETTINGS_STRING="Daŭro reen = %s segmentoj (%s sek)"
+	GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Grandeco de bufro = %s"
+	GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Daŭro de segmento = %s"
+	GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Labora dosierujo = %s"
+	GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Kunigi apudajn klipojn = %s"
+	GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sKonservi datumojn de klipsegmentoj = %s%s"
+	GLOBAL_DELETE_DATA_SETTINGS_STRING="Forigi ĈIUJN klipajn datumojn"
+	GLOBAL_SETTINGS_COMMENT=""
 
-LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Agordoj de fluanto (%s)"
-LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
-LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
-LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
-LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
-LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
-LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
-LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
-LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Forigi ĉiujn klipajn datumojn por %s"
-LOCAL_SETTINGS_COMMENT="Lokaj variabloj havas pli altan prioritaton\nkaj estos uzataj anstataŭ la tutmondaj se ili ne estas malplenaj"
+	LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Agordoj de fluanto (%s)"
+	LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+	LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+	LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+	LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+	LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+	LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+	LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+	LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Forigi ĉiujn klipajn datumojn por %s"
+	LOCAL_SETTINGS_COMMENT="Lokaj variabloj havas pli altan prioritaton\nkaj estos uzataj anstataŭ la tutmondaj se ili ne estas malplenaj"
 
-BACK_SETTINGS_STRING="%s Reen"
+	BACK_SETTINGS_STRING="%s Reen"
 
-CLIP_CREATING_CLIP="Kreado de klipo..."
-CLIP_LAST_SEGMENT_FILE="Lasta segmento: %s"
-CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmentoj ankoraŭ ne estas kreitaj"
-CLIP_WAIT_FOR_DATA_CLIP="Atendado %s sekundojn por kolekti datumojn por la klipo"
-CLIP_SEGMENT_SAVED_STRING="Segmentoj konservitaj en: %s"
-CLIP_CENCELED="Kreado de klipo nuligita"
-CLIP_REMOVE_CLIP_DATA_STRING="Forigado de klipaj datumoj: %s"
-CLIP_FINISHED_CLIP_LOCATION="La fina klipo troviĝas ĉe: %s"
+	CLIP_CREATING_CLIP="Kreado de klipo..."
+	CLIP_LAST_SEGMENT_FILE="Lasta segmento: %s"
+	CLIP_SEGMENTS_NOT_BEEN_CREATED="Segmentoj ankoraŭ ne estas kreitaj"
+	CLIP_WAIT_FOR_DATA_CLIP="Atendado %s sekundojn por kolekti datumojn por la klipo"
+	CLIP_SEGMENT_SAVED_STRING="Segmentoj konservitaj en: %s"
+	CLIP_CENCELED="Kreado de klipo nuligita"
+	CLIP_REMOVE_CLIP_DATA_STRING="Forigado de klipaj datumoj: %s"
+	CLIP_FINISHED_CLIP_LOCATION="La fina klipo troviĝas ĉe: %s"
 
-RESTART_ALL_BUFFERS="Ĉiuj bufroj estas restartigitaj (%s)"
+	RESTART_ALL_BUFFERS="Ĉiuj bufroj estas restartigitaj (%s)"
 
-DELETE_DATA_FOR_STREAMER="Forigado de klipaj datumoj por %s"
+	DELETE_DATA_FOR_STREAMER="Forigado de klipaj datumoj por %s"
 
-CHANGE_VARIABLE_TITLE="Ŝanĝi variablon:"
-CHANGE_VARIABLE_BACK="%s Reen"
-CHANGE_VARIABLE_INVITATION="%s Enigu novan valoron por la variablo ĉi tie %s %s"
+	CHANGE_VARIABLE_TITLE="Ŝanĝi variablon:"
+	CHANGE_VARIABLE_BACK="%s Reen"
+	CHANGE_VARIABLE_INVITATION="%s Enigu novan valoron por la variablo ĉi tie %s %s"
 
-STREAMER_LIST_ADD_STREAMER="%s Aldoni fluanton %s"
-STREAMER_LIST_TITLE="%s Elekti aktivan fluanton %s"
+	STREAMER_LIST_ADD_STREAMER="%s Aldoni fluanton %s"
+	STREAMER_LIST_TITLE="%s Elekti aktivan fluanton %s"
 
-ADD_STREAMER_MENU_INVITATION="%s Enigu la nomon de la fluanto ĉi tie (majuskloj ne gravas) %s"
-ADD_STREAMER_MENU_TITLE="Nomo de fluanto:"
+	ADD_STREAMER_MENU_INVITATION="%s Enigu la nomon de la fluanto ĉi tie (majuskloj ne gravas) %s"
+	ADD_STREAMER_MENU_TITLE="Nomo de fluanto:"
 
-CHECK_GLOBAL_CONFIG_ERROR="La tutmonda agorda dosiero estas nevalida. Ĝi estos restarigita al defaŭltaj valoroj."
-CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variablo MERGE_ADJACENT_CLIPS povas esti nur 1 aŭ 0."
-CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variablo SAVE_CLIP_DATA povas esti nur 1 aŭ 0."
+	CHECK_GLOBAL_CONFIG_ERROR="La tutmonda agorda dosiero estas nevalida. Ĝi estos restarigita al defaŭltaj valoroj."
+	CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR La variablo MERGE_ADJACENT_CLIPS povas esti nur 1 aŭ 0."
+	CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR La variablo SAVE_CLIP_DATA povas esti nur 1 aŭ 0."
 
-LANG_SETTINGS_STRING="Lingvo"
+	LANG_SETTINGS_STRING="Lingvo"
 
-HELP="
+	HELP="
 Uzado:
   script [OPCIOJ]
 
 Interfacaj opcioj:
   --ui-config PATH          Vojo al la agorda dosiero de la interfaco
-                            (wofi, rofi, fzf).
+							(wofi, rofi, fzf).
   --use-wofi                Uzi wofi kiel interfacon.
   --use-rofi                Uzi rofi kiel interfacon.
   --use-fzf                 Uzi fzf kiel interfacon.
 
 Bufra regado:
   --start-buffer            Startigi la flu-bufradon
-                            (elŝuti la fluon en bufro).
+							(elŝuti la fluon en bufro).
 
 Fluanto:
   --streamer NAME           Specifi la nomon de la fluanto.
@@ -1338,12 +1339,12 @@ Dosierujo:
 
 Titolo:
   --title TEXT              Nomo de la fina klipo
-                            (sufikso estos aldonita).
+							(sufikso estos aldonita).
 
 Lingvo:
   --lang CODE               Lingvo de interfaco
-                            (haveblaj: en, ru, es, uk, fr, de, zh, eo).
-                            (formoj: en, en_US, en_US\$UTFCODE)
+							(haveblaj: en, ru, es, uk, fr, de, zh, eo).
+							(formoj: en, en_US, en_US\$UTFCODE)
 
 Konduto:
   --silence-log             Malŝalti protokoladon.
@@ -1353,11 +1354,11 @@ Konduto:
 
 Argumentoj:
   --                        Transdoni ceterajn argumentojn al GUI.
-                            Se uzata denove, ili estos reprocesitaj.
+							Se uzata denove, ili estos reprocesitaj.
 
 Helpo:
   -h, --help                Montri ĉi tiun helpon kaj eliri.
-"
+	"
 }
 
 ################################
