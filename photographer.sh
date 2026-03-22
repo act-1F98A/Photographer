@@ -1053,7 +1053,156 @@ HELP="
 ################################
 
 local_ukrainian() {
-	return 0
+	DURATION_FORWARD_COMMENT="Під час використання full-clip скрипт очікує вказану кількість нових сегментів.\nПід час використання clip це значення додається до duration_back і зберігає вказану кількість вже створених сегментів.\nЗначення має бути цілим числом."
+DURATION_BACK_COMMENT="Вказує, скільки сегментів назад у часі буде використано для створення кліпу.\nЗначення має бути цілим числом."
+
+local BUFFER_SIZE_COMMENT="Розмір буфера в сегментах.\n%s\nЗначення має бути цілим числом."
+local SEGMENT_TIME_COMMENT="Тривалість сегмента в секундах.\n%s\nЗначення має бути цілим числом."
+local WORK_DIRECTORY_COMMENT="Каталог, у якому зберігатимуться дані програми\n(фрагменти стриму, дані кліпів і готові кліпи).\n%s\nЗначення має бути цілим числом."
+
+local GLOBAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, УСІ БУФЕРИ СТРИМІВ БУДУТЬ ПЕРЕЗАПУЩЕНІ!"
+BUFFER_SIZE_GLOBAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_GLOBAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_GLOBAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$GLOBAL_BUFFER_RESTART_WARNING")"
+
+local LOCAL_BUFFER_RESTART_WARNING="!КОЛИ ВИ ЗМІНЮЄТЕ ЦЮ ЗМІННУ, БУФЕР СТРИМУ ВІД %s БУДЕ ПЕРЕЗАПУЩЕНО!"
+BUFFER_SIZE_LOCAL_COMMENT="$(printf "$BUFFER_SIZE_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+SEGMENT_TIME_LOCAL_COMMENT="$(printf "$SEGMENT_TIME_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+WORK_DIRECTORY_LOCAL_COMMENT="$(printf "$WORK_DIRECTORY_COMMENT" "$LOCAL_BUFFER_RESTART_WARNING")"
+
+MERGE_ADJACENT_CLIPS_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, кліпи, створені приблизно в один час, будуть об’єднані.\nЯкщо увімкнено, функція збереження даних кліпу активується автоматично."
+SAVE_CLIP_DATA_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, сегменти, використані для створення кліпів, будуть збережені.\nІнакше тимчасові дані будуть видалені після створення кліпу.\nЯкщо об’єднання сусідніх кліпів увімкнено, ця опція завжди вважається увімкненою."
+
+CANCEL="Скасувати"
+CONFIRM_DELETE_DATA="ТАК, ВИДАЛИТИ ВСІ ДАНІ"
+LOCAL_CONFIRM_DELETE_DATA="Так, видалити дані для %s"
+GLOBAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних УСІХ кліпів?"
+LOCAL_DELETE_DATA_COMMENT="Ви підтверджуєте видалення вихідних даних усіх кліпів для %s?"
+
+STOP_BUFFER_BUTTON="Зупинити буфер"
+START_BUFFER_BUTTON="Запустити буфер"
+CLIP_BUTTON="Кліп"
+FULL_CLIP_BUTTON="Повний кліп"
+REMOVE_STREAMER_BUTTON="Видалити стримера"
+SETTINGS_BUTTON="Налаштування"
+RELOAD_BUTTON="Оновити"
+EXIT_BUTTON="Вихід"
+ACTIVE_STREAMER_STRING_WHERE_NONE_STREAMER="Вибрати активного стримера"
+ACTIVE_STREAMER_STRING_WHERE_STREAMER_NOT_NONE="Активний стример => [%s]"
+
+GLOBAL_SETTINGS_SUBMENU_TITLE="%s Глобальні налаштування"
+GLOBAL_DURATION_FORWARD_SETTINGS_STRING="Тривалість уперед = %s сегментів (%s сек)"
+GLOBAL_DURATION_BACK_SETTINGS_STRING="Тривалість назад = %s сегментів (%s сек)"
+GLOBAL_BUFFER_SIZE_SETTINGS_STRING="Розмір буфера = %s"
+GLOBAL_SEGMENT_TIME_SETTINGS_STRING="Тривалість сегмента = %s"
+GLOBAL_WORK_DIRECTORY_SETTINGS_STRING="Робочий каталог = %s"
+GLOBAL_MERGE_CLIPS_SETTINGS_STRING="Об’єднувати сусідні кліпи = %s"
+GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING="%sЗберігати дані сегментів кліпу = %s%s"
+GLOBAL_DELETE_DATA_SETTINGS_STRING="Видалити ВСІ дані кліпів"
+GLOBAL_SETTINGS_COMMENT=""
+
+LOCAL_STREAMER_SUBMENU_TITLE_SETTINGS_STRING="%s Налаштування стримера (%s)"
+LOCAL_DURATION_BACK_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_BACK_SETTINGS_STRING"
+LOCAL_DURATION_FORWARD_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_DURATION_FORWARD_SETTINGS_STRING"
+LOCAL_BUFFER_SIZE_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_BUFFER_SIZE_SETTINGS_STRING"
+LOCAL_SEGMENT_TIME_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SEGMENT_TIME_SETTINGS_STRING"
+LOCAL_WORK_DIRECTORY_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_WORK_DIRECTORY_SETTINGS_STRING"
+LOCAL_MERGE_ADJACENT_CLIPS_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_MERGE_CLIPS_SETTINGS_STRING"
+LOCAL_SAVE_CLIP_DATA_SETTINGS_STRING="$STREAM_EMOJI $GLOBAL_SAVE_CLIP_DATA_SETTINGS_STRING"
+LOCAL_DELETE_DATA_CLIPS_SETTINGS_STRING="Видалити всі дані кліпів для %s"
+LOCAL_SETTINGS_COMMENT="Локальні змінні мають вищий пріоритет\nі замінюють глобальні, якщо вони не порожні"
+
+BACK_SETTINGS_STRING="%s Назад"
+
+CLIP_CREATING_CLIP="Створення кліпу..."
+CLIP_LAST_SEGMENT_FILE="Останній сегмент: %s"
+CLIP_SEGMENTS_NOT_BEEN_CREATED="Сегменти ще не створені"
+CLIP_WAIT_FOR_DATA_CLIP="Очікування %s секунд для збору даних кліпу"
+CLIP_SEGMENT_SAVED_STRING="Сегменти збережено за шляхом: %s"
+CLIP_CENCELED="Створення кліпу скасовано"
+CLIP_REMOVE_CLIP_DATA_STRING="Видалення даних кліпу: %s"
+CLIP_FINISHED_CLIP_LOCATION="Готовий кліп знаходиться за шляхом: %s"
+
+RESTART_ALL_BUFFERS="Усі буфери перезапущено (%s)"
+
+DELETE_DATA_FOR_STREAMER="Видалення даних кліпів для %s"
+
+CHANGE_VARIABLE_TITLE="Змінити змінну:"
+CHANGE_VARIABLE_BACK="%s Назад"
+CHANGE_VARIABLE_INVITATION="%s Введіть нове значення змінної тут %s %s"
+
+STREAMER_LIST_ADD_STREAMER="%s Додати стримера %s"
+STREAMER_LIST_TITLE="%s Вибрати активного стримера %s"
+
+ADD_STREAMER_MENU_INVITATION="%s Введіть нік стримера тут (регістр не має значення) %s"
+ADD_STREAMER_MENU_TITLE="Нік стримера:"
+
+CHECK_GLOBAL_CONFIG_ERROR="Файл глобальної конфігурації недійсний. Його буде скинуто до стандартних налаштувань."
+CHECK_GLOBAL_CONFIG_ERROR_MERGE_ADJACENT_CLIPS="$CHECK_GLOBAL_CONFIG_ERROR Змінна MERGE_ADJACENT_CLIPS може бути лише 1 або 0."
+CHECK_GLOBAL_CONFIG_ERROR_SAVE_CLIP_DATA="$CHECK_GLOBAL_CONFIG_ERROR Змінна SAVE_CLIP_DATA може бути лише 1 або 0."
+
+LANG_SETTINGS_STRING="Мова"
+
+HELP="
+Використання:
+  script [OPTIONS]
+
+Параметри інтерфейсу:
+  --ui-config PATH          Шлях до файлу конфігурації інтерфейсу
+                            (wofi, rofi, fzf).
+  --use-wofi                Використовувати wofi як інтерфейс.
+  --use-rofi                Використовувати rofi як інтерфейс.
+  --use-fzf                 Використовувати fzf як інтерфейс.
+
+Керування буфером:
+  --start-buffer            Запустити процес буферизації стриму
+                            (завантаження стриму в буфер).
+
+Параметри стримера:
+  --streamer NAME           Вказати нік стримера.
+
+Створення кліпу:
+  --clip                    Створити кліп із буферизованих сегментів.
+  --full-clip               Почекати вказаний час і створити кліп.
+
+Параметри часу кліпу:
+  --duration-back N         Кількість сегментів до точки тригера.
+  --duration-forward N      Кількість сегментів після точки тригера.
+  --segment-time N          Тривалість кожного сегмента (сек).
+
+Параметри буфера:
+  --buffer-size N           Розмір буфера в сегментах.
+
+Параметри даних кліпу:
+  --save-clip-data          Зберігати сегменти, використані
+                            для створення кліпів.
+
+Робочий каталог:
+  --directory PATH          Каталог для фрагментів і кліпів.
+
+Параметри назви:
+  --title TEXT              Назва фінального кліпу
+                            (буде додано суфікс).
+
+Мова:
+  --lang CODE               Мова інтерфейсу
+                            (доступні: en, ru, es, uk, fr, de, zh, eo).
+                            (формати: en, en_US, en_US\$UTFCODE)
+
+Параметри поведінки:
+  --silence-log             Вимкнути логування.
+  --flip-pointers           Перевернути декоративні вказівники.
+  --invert-comments         Змінити порядок коментарів в UI.
+  --eneble-online-check     Увімкнути перевірку онлайн-статусу стримера.
+
+Обробка аргументів:
+  --                        Передати решту аргументів у GUI.
+                            Якщо використати знову, аргументи
+                            будуть повторно оброблені скриптом.
+
+Довідка:
+  -h, --help                Показати цю довідку та вийти.
+"
 }
 
 ################################
