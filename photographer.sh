@@ -1563,7 +1563,7 @@ EOF
 check_dependencies() {
     local missing="$FALSE"
 
-    for cmd in ffmpeg streamlink f; do
+    for cmd in ffmpeg streamlink; do
         if ! command -v "$cmd" >/dev/null 2>&1; then
 			printf "$UTIL_NOT_INSTALLED_STRING\n" "$cmd"
             missing="$TRUE"
