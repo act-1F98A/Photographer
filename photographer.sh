@@ -1555,7 +1555,7 @@ set_locale() {
 ################################
 
 print_help() {
-cat << EOF
+	cat << EOF
 $HELP
 EOF
 }
