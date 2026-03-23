@@ -1,27 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$(realpath "$0")")" 
 
-check_dependencies() {
-    local missing=0
-
-    for cmd in ffmpeg streamlink; do
-        if ! command -v "$cmd" >/dev/null 2>&1; then
-            echo "Ошибка: '$cmd' не установлен."
-            missing=1
-        fi
-    done
-
-    if [[ $missing -eq 1 ]]; then
-        echo ""
-        echo "Установи зависимости:"
-        echo "  sudo pacman -S ffmpeg streamlink"
-        echo "Или:"
-        echo "  sudo apt install ffmpeg streamlink"
-        echo "Или ещё както, я хз"
-        exit 1
-    fi
-}
-check_dependencies
 
 ############################################
 # КОНФИГ
@@ -110,6 +89,21 @@ ESPERANTO_CODE="eo_EO$UTFCODE"
 ################################
 
 local_english() {
+	UTIL_NOT_INSTALLED_STRING="Не установлена необходимая утилита -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Зависимости:
+  Пожалуйста, установите необходимые утилиты:
+    - ffmpeg
+    - streamlink
+
+  Установите их с помощью системного менеджера пакетов"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Пользовательский интерфейс:
+  Установите хотя бы один из следующих интерфейсных инструментов:
+    - wofi
+    - rofi
+    - fzf
+
+  Для их установки используйте системный менеджер пакетов"
+
 	DURATION_FORWARD_COMMENT="When using full-clip, the script waits for the specified number of new segments.\nWhen using clip, this value is added to duration_back and saves the specified number of already created segments.\nThe value must be an integer."
 	DURATION_BACK_COMMENT="Specifies how many segments back in time will be used to create the clip.\nThe value must be an integer."
 
@@ -267,6 +261,21 @@ Help:
 ################################
 
 local_russian() {
+	UTIL_NOT_INSTALLED_STRING="Не установлена необходимая утилита -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Зависимости:
+  Пожалуйста, установите необходимые утилиты:
+    - ffmpeg
+    - streamlink
+
+  Установите их с помощью системного менеджера пакетов"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Пользовательский интерфейс:
+  Установите хотя бы один из следующих интерфейсных инструментов:
+    - wofi
+    - rofi
+    - fzf
+
+  Для их установки используйте системный менеджер пакетов"
+
 	DURATION_FORWARD_COMMENT="При создании full-clip скрипт ожидает указанное количество новых сегментов.\nПри использовании clip это значение складывается со значением duration_back и сохраняет указанное количество сегментов, которые уже были созданы.\nЗначение должно быть целым числом."
 	DURATION_BACK_COMMENT="Указывает, сколько сегментов назад во времени будет взято для создания клипа.\nЗначение должно быть целым числом."
 
@@ -429,6 +438,21 @@ local_russian() {
 ################################
 
 local_french() {
+	UTIL_NOT_INSTALLED_STRING="L’utilitaire requis n’est pas installé -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Dépendances :
+  Veuillez installer les utilitaires nécessaires :
+    - ffmpeg
+    - streamlink
+
+  Installez-les à l’aide du gestionnaire de paquets de votre système"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Interface utilisateur :
+  Installez au moins un des outils suivants :
+    - wofi
+    - rofi
+    - fzf
+
+  Utilisez le gestionnaire de paquets de votre système pour les installer"
+
 	DURATION_FORWARD_COMMENT="Lors de l'utilisation de full-clip, le script attend le nombre spécifié de nouveaux segments.\nLors de l'utilisation de clip, cette valeur est ajoutée à duration_back et enregistre le nombre spécifié de segments déjà créés.\nLa valeur doit être un entier."
 	DURATION_BACK_COMMENT="Indique combien de segments en arrière dans le temps seront utilisés pour créer le clip.\nLa valeur doit être un entier."
 
@@ -586,7 +610,22 @@ Aide :
 ################################
 
 local_spanish() {
-		DURATION_FORWARD_COMMENT="Al usar full-clip, el script espera la cantidad especificada de nuevos segmentos.\nAl usar clip, este valor se suma a duration_back y guarda la cantidad especificada de segmentos ya creados.\nEl valor debe ser un número entero."
+	UTIL_NOT_INSTALLED_STRING="La utilidad requerida no está instalada -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Dependencias:
+  Por favor, instale las utilidades necesarias:
+    - ffmpeg
+    - streamlink
+
+  Instálelas usando el gestor de paquetes de su sistema"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Interfaz de usuario:
+  Instale al menos una de las siguientes herramientas:
+    - wofi
+    - rofi
+    - fzf
+
+  Utilice el gestor de paquetes de su sistema para instalarlas"
+
+	DURATION_FORWARD_COMMENT="Al usar full-clip, el script espera la cantidad especificada de nuevos segmentos.\nAl usar clip, este valor se suma a duration_back y guarda la cantidad especificada de segmentos ya creados.\nEl valor debe ser un número entero."
 	DURATION_BACK_COMMENT="Indica cuántos segmentos hacia atrás en el tiempo se usarán para crear el clip.\nEl valor debe ser un número entero."
 
 	local BUFFER_SIZE_COMMENT="Tamaño del búfer en segmentos.\n%s\nEl valor debe ser un número entero."
@@ -743,6 +782,21 @@ Ayuda:
 ################################
 
 local_german() {
+	UTIL_NOT_INSTALLED_STRING="Erforderliches Programm ist nicht installiert -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Abhängigkeiten:
+  Bitte installieren Sie die benötigten Programme:
+    - ffmpeg
+    - streamlink
+
+  Installieren Sie diese mit Ihrem Paketmanager"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Benutzeroberfläche:
+  Installieren Sie mindestens eines der folgenden Tools:
+    - wofi
+    - rofi
+    - fzf
+
+  Verwenden Sie Ihren Paketmanager zur Installation"
+
 	DURATION_FORWARD_COMMENT="Bei Verwendung von full-clip wartet das Skript auf die angegebene Anzahl neuer Segmente.\nBei Verwendung von clip wird dieser Wert zu duration_back addiert und speichert die angegebene Anzahl bereits erstellter Segmente.\nDer Wert muss eine ganze Zahl sein."
 	DURATION_BACK_COMMENT="Gibt an, wie viele Segmente rückwärts in der Zeit zur Erstellung des Clips verwendet werden.\nDer Wert muss eine ganze Zahl sein."
 
@@ -899,7 +953,22 @@ Hilfe:
 ################################
 
 local_chinese() {
-		DURATION_FORWARD_COMMENT="使用 full-clip 时，脚本会等待指定数量的新分段。\n使用 clip 时，此值会与 duration_back 相加，并保存指定数量的已创建分段。\n该值必须为整数。"
+	UTIL_NOT_INSTALLED_STRING="未安装所需工具 -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="依赖：
+  请安装以下必要工具：
+    - ffmpeg
+    - streamlink
+
+  请使用系统的软件包管理器进行安装"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="用户界面：
+  请至少安装以下工具之一：
+    - wofi
+    - rofi
+    - fzf
+
+  请使用系统的软件包管理器进行安装"
+	
+	DURATION_FORWARD_COMMENT="使用 full-clip 时，脚本会等待指定数量的新分段。\n使用 clip 时，此值会与 duration_back 相加，并保存指定数量的已创建分段。\n该值必须为整数。"
 	DURATION_BACK_COMMENT="指定向后（时间上）取多少个分段用于生成剪辑。\n该值必须为整数。"
 
 	local BUFFER_SIZE_COMMENT="缓冲区大小（以分段为单位）。\n%s\n该值必须为整数。"
@@ -1054,6 +1123,21 @@ local_chinese() {
 ################################
 
 local_ukrainian() {
+	UTIL_NOT_INSTALLED_STRING="Не встановлено необхідну утиліту -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Залежності:
+  Будь ласка, встановіть необхідні утиліти:
+    - ffmpeg
+    - streamlink
+
+  Встановіть їх за допомогою системного менеджера пакетів"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Користувацький інтерфейс:
+  Встановіть хоча б один із наступних інструментів:
+    - wofi
+    - rofi
+    - fzf
+
+  Використайте системний менеджер пакетів для встановлення"
+
 	DURATION_FORWARD_COMMENT="Під час використання full-clip скрипт очікує вказану кількість нових сегментів.\nПід час використання clip це значення додається до duration_back і зберігає вказану кількість вже створених сегментів.\nЗначення має бути цілим числом."
 	DURATION_BACK_COMMENT="Вказує, скільки сегментів назад у часі буде використано для створення кліпу.\nЗначення має бути цілим числом."
 
@@ -1211,6 +1295,21 @@ local_ukrainian() {
 ################################
 
 local_esperanto() {
+	UTIL_NOT_INSTALLED_STRING="Bezonata ilo ne estas instalita -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Dependecoj:
+  Bonvolu instali la necesajn ilojn:
+    - ffmpeg
+    - streamlink
+
+  Instalu ilin per via sistem-pakaĵadministrilo"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Uzantinterfaco:
+  Instalu almenaŭ unu el la jenaj iloj:
+    - wofi
+    - rofi
+    - fzf
+
+  Uzu vian sisteman pakaĵadministrilon por instali ilin"
+
 	DURATION_FORWARD_COMMENT="Kiam oni uzas full-clip, la skripto atendas la specifitan nombron da novaj segmentoj.\nKiam oni uzas clip, ĉi tiu valoro estas aldonata al duration_back kaj konservas la specifitan nombron da jam kreitaj segmentoj.\nLa valoro devas esti entjero."
 	DURATION_BACK_COMMENT="Specifas kiom da segmentoj reen en la tempo estos uzataj por krei la klipon.\nLa valoro devas esti entjero."
 
@@ -1461,6 +1560,32 @@ $HELP
 EOF
 }
 
+check_dependencies() {
+    local missing="$FALSE"
+
+    for cmd in ffmpeg streamlink f; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+			printf "$UTIL_NOT_INSTALLED_STRING\n" "$cmd"
+            missing="$TRUE"
+        fi
+    done
+
+	local installed="$FALSE"
+	for cmd in wofi rofi fzf; do 
+		if command -v cmd >/dev/null 2>&1; then 
+			installed="$TRUE"
+		fi
+	done
+
+    if [[ $missing == "$TRUE" ]]; then
+		printf "$UTIL_NOT_INSTALLED_RECOMENDATION\n"
+        exit 1
+    fi
+	if [[ "$installed" == "$FALSE" ]]; then 
+		printf "$UTIL_NOT_INSTALLED_MENU_UTIL_MISSING\n"
+		exit 1
+	fi
+}
 
 mkdir -p "$CONFIG_PATH" "$CONFIG_FILES"
 touch "$STREAMERS_FILE"
@@ -1736,6 +1861,8 @@ elif ! [[ -z "$LOCALE_LANG" ]]; then
 	lang="$LOCALE_LANG"
 fi
 localize "$lang"
+
+check_dependencies
 
 if [[ "$HELP_VAR" == "$TRUE" ]]; then
 	print_help
