@@ -89,20 +89,20 @@ ESPERANTO_CODE="eo_EO$UTFCODE"
 ################################
 
 local_english() {
-	UTIL_NOT_INSTALLED_STRING="Не установлена необходимая утилита -- %s"
-	UTIL_NOT_INSTALLED_RECOMENDATION="Зависимости:
-  Пожалуйста, установите необходимые утилиты:
+	UTIL_NOT_INSTALLED_STRING="Required utility is not installed -- %s"
+	UTIL_NOT_INSTALLED_RECOMENDATION="Dependencies:
+  Please install the required utilities:
     - ffmpeg
     - streamlink
 
-  Установите их с помощью системного менеджера пакетов"
-	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="Пользовательский интерфейс:
-  Установите хотя бы один из следующих интерфейсных инструментов:
+  Install them using your system package manager"
+	UTIL_NOT_INSTALLED_MENU_UTIL_MISSING="User interface:
+  Install at least one of the following interface tools:
     - wofi
     - rofi
     - fzf
 
-  Для их установки используйте системный менеджер пакетов"
+  Use your system package manager to install them"
 
 	DURATION_FORWARD_COMMENT="When using full-clip, the script waits for the specified number of new segments.\nWhen using clip, this value is added to duration_back and saves the specified number of already created segments.\nThe value must be an integer."
 	DURATION_BACK_COMMENT="Specifies how many segments back in time will be used to create the clip.\nThe value must be an integer."
