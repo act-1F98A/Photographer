@@ -1572,7 +1572,7 @@ check_dependencies() {
 
 	local installed="$FALSE"
 	for cmd in wofi rofi fzf; do 
-		if command -v cmd >/dev/null 2>&1; then 
+		if command -v "$cmd" >/dev/null 2>&1; then 
 			installed="$TRUE"
 		fi
 	done
