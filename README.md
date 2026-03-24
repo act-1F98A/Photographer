@@ -1,8 +1,10 @@
-# Twitch Buffer
+# Photographer
 
-A lightweight CLI tool that allows you to create instant clips from Twitch streams using a rolling local buffer.
+A lightweight tool for creating instant clips from Twitch streams using a rolling local buffer.
 
-This script continuously records a stream into short segments and lets you generate clips from recent moments — similar to a local ShadowPlay for Twitch.
+Photographer can be used both as a **fully CLI utility** and as an **interactive UI application** with streamer management, settings, and localization.
+
+It continuously records a stream into short segments and allows you to create clips from recent moments — similar to a local ShadowPlay for Twitch.
 
 ---
 
@@ -10,7 +12,11 @@ This script continuously records a stream into short segments and lets you gener
 
 - Rolling live buffer recording
 - Instant backward clip creation
-- Optional forward + backward clip mode
+- Forward + backward clip mode
+- Interactive UI (wofi / rofi / fzf)
+- Streamer list management
+- Global and per-streamer settings
+- Multi-language support
 - No VOD dependency
 - No re-downloading of content
 - Lossless segment merging (no re-encoding)
@@ -19,80 +25,118 @@ This script continuously records a stream into short segments and lets you gener
 
 ## Dependencies
 
-The following tools must be installed:
+Required:
 
 - `ffmpeg`
 - `streamlink`
 
-### Arch Linux
+Install them using your system package manager.
 
-```bash
-sudo pacman -S ffmpeg streamlink
-```
-### Debian/Ubuntu
+Optional (UI):
 
-```bash
-sudo apt install ffmpeg streamlink
-```
+Install **at least one** of the following:
+
+- `wofi`
+- `rofi`
+- `fzf`
+
+These are used for the interactive interface.
+
+---
 
 ## Installation
+
 ### Option 1 — Download from Release (recommended)
 
-1) Go to the [Releases](https://github.com/act-1F98A/Photographer/releases/) section of this repository.
-2) Download the latest ```photographer.sh```.
+1) Go to the [Releases](https://github.com/act-1F98A/Photographer/releases/) page  
+2) Download the latest `photographer.sh`  
 3) Make it executable:
 ```bash
 chmod +x photographer.sh
 ```
-4) (Optional) Move it into your PATH:
+(Optional) Move it into your PATH:
 ```bash
-sudo mv photographer.sh /usr/local/bin/photographer
+mv photographer.sh ~/.local/bin/photographer
 ```
+---
 ### Option 2 — Clone repository
-```bash
+```bash 
 git clone https://github.com/act-1F98A/Photographer.git
 cd Photographer
-chmod +x photographer.sh
+chmod +x photographer
 ```
-## Usage Examples
+(Optional)
+```bash
+mv photographer.sh ~/.local/bin/photographer
+```
+---
+## Usage
+### CLI mode
+Start buffer or toggle recording:
+```bash
+photographer --start-buffer
+```
+Create a clip:
+```bash
+photographer --clip
+```
+Create a full clip (with forward buffer):
+```bash
+photographer --full-clip
+```
+Create a clip for a specific streamer:
+```bash
+photographer --clip --streamer NAME
+```
+\(if the streamer is not explicitly specified when creating the clip, the clip will be created for the active streamer according to the ~/.config/photographer/config file\)
 
-![Demo](demo.GIF)
-
-Start recording a stream buffer:
-```bash
-./photographer.sh streamer_name
-```
-Create a clip from recent moments:
-```bash
-./photographer.sh streamer_name --clip
-```
-Create a clip including forward + backward buffer:
-```bash
-./photographer.sh streamer_name --full-clip
-```
+#### Help
 For more information about available options:
 ```bash
-./photographer.sh --help
+photographer --help
 ```
+### UI mode
+Run without arguments to open the interactive interface:
+```bash
+photographer
+```
+From there you can:
+
+- Start/stop buffer
+- Create clips
+- Select active streamer
+- Manage streamer list
+- Change settings
+- Switch language
+---
+Start buffer
+![Demo Start Buffer](demo_start_buffer.gif)
+Creation clip
+![Demo Clip Creation](demo_clip_creation.gif)
+
 ## How It Works
 
-streamlink reads the live Twitch stream
-
-ffmpeg splits it into short cyclic segments
-
-When triggered, selected segments are copied and merged into a single .mp4 file
-
-All processing happens locally.
-No Twitch VOD access required.
-
-Output Structure
-
+- `streamlink` reads the live Twitch stream
+- `ffmpeg` splits it into short cyclic segments
+- Segments are stored in a rolling buffer
+- When triggered, segments are selected and merged into a `.mp4` clip
+All processing is done locally.
+No Twitch VOD access is required.
+---
+## Output Structure
 By default:
 ```
 ~/photographer/
     segments/<streamer>/
     clips/<streamer>/
+        made_clip/
+        data/
 ```
+---
+## Notes
+- The tool works entirely locally
+- No stream re-downloads are performed
+- Clips are created without re-encoding
+---
 ## License
-
 MIT License
