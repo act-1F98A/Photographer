@@ -124,6 +124,11 @@ local_english() {
 	MERGE_ADJACENT_CLIPS_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, clips created around the same time will be merged.\nIf enabled, clip data preservation is automatically enabled."
 	SAVE_CLIP_DATA_COMMENT="Zero (digit) -- Disabled\nOne (digit) -- Enabled\nIf enabled, segments used to create clips will be preserved.\nOtherwise, temporary data will be removed after the clip is created.\nIf merging adjacent clips is enabled, this option is always considered enabled."
 
+	INPUT_NAME_MENU_BACK="%s Back"
+	INPUT_NAME_MENU_INVITATION="%s Enter clip name here %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Clip name"
+	INPUT_NAME_MENU_COMMENT="(Choosing a name does not affect clip creation\nyou can take as much time as you want)"
+
 	CANCEL="Cancel"
 	CONFIRM_DELETE_DATA="YES, DELETE ALL DATA"
 	LOCAL_CONFIRM_DELETE_DATA="Yes, delete data for %s"
@@ -296,6 +301,10 @@ local_russian() {
 	MERGE_ADJACENT_CLIPS_COMMENT="Ноль(цыфрой) -- Выключено\nОдин(цыфрой) -- Включено\nЕсли включено, то сопоставимые по времени создания клипы совмещаются.\nЕсли включено, то автоматически включается функция сохранения данных клипа."
 	SAVE_CLIP_DATA_COMMENT="Ноль(цыфрой) -- Выключено\nОдин(цыфрой) -- Включено\nЕсли включено, сегменты, использованные для создания клипов, будут сохранены.\nИначе временные данные будут удалены после создания клипа.\nЕсли объединение соседних клипов включено, эта опция всегда считается включённой."
 
+	INPUT_NAME_MENU_BACK="%s Назад"
+	INPUT_NAME_MENU_INVITATION="%s Введите название клипа здесь %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Название клипа"
+	INPUT_NAME_MENU_COMMENT="(Выбор названия не влияет на процесс создание клипа\nвы можете выбирать название сколь угодно долго)"
 
 	CANCEL="Отмена"
 	CONFIRM_DELETE_DATA="ДА, УДАЛИТЬ ВСЕ ДАННЫЕ"
@@ -473,6 +482,11 @@ local_french() {
 	MERGE_ADJACENT_CLIPS_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les clips créés à des moments proches seront fusionnés.\nSi activé, la conservation des données des clips est automatiquement activée."
 	SAVE_CLIP_DATA_COMMENT="Zéro (chiffre) -- Désactivé\nUn (chiffre) -- Activé\nSi activé, les segments utilisés pour créer les clips seront conservés.\nSinon, les données temporaires seront supprimées après la création du clip.\nSi la fusion des clips adjacents est activée, cette option est toujours considérée comme activée."
 
+	INPUT_NAME_MENU_BACK="%s Retour"
+	INPUT_NAME_MENU_INVITATION="%s Entrez le nom du clip ici %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Nom du clip"
+	INPUT_NAME_MENU_COMMENT="(Le choix du nom n'affecte pas la création du clip\nvous pouvez prendre autant de temps que nécessaire)"
+
 	CANCEL="Annuler"
 	CONFIRM_DELETE_DATA="OUI, SUPPRIMER TOUTES LES DONNÉES"
 	LOCAL_CONFIRM_DELETE_DATA="Oui, supprimer les données pour %s"
@@ -644,6 +658,11 @@ local_spanish() {
 
 	MERGE_ADJACENT_CLIPS_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los clips creados en momentos cercanos se fusionarán.\nSi está activado, la conservación de datos del clip se habilita automáticamente."
 	SAVE_CLIP_DATA_COMMENT="Cero (dígito) -- Desactivado\nUno (dígito) -- Activado\nSi está activado, los segmentos usados para crear clips se conservarán.\nDe lo contrario, los datos temporales se eliminarán después de crear el clip.\nSi la fusión de clips adyacentes está activada, esta opción siempre se considera activada."
+
+	INPUT_NAME_MENU_BACK="%s Volver"
+	INPUT_NAME_MENU_INVITATION="%s Introduce el nombre del clip aquí %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Nombre del clip"
+	INPUT_NAME_MENU_COMMENT="(Elegir un nombre no afecta al proceso de creación del clip\npuedes tomarte todo el tiempo que quieras)"
 
 	CANCEL="Cancelar"
 	CONFIRM_DELETE_DATA="SÍ, ELIMINAR TODOS LOS DATOS"
@@ -817,6 +836,11 @@ local_german() {
 	MERGE_ADJACENT_CLIPS_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden zeitlich nahe Clips zusammengeführt.\nWenn aktiviert, wird die Speicherung der Clip-Daten automatisch aktiviert."
 	SAVE_CLIP_DATA_COMMENT="Null (Ziffer) -- Deaktiviert\nEins (Ziffer) -- Aktiviert\nWenn aktiviert, werden die zur Clip-Erstellung verwendeten Segmente gespeichert.\nAndernfalls werden temporäre Daten nach der Erstellung des Clips gelöscht.\nWenn das Zusammenführen benachbarter Clips aktiviert ist, gilt diese Option immer als aktiviert."
 
+	INPUT_NAME_MENU_BACK="%s Zurück"
+	INPUT_NAME_MENU_INVITATION="%s Namen des Clips hier eingeben %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Clip-Name"
+	INPUT_NAME_MENU_COMMENT="(Die Wahl des Namens beeinflusst die Clip-Erstellung nicht\nSie können sich so viel Zeit nehmen, wie Sie möchten)"
+
 	CANCEL="Abbrechen"
 	CONFIRM_DELETE_DATA="JA, ALLE DATEN LÖSCHEN"
 	LOCAL_CONFIRM_DELETE_DATA="Ja, Daten für %s löschen"
@@ -988,6 +1012,11 @@ local_chinese() {
 	MERGE_ADJACENT_CLIPS_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，时间上接近的剪辑会被合并。\n开启后，会自动启用剪辑数据保存。"
 	SAVE_CLIP_DATA_COMMENT="零（数字）— 关闭\n一（数字）— 开启\n开启后，用于生成剪辑的分段会被保留。\n否则，在剪辑生成后会删除临时数据。\n如果已启用相邻剪辑合并，则此选项始终视为开启。"
 
+	INPUT_NAME_MENU_BACK="%s 返回"
+	INPUT_NAME_MENU_INVITATION="%s 在此输入剪辑名称 %s"
+	INPUT_NAME_MENU_INVITATION_STRING="剪辑名称"
+	INPUT_NAME_MENU_COMMENT="（选择名称不会影响剪辑创建过程\n您可以花任意时间来输入名称）"
+
 	CANCEL="取消"
 	CONFIRM_DELETE_DATA="是的，删除所有数据"
 	LOCAL_CONFIRM_DELETE_DATA="是的，删除 %s 的数据"
@@ -1157,6 +1186,11 @@ local_ukrainian() {
 
 	MERGE_ADJACENT_CLIPS_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, кліпи, створені приблизно в один час, будуть об’єднані.\nЯкщо увімкнено, функція збереження даних кліпу активується автоматично."
 	SAVE_CLIP_DATA_COMMENT="Нуль (цифрою) — Вимкнено\nОдин (цифрою) — Увімкнено\nЯкщо увімкнено, сегменти, використані для створення кліпів, будуть збережені.\nІнакше тимчасові дані будуть видалені після створення кліпу.\nЯкщо об’єднання сусідніх кліпів увімкнено, ця опція завжди вважається увімкненою."
+
+	INPUT_NAME_MENU_BACK="%s Назад"
+	INPUT_NAME_MENU_INVITATION="%s Введіть назву кліпу тут %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Назва кліпу"
+	INPUT_NAME_MENU_COMMENT="(Вибір назви не впливає на процес створення кліпу\nви можете обирати назву скільки завгодно довго)"
 
 	CANCEL="Скасувати"
 	CONFIRM_DELETE_DATA="ТАК, ВИДАЛИТИ ВСІ ДАНІ"
@@ -1329,6 +1363,11 @@ local_esperanto() {
 
 	MERGE_ADJACENT_CLIPS_COMMENT="Nulo (cifre) — malŝaltite\nUnu (cifre) — ŝaltite\nSe ŝaltite, klipoj kun proksima tempo de kreado estos kunigitaj.\nSe ŝaltite, la funkcio por konservi klipajn datumojn estos aŭtomate aktivigita."
 	SAVE_CLIP_DATA_COMMENT="Nulo — malŝaltite\nUnu — ŝaltite\nSe ŝaltite, la segmentoj uzitaj por krei klipojn estos konservataj.\nAlie, la provizoraj datumoj estos forigitaj post la kreado de klipo.\nSe kunigo de apudaj klipoj estas ŝaltita, ĉi tiu opcio ĉiam estas konsiderata kiel ŝaltita."
+
+	INPUT_NAME_MENU_BACK="%s Reen"
+	INPUT_NAME_MENU_INVITATION="%s Enigu la nomon de la klipo ĉi tie %s"
+	INPUT_NAME_MENU_INVITATION_STRING="Nomo de klipo"
+	INPUT_NAME_MENU_COMMENT="(La elekto de la nomo ne influas la kreadon de la klipo\nvi povas preni tiom da tempo kiom vi volas)"
 
 	CANCEL="Nuligi"
 	CONFIRM_DELETE_DATA="JES, FORIGI ĈIUJN DATUMOJN"
@@ -1989,17 +2028,16 @@ grap_menu() {
 }
 
 input_name_menu() {
-	back="back"
-	first_string="$POINTER_EMOJI$(insert_zwsp_between_chars " Enter the name of the clip ")$POINTER_EMOJI"
-	other_strings="$POINTER_BACK_EMOJI $(insert_zwsp_between_chars "$back")
-$(build_comment "Entering the name does not slow down the script
-(you can think about the name for as long as you like,
-the clip was created when the script was activated)")"
+	first_string="$(printf "$INPUT_NAME_MENU_INVITATION" "$POINTER_EMOJI" "$POINTER_EMOJI")"
+	other_strings="$(cat <<EOF
+$(printf "$(insert_zwsp_between_chars "$INPUT_NAME_MENU_BACK")" "$POINTER_BACK_EMOJI")
+$(build_comment "$INPUT_NAME_MENU_COMMENT" )
+EOF
+	)"
 
-	comment="$first_string
-$other_strings"
+	comment="$first_string\n$other_strings"
 	menu="$(echo -e "$comment")"
-	name="$(grap_menu "$menu" "Enter the name of the clip" "$TRUE")"
+	name="$(grap_menu "$menu" "$INPUT_NAME_MENU_INVITATION_STRING" "$TRUE")"
 	grep -q "$name" <<EOF
 $first_string
 EOF
