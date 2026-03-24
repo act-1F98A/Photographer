@@ -2394,7 +2394,7 @@ clip() {
 		rm -f "$TMP_NAME_FILE"
 		if [[ "${TITLE#* }" == "1" ]]; then
 			printf "$CLIP_CENCELED\n"
-			printf "$CLIP_REMOVE_CLIP_DATA_STRING\n" "$(reatpath "$clip_data_dir")"
+			printf "$CLIP_REMOVE_CLIP_DATA_STRING\n" "$(realpath "$clip_data_dir")"
 			rm -rf "$clip_data_dir"
 			exit 0
 		fi
@@ -2427,11 +2427,11 @@ clip() {
 		"$OUTFILE"
 	
 	if ! [[ "$MERGE_ADJACENT_CLIPS" == "$TRUE" || "$SAVE_CLIP_DATA" == "$TRUE" ]]; then
-		printf "$CLIP_REMOVE_CLIP_DATA_STRING\n" "$(reatpath "$clip_data_dir")"
+		printf "$CLIP_REMOVE_CLIP_DATA_STRING\n" "$(realpath "$clip_data_dir")"
 		rm -rf "$clip_data_dir"
 	fi
 
-	printf "$CLIP_FINISHED_CLIP_LOCATION\n" "$(reatpath "$OUTFILE")"
+	printf "$CLIP_FINISHED_CLIP_LOCATION\n" "$(realpath "$OUTFILE")"
 	exit 0
 }
 
